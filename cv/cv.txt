@@ -1,0 +1,121 @@
+
+
+****** Óscar Gómez Alcañiz ******
+***** Curriculum Vitae *****
+
+ Toggle navigation     Óscar_Gómez_&mdash;_CV
+    * Contact_Information
+    * Work_Experience
+    * Education
+    * Other_Skills
+    * Work_Examples
+ [Profile picture]
+**** Contact Information ****
+  Phone Number
+      +34_605_20_17_14
+  Email
+      oscar.gomez@uji.es
+  Skype
+      oscar.gomez.london
+**** Personal Information ****
+  Date of Birth
+      09/06/1983
+  Born in
+      Castellón de la Plana
+  Nationality
+      Spanish
+  Gender
+      Male
+
+================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+**** Work Experience ****
+*** Currently ***
+Universitat Jaume I (Collaboration scholarship. Castellón, Spain). I have recently started a collaboration project at the Computer Science Dpt., for the Robotics Group, which will finish on July, 2014.
+*** May 2013 &ndash; November 2013 ***
+Digital Ceramic (Photographic files for inkjet. Almazora, Spain). Web development, graphic design, ceramic ambients infographics.
+*** January 2011 &ndash; May 2013 ***
+Private teacher (English, science, computing). In order to cope with my studies, I started to teach maths, physics, programming, and technical drawing to high school students, and English at basic and intermediate levels.
+*** January 2008 &ndash; December 2010 ***
+Signo Comunicación (Communication agency. Castellón, Spain). Web development department. Graphic design, web development &amp; page makeup for several magazines.
+*** September 2008 &ndash; June 2010 ***
+Espai d'Art Fotogràfic (Arts school. Valencia, Spain). Digital photography teacher (using Adobe Photoshop) at beginner, intermediate and advanced levels, during the academic year. It also involved weekend courses of 15 practical-theoretical hours.
+*** October 2006 &ndash; December 2007 ***
+Photomart Ltd. (Photographic supplies wholesaler. London, United Kingdom). Graphic designer / website manager. My tasks involved the management of the corporate website, the creation of advertising on several media (mainly online and press), developing of mini-sites, pagemaking a monthly magazine and editing an electronic weekly magazine.
+*** June 2004 – July 2005 ***
+La Lupa (Local trade newspaper. Castellón, Spain). Graphic design, advertising campaigns design and page make up for their weekly magazine.
+*** January 2002 – July 2002 ***
+CDM – GTFadrell (Computer sale and technical support. Castellón, Spain). Technical support, assembly and distribution of computer equipment.
+*** Side jobs ***
+Throughout all this period, in between jobs or along my studies at high school and university, I've always carried out other jobs non-related to IT or design, which have contributed towards my – personal rather than professional – development.
+
+================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+**** Education ****
+*** 2010 &ndash; Currently ***
+UNIVERSITAT JAUME I. Castellón. Degree on Computer Science
+*** 2004 &ndash; 2005 ***
+ESCOLA SUPERIOR D’ARTS I OFICIS. Castellón. Degree on Graphic Design – First year completed
+*** 2003 &ndash; 2004 ***
+Course on Web design, HTML and FLASH. Castellón. Intensive course – Completed after three months
+*** 2000 ***
+IES Penyagolosa. Castellón. BUP+COU (high school)
+
+================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+**** Other Skills ****
+*** IT Knowledge ***
+    * ** Operating Systems **
+          o Linux (Ubuntu, Archlinux)
+          o Windows (XP, Vista, 7, 8)
+          o Mac OS X (10.x)
+    * ** Design tools **
+          o Photoshop
+          o InDesign
+          o Illustrator
+          o Freehand
+          o Flash
+          o Dreamweaver
+    * ** Programming languages **
+          o Java
+          o Javascript/jQuery
+          o Python
+          o C/C++
+          o Ruby/Rails
+          o HTML5
+          o CSS3
+          o PHP
+          o MySQL
+          o Actionscript 3.0
+    * ** Office tools **
+          o Word
+          o Excel
+    * ** Audio/video editing tools **
+          o Steinberg Nuendo
+          o Adobe Audition
+          o After Effects
+*** Languages ***
+According to the Common_European_Framework_of_Reference_for_Languages:
+                    Speaking Listening Reading Writing
+English             B2       B2        C1      B2
+Spanish             C2 (native)
+Catalan / Valencian C1       C1        C2      C1
+*** Driving License ***
+I got my driving license on 2003, and I have a wide experience with both tourisms and vans.
+*** Personal Skills ***
+I'm a polite, extrovert and kind person, who likes enjoying a job as much as possible. I pay attention to details in everything I do. I'm always willing to learn in order to get the best results possible. I consider myself sincere, responsible and committed to my job. I play several musical instruments and consider myself a creative person.
+
+================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================================
+**** Work Examples ****
+*** Design ***
+** Day Of Rising CD Artwork Design **
+* Original shots *
+[Raw Material 1] [Raw Material 2] [Raw Material 3]
+* Results *
+[CD Artwork / Front] [CD Artwork / Back]
+*** Websites ***
+    * [Icon]Digital_Ceramic
+    * [Icon]Maderas_Blanquer
+    * [Icon] Day_Of_Rising
+**** Networking ****
+    *  GitHub
+    *  Bitbucket
+    *  CodePlex
+    *  Twitter
