@@ -1,7 +1,8 @@
 <!doctype html>
 <html>
 <head>
-    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>EI1061 &emdash; Entregable i02</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
 
@@ -54,7 +55,7 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-2 col-xs-1 affix"> 
+            <div class="col-xs-12 col-md-2"> 
             <!--style="background: url(e_ei1061_i02-1_1.png)"-->
                 <h2>EI1061</h2>
                 <h1>I2</h1>
@@ -69,7 +70,7 @@
                     <li><a href="#7">Ejercicio 7</a></li>
                 </ul>
             </div>
-            <div class="col-xs-11 col-md-10 col-md-offset-2 col-xs-offset-1">
+            <div class="col-xs-12 col-md-10">
                 <h1>Entregable I2</h1>
                 <h2>EI1061 &#x2014; Arquitecturas Avanzadas</h2>
                 <dl>
@@ -181,7 +182,7 @@ mult r7, r2, r4</code></pre>
         <td>bnez r1, bucle</td>
         <td colspan="5"></td>
         <td><i>IF</i></td>
-        <td>*</td>
+        <td><i style="opacity: 0.5">IF</i></td>
         <td><i class="shortcut end">ID</i></td>
         <td><i>ALU</i></td>
         <td><i>OS</i></td>
@@ -391,6 +392,136 @@ mult r7, r2, r4</code></pre>
                     </li>
                     <li><a name="7"></a>
                         <p>Una posible solución para los saltos es la técnica de predicción no tomado en la que el procesador sigue ejecutanto la(s) instrucción(es) siguiente(s) al salto como si éste no se tomase y, cuando el salto se resuelve, las aborta si éste sí debía haber sido tomado. Para el código anterior, ¿cuántos ciclos necesita el procesador sencillo para ejecutarlo si los saltos se resuelven en la etapa ID y se tratan mediante la técnica predicción no tomado? ¿y si los saltos se resuelven en la etapa ALU?</p>
+                        <blockquote></blockquote>
+                        <table class="cycle-diagram table table-striped">
+<caption><strong>Resolución en ALU, tratamiento con predicción no tomado</strong></caption>
+<thead>
+    <tr>
+        <th>Ciclo</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+        <th>8</th>
+        <th>9</th>
+        <th>10</th>
+        <th>11</th>
+        <th>12</th>
+        <th>13</th>
+        <th>&hellip;</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>addi r1, r0, 20</td>
+        <td><i>IF</i></td>
+        <td><i>ID</i></td>
+        <td><i class="shortcut start">ALU</i></td>
+        <td><i>OS</i></td>
+        <td colspan="10"></td>
+    </tr>
+    <tr>
+        <td>bucle: add r2, r2, r1</td>
+        <td></td>
+        <td><i>IF</i></td>
+        <td><i>ID</i></td>
+        <td><i class="shortcut end">ALU</i></td>
+        <td><i>OS</i></td>
+        <td colspan="9"></td>
+    </tr>
+    <tr>
+        <td>multi r3, r1, 2</td>
+        <td colspan="2"></td>
+        <td><i>IF</i></td>
+        <td><i>ID</i></td>
+        <td><i class="shortcut start">ALU</i></td>
+        <td><i>OS</i></td>
+        <td colspan="8"></td>
+    </tr>
+    <tr>
+        <td>addi r1, r1, -1</td>
+        <td colspan="3"></td>
+        <td><i>IF</i></td>
+        <td><i>ID</i></td>
+        <td><i class="shortcut start">ALU</i></td>
+        <td><i>OS</i></td>
+        <td colspan="7"></td>
+    </tr>
+    <tr>
+        <td><strong>add r4, r4, r3</strong></td>
+        <td colspan="4"></td>
+        <td><i>IF</i></td>
+        <td><i>ID</i></td>
+        <td><i>ALU</i></td>
+        <td><i>OS</i></td>
+        <td colspan="6">← reordenada para rellenar</td>
+    </tr>
+    <tr>
+        <td>bnez r1, bucle</td>
+        <td colspan="5"></td>
+        <td><i>IF</i></td>
+        <td><i>ID</i></td>
+        <td><i>ALU</i></td>
+        <td><i>OS</i></td>
+        <td colspan="5">← entra en el bucle</td>
+    </tr>
+    <tr>
+        <td>add r5, r2, r4</td>
+        <td colspan="6">se descarta excepto en la última iteración →</td>
+        <td><i style="opacity: 0.5">IF</i></td>
+        <td><i style="opacity: 0.5">ID</i></td>
+        <td><i style="opacity: 0.5">ALU</i></td>
+        <td><i style="opacity: 0.5">OS</i></td>
+        <td colspan="4"></td>
+    </tr>
+    <tr>
+        <td>sub r6, r2, r4</td>
+        <td colspan="7">" idem</td>
+        <td><i style="opacity: 0.5">IF</i></td>
+        <td><i style="opacity: 0.5">ID</i></td>
+        <td><i style="opacity: 0.5">ALU</i></td>
+        <td><i style="opacity: 0.5">OS</i></td>
+        <td colspan="3"></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td colspan="14">(se repite 20 veces más)</td>
+    </tr>
+    <tr>
+        <th colspan="2">&hellip;</th>
+        <th>116</th>
+        <th>117</th>
+        <th>118</th>
+        <th>119</th>
+        <th>120</th>
+        <th>121</th>
+        <th>122</th>
+        <th>123</th>
+        <th>124</th>
+        <th>125</th>
+        <th>126</th>
+        <th>127</th>
+        <th>128</th>
+    </tr>
+    <tr>
+        <td>mult r7, r2, r4</td>
+        <td colspan="7"></td>
+        <td><i>IF</i></td>
+        <td><i>ID</i></td>
+        <td><i>ALU</i></td>
+        <td><i>OS</i></td>
+        <td colspan="3"></td>
+    </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="15"><strong>Total:</strong> 4 + 20 &times; 7 + 1 = 125 ciclos</td>
+        </tr>
+    </tfoot>
+</table>
                     </li>
                 </ol>
                 <footer><small>Nota: Este entregable forma parte de la evaluación de la asignatura.</small></footer>
