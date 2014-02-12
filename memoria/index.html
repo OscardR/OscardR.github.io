@@ -1,0 +1,940 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Memoria del Trabajo Realizado</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<style>
+		.email {
+			white-space: pre-wrap;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<header>
+			<h1>Óscar Gómez &#x2014; Memoria del Proyecto @ Robotic Intelligence Lab</h1>
+			<h2>Daily Updates</h2>
+		</header>
+		<section>
+			<h3>Semana 11-17 Noviembre</h3>
+			
+			<ul>
+				<h4>Formatear y reinstalar Windows 7 y Ubuntu</h4>
+				<li>Tras reiniciar Windows 7 sin desactivar las actualizaciones, éstas se han instalado de manera automática y Windows ya no es capaz de arrancar.</li>
+				<li>Resulta imposible recuperar el arranque mediante las utilidades de recuperación del instalador de Windows (<code>DISKPART</code>, <code>FIXBOOT</code>, <code>FIXMBR</code>, <code>BOOTREC /REBUILDBCD</code> no consiguen recuperar el arranque)</li>
+				<li>Tras este intento, lo que he conseguido es que ahora Ubuntu no arranque, ya que el GRUB estaba instalado en la partición de Windows. He reinstalado el GRUB pero en la partición de Ubuntu.</li>
+				<li>Se ha reinstalado Windows 7, y como consecuencia, pese a dejar el mapa de particiones intacto, ahora la partición de Ubuntu se ve como espacio sin particionar, y Ubuntu no puede arrancar.</li>
+				<h4>Se opta por intentar ejecutar la demo en Windows</h4>
+				<li>Instalar CUDA/OpenNI/PrimeSense Drivers en Windows</li>
+				<li>La demo funciona en Windows</li>
+				<h4>Intento de recuperar la partición existente de Ubuntu</h4>
+				<li>
+					<p>Intento recuperar la partición perdida con el LiveCD de Ubuntu 12.04 LTS, con GParted y <code>fdisk</code>, pero sale el disco sin particiones, no lee bien el MBR.</p>
+					<p>Uso <code>testdisk</code> para escanear particiones perdidas. Tras tres horas de búsqueda encuentra como unas 20 particiones de Linux de instalaciones anteriores, de entre las cuales identifico la correcta tras examinar el sistema de archivos. La recupero y reinicio, pero sin suerte, ya que probablemente era una partición lógica y yo la he recuperado como primaria.</p>
+					<p>Ante la perspectiva de volver a escanear el disco entero con <code>testdisk</code> (otras 3h.), opto por reparticionar desde Windows el espacio 'libre' y reinstalar Ubuntu.</p></li>
+					<li>Reparticionado el disco con 160 GB para Ubuntu y otros 100 GB para una partición de datos compartida en NTFS</li>
+				</ul>
+
+			</section>
+			<section>
+				<h3 class="date">19/11/2013</h3>
+				<ul>
+					<li>
+					<p>Instalación de OpenNI 1.5.4, CUDA, PrimeSense y NiTE</p></li>
+				</ul>
+			</section>
+			<section>
+				<h3 class="date">21/11/2013</h3>
+
+				<ul>
+					<li><p>Bajado HandTracker 0.4b y probado. Falla porque necesita OpenNNI2</p></li>
+					<li><p>Instalado OpenNI2</p></li>
+					<li><p>HandTracker 0.4b falla por culpa de los drivers de Kinect. No es compatible con los drivers actuales, necesita FreenectDriver [<a href="http://stackoverflow.com/questions/19612678/openni-sdk2-cant-find-kinect-device-ubuntu-13-04">http://stackoverflow.com/questions/19612678/openni-sdk2-cant-find-kinect-device-ubuntu-13-04</a>]</p>
+					<li><p>Bajado FreenectDriver [<a href="https://github.com/piedar/OpenNI2-FreenectDriver">https://github.com/piedar/OpenNI2-FreenectDriver</a>]. Problemas para instalar: necesita libfreenect</p></li>
+					<li><p>Instalado libfreenect</p>
+<p>
+	<pre><code>apt-get install libfreenect</code></pre>
+</p></li>
+					<li><p>FreenectDriver sigue fallando. No puede compilar. Parece ser que la librería libfreenect hay que instalarla manualmente [<a href="https://github.com/piedar/OpenNI2-FreenectDriver/issues/21">https://github.com/piedar/OpenNI2-FreenectDriver/issues/21</a>]</p></li>
+					<li><p>Instalando manualmente la librería [<a href="http://openkinect.org/wiki/Getting_Started#Ubuntu_Manual_Install">http://openkinect.org/wiki/Getting_Started#Ubuntu_Manual_Install</a>]</p></li>
+					<li><p>Freenect instalada manualmente satisfactoriamente</p></li>
+					<li><p>Instalar OpenNI2-FreenectDriver: Error al hacer build:</p>
+<p>
+	<pre><code>oscar@ia22:/datos/OpenNI2-FreenectDriver-master$ sudo ./waf configure build
+	Setting top to                           : /datos/OpenNI2-FreenectDriver-master 
+	Setting out to                           : /datos/OpenNI2-FreenectDriver-master/build 
+	Checking for 'g++' (c++ compiler)        : /usr/bin/g++ 
+	Checking for library freenect            : yes 
+	'configure' finished successfully (0.060s)
+	Waf: Entering directory `/datos/OpenNI2-FreenectDriver-master/build'
+	[5/5] vnum: build/libFreenectDriver.so -> build/libFreenectDriver.so.1 build/libFreenectDriver.so.1.2.1
+	Waf: Leaving directory `/datos/OpenNI2-FreenectDriver-master/build'
+	Build failed
+	-> task in 'FreenectDriver' failed (exit status 1): 
+	{task 21479504: vnum libFreenectDriver.so -> libFreenectDriver.so.1,libFreenectDriver.so.1.2.1}
+	''</code></pre>
+</p>
+					</li>
+					<li><p>Solucionado: No se puede compilar desde la partición de datos, al ser NTFS no permite symlinks, necesarios durante el proceso de compilación.</p></li>
+					<li><p>Tratando ejecutar el 3D Hand Tracking Library de FORTH con los drivers Freenect recién compilados, obtengo el siguiente error:</p>
+<p>
+	<pre><code>oscar@ia22:/datos/HandTracker_0.4b/HandTracker_0.4_linux_x64/Bin$ sudo ./HandTrackerSample 
+	Initialize OpenNI
+	1385037193471665 INFO       New log started on 2013-11-21 13:33:13
+	1385037193471679 INFO       --- Filter Info --- Minimum Severity: VERBOSE
+	1385037193471699 VERBOSE    OpenNI 2.0.0 (Build 29)-Linux-x86 (Dec  6 2012 11:36:35)
+	1385037193471709 VERBOSE    Using './OpenNI2/Drivers' as driver path
+	1385037193471716 VERBOSE    Looking for drivers in drivers repository './OpenNI2/Drivers'
+	<strong>1385037193472297 WARNING    LibraryHandler: Couldn't find function oniDriverStreamAddRefToFrame in libFreenectDriver.so. Stopping</strong>
+	1385037193472318 VERBOSE    Couldn't use file 'libFreenectDriver.so' as a device driver
+	1385037193472781 INFO       New log started on 2013-11-21 13:33:13
+	1385037193472794 INFO       --- Filter Info --- Minimum Severity: VERBOSE
+	1385037193472805 VERBOSE    Initializing USB...
+	1385037193472846 INFO       USB is initialized.
+	1385037193474739 VERBOSE    Trying to open device by URI '(NULL)'
+	1385037193474751 ERROR      Can't open default device - none found
+	Exception: Couldn't open device 	DeviceOpen using default: no devices found
+	
+	Shutdown complete
+	0x7f4e1b4bf5b8</code></pre>
+</p>
+					<p>Parece ser que los drivers están incompletos. Abro un issue en la página de GitHub de los drivers, y mandaré un email a FORTH para ver si se puede usar la versión 1.5 de OpenNI con su demo, y cómo conseguirla.</p></li>
+					<li><p>Cambio de táctica: Intentar recompilar los samples que vienen con la 3D Hand Tracking library. Obtengo errores con respecto a OpenCV:</p>
+<pre><code>oscar@ia22:/datos/HandTracker_0.4b/HandTracker_0.4_linux_x64/Sample$ make
+g++ -MD -MP -MT "./../Bin/Intermediate/x64-Release/HandTrackerSample/main.d ../Bin/Intermediate/x64-Release/HandTrackerSample/main.o" -c -msse3 -DUNIX -DGLX_GLXEXT_LEGACY -Wall -O2 -DNDEBUG -I../Include -I/usr/local/include -I/datos/OpenNI/openni-x64-2.2/Include  -fPIC -fvisibility=hidden -o ../Bin/Intermediate/x64-Release/HandTrackerSample/main.o main.cpp
+main.cpp:5:30: error fatal: opencv2/opencv.hpp: No existe el archivo o el directorio
+compilación terminada.
+make: *** [../Bin/Intermediate/x64-Release/HandTrackerSample/main.o] Error 1</code></pre>
+					<p>Voy a tratar de instalar OpenCV 2.4.6 manualmente [<a href="http://www.samontab.com/web/2012/06/installing-opencv-2-4-1-ubuntu-12-04-lts/">http://www.samontab.com/web/2012/06/installing-opencv-2-4-1-ubuntu-12-04-lts/</a>]</p></li>
+					<li><p>[15:15] OpenCV compilando sin problemas. Lleva casi una hora. Puede ser debido a que por defecto compila para varias versiones de la arquitectura CUDA [<a href="http://answers.opencv.org/question/5090/why-opencv-building-is-so-slow-with-cuda/">http://answers.opencv.org/question/5090/why-opencv-building-is-so-slow-with-cuda/</a>]</p></li>
+					<li>
+						<p>[17:14] Tras dos horas se acaba de compilar. Paso a instalar...</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h3>22/11/2013</h3>
+				<ul>
+					<li>
+						<p>Instaladas las rutas de las librerías en archivo bash.bashrc para poder ejecutar y compilar con OpenNI, los drivers Freenect, NiTE, OpenCV y CUDA. Añadidas las líneas siguientes a <code>bash.bashrc</code>:</p>
+						<pre><code>export PATH=$PATH:/usr/local/cuda-5.5/bin
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
+export LD_LIBRARY_PATH=/usr/local/cuda-5.5/lib64:$LD_LIBRARY_PATH
+export OPENNI_PATH='/datos/OpenNI/openni-x64-1.5.7.10'
+export OPENNI2_INCLUDE='/datos/OpenNI/openni-x64-2.2/Include'
+export OPENNI2_REDIST='/datos/OpenNI/openni-x64-2.2/Redist'
+export NITE2_INCLUDE='/datos/NiTE/nite-x64-2.2/Include'
+export NITE2_REDIST64='/datos/NiTE/nite-x64-2.2/Redist'</code></pre>
+						<p>Reiniciar sesión</p>
+					</li>
+					<li>
+						<p>He recompilado con éxito el ejemplo de la librería 3D Hand Tracking, pero sigo viendo el mensaje de error anterior. Es posible que el driver freenect para OpenNI2 esté en una fase inicial y no está completo, por lo que no va a ser posible hacer funcionar la librería con dicho driver.</p>
+					</li>
+					<li>
+						<p>Posibilidades:</p>
+						<ol>
+							<li>
+								<p>Completar el driver / esperar a que lo completen / buscar un fork que implemente las funciones que faltan</p>
+							</li>
+							<li>
+								<p>Reescribir la librería para que funcione con OpenNI 1.5 / solicitar a FORTH, si la tienen, una versión que funcione con 1.5</p>
+							</li>
+						</ol>
+					</li>
+					<li>Optamos por la primera opción: en la rama <code>develop</code> del repositorio del FreenectDriver para OpenNI2 [<a href="https://github.com/piedar/OpenNI2-FreenectDriver/tree/develop">https://github.com/piedar/OpenNI2-FreenectDriver/tree/develop</a>] parece haber más código desarrollado, lo he descargado y voy a compilar.</li>
+					<li>No ha dado resultado. Mandaré un email a FORTH por si tienen la versión de su demo funcionando con OpenNI 1.5</li>
+				</ul>
+			</section>
+			<section>
+				<h3>26/11/2013</h3>
+				<ul>
+					<li>A continuación el contenido del email:</li>
+					<li>
+						<p>
+							<blockquote class="email">To whom it may concern:
+
+First of all, congratulations on your 3D Hand Tracking library, very impressive work!
+
+We are currently trying to use your library to link the movement of a human hand to a robotic hand. For this, we will first use a simulator and bind it to the data generated by the 3D Hand Tracking library, which in turn will be provided with data from a Kinect camera.
+
+Our system is Ubuntu 12.04 64-bit, and we're using the Kinect from the XBOX 360. I managed to install correctly all the dependencies, including CUDA, OpenNI 2.2, OpenCV 2.4.7, the FreenectDriver from Benn Snyder [https://github.com/piedar/OpenNI2-FreenectDriver], and NiTE 2.2.
+
+So far all the examples bundled with those packages are working fully functionally.
+
+When I tried to run the sample included on the 3D Hand Tracking library, I found out it compiles successfully, but I get the following error when running it:
+
+./HandTrackerSample
+Initialize OpenNI
+1385037193471665 INFO       New log started on 2013-11-21 13:33:13
+1385037193471679 INFO       --- Filter Info --- Minimum Severity: VERBOSE
+1385037193471699 VERBOSE    OpenNI 2.0.0 (Build 29)-Linux-x86 (Dec  6 2012 11:36:35)
+1385037193471709 VERBOSE    Using './OpenNI2/Drivers' as driver path
+1385037193471716 VERBOSE    Looking for drivers in drivers repository './OpenNI2/Drivers'
+1385037193472297 WARNING    LibraryHandler: Couldn't find function oniDriverStreamAddRefToFrame in libFreenectDriver.so. Stopping
+1385037193472318 VERBOSE    Couldn't use file 'libFreenectDriver.so' as a device driver
+1385037193472781 INFO       New log started on 2013-11-21 13:33:13
+1385037193472794 INFO       --- Filter Info --- Minimum Severity: VERBOSE
+1385037193472805 VERBOSE    Initializing USB...
+1385037193472846 INFO       USB is initialized.
+1385037193474739 VERBOSE    Trying to open device by URI '(NULL)'
+1385037193474751 ERROR      Can't open default device - none found
+Exception: Couldn't open device     DeviceOpen using default: no devices found
+
+Shutdown complete
+0x7f4e1b4bf5b8
+
+As far as I'm concerned — given my little knowledge of all the software and libraries involved — this seems to be a problem with the drivers, which at this point are yet incomplete.
+
+I know that there are complete drivers — or at least more complete drivers — which will only work with OpenNI 1.5 [https://github.com/avin2/SensorKinect/].
+
+Therefore, my question is: Do you have a version of your 3D Hand Tracking Library which works on top of OpenNI 1.5 and NiTE 1.5? If that's not the case, do you know of a different driver or workaround for the problems explained? I would really appreciate some advice.
+
+Thank you in advance for your time,
+
+Yours faithfully,
+-- 
+
+Óscar Gómez Alcañiz
+Grado en Informática, 4º Curso
+Universitat Jaume I</blockquote>
+						</p>
+					</li>
+					<li>
+						<p>Mientras espero respuesta, en vista de que lo correcto desde el punto de vista práctico sería usar OpenNI 2.2 por su mejora en simplicidad respecto a la anterior versión y su mejor rendimiento (además de mejor soporte de cara al futuro), existen las siguientes alternativas:</p>
+						<p>
+							<ul>
+								<li><p>Terminar de programar el driver</p></li>
+								<li><p>Cambiar de hardware. La ASUS Xtion parece una alternativa a considerar [<a href="http://www.scan.co.uk/products/asus-xtion-pro-pc-motion-sense-control-developers-edition">http://www.scan.co.uk/products/asus-xtion-pro-pc-motion-sense-control-developers-edition</a>]. Es compatible con OpenNI 2.2 y parece tener drivers para Linux, además de tener un precio a priori asequible.</p></li>
+							</ul>
+						</p>
+					</li>
+					<li><p>Se ha procedido a pedir una Xtion [<a href="http://www.asus.com/Multimedia/Xtion_PRO/">http://www.asus.com/Multimedia/Xtion_PRO/]</a>. Por lo que he podido leer, probablemente funcione con la versión 2.2 de OpenNI. He bajado los drivers de la web de ASUS [<a href="http://support.asus.com/download.aspx?SLanguage=en&p=19&m=Xtion+PRO+LIVE&hashedid=hahEFPMWY9UVDL7z">http://support.asus.com/download.aspx?SLanguage=en&amp;p=19&amp;m=Xtion+PRO+LIVE&amp;hashedid=hahEFPMWY9UVDL7z</a>]</p></li>
+					<li>He efectuado unas pruebas usando una grabación en formato <code>.oni</code> en lugar de capturar directamente de la Kinect (lo cual no es posible en el estado actual de los drivers), pero no acaba de funcionar bien. Seguiré intentando usar la grabación para comprobar que la librería puede funcionar de manera fluída en Ubuntu.</li>
+				</ul>
+			</section>
+			<section>
+				<h2>28/11/2013</h2>
+				<ul>
+					<li>He recibido respuesta de FORTH, y me comentan que puedo adaptar su librería para funcionar con los drivers Freenect, o que puedo usar la Xtion que funciona con los drivers de PrimeSense. Debido a que no conozco bien OpenNI ni sus drivers, les he preguntado si es posible que la versión de Windows de su ejemplo esté funcionando con OpenNI 1.5 y si el código funcionaría en Ubuntu. Los emails a continuación:</li>
+					<li><p><blockquote class="email">Dear Oscar Gomez,
+						
+Thank you for your interest to our work.
+
+The sample that is bundled with the hand tracker library and is available on OpenNI.org reads from OpenNI2 and OpenNI2 compatible devices (Asus Xtion, PrimeSense Sensor) on Linux.
+
+Due to licensing reasons PrimeSense did not provide native support for Kinect on OpenNI2. That is why you need freenect for linux and the MS-Kinect-SDK for windows. The hand tracker library itself is sensor agnostic, as long as you provide the registered depth and rgb images it will work. You can adapt the sample code to read from the Kinect using freenect.
+
+
+kind regards,
+--
+The K3DHT team</blockquote>
+					</p>
+					<p><blockquote class="email">Hello,
+
+Thanks for your quick answer. We're looking into buying an Asus Xtion due to the problems with proper drivers for the Kinect on Linux, and for the time being we will try to adapt the sample code to work on top of the freenect drivers. One thing I have already tried is to swap the device opening to make it use a prerecorded sequence. Here's the code:
+
+<code>if (device.open(openni::ANY_DEVICE) != STATUS_OK)<br>
+    if (device.open(argv[1]) != STATUS_OK)    // opens a .oni file supplied via console args<br>
+        throw std::runtime_error(std::string("Couldn't open device ")+ OpenNI::getExtendedError());</code>
+
+So far this launches the app without crashing, but depending on the file I supply, it plays either fluently or sluggish, and the 3D hand doesn't appear.
+
+Anyway, I still need to get to grips with the libraries so I'll keep on trying and if I get it working I'll give you some feedback.
+
+By the way, isn't the precompiled windows version of the sample on your page working on OpenNI 1.5 &amp; NiTE 1.5? Do you think I could use that code on Ubuntu?
+
+Thank you very much, hope to hear back soon.
+
+All the best,
+
+Óscar
+</blockquote></p></li>
+					<li><p>He tratado de adaptar el código del ejemplo para hacerlo funcionar en OpenNI 1.5, sin éxito. Las diferencias entre ambas versiones son insalvables y sólo un profundo conocimiento de ambas permitiría portar código.</p></li>
+					<li><p>He intentado usar todo tipo de combinaciones de los drivers compatibles con <code>libfreenect</code> que he podido probar. No da resultado. Lo más cercano a funcional que he podido observar es haciendo funcionar el sample con un archivo .oni como fuente de datos. Aún así no aparece la mano virtual, y la respuesta al teclado es defectuosa.</p></li>
+					<li>
+						<p>He comenzado a leer documentación sobre drivers para OpenNI 2.x, por si hay alguna posibilidad de completar los drivers freenect 2.0</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>29/11/2013</h2>
+				<ul>
+					<li>
+						<p>Completar los drivers por el momento está fuera de mi alcance. Espero respuesta por parte de FORTH para ver si es posible usar su ejemplo con una secuencia pregrabada. Por mi cuenta voy intentando que funcione.</p>
+					</li>
+					<li>
+						<p>No consigo que aparezca la mano en el sample tracker. Mientras espero respuesta desde FORTH, voy documentándome en OpenNI y los drivers freenect de la Kinect</p>
+					</li>
+					<li>
+						<p>Javi me ha sugerido una alternativa: empezar a desarrollar el plugin de OpenRAVE o un nodo para ROS.</p>
+						<p>He comenzado a documentarme en ROS y OpenRAVE en la wiki del Robinlab.</p>
+					</li>
+					<li>
+						<p>URLs de información:</p>
+						<p>
+							<ul>
+								<li><a href="http://robinlab.uji.es/wiki/index.php/Install_ROS_and_Tombato_architecture_on_your_PC">http://robinlab.uji.es/wiki/index.php/Install_ROS_and_Tombato_architecture_on_your_PC</a></li>
+								<li><a href="http://wiki.ros.org/hydro/Installation/Ubuntu">http://wiki.ros.org/hydro/Installation/Ubuntu</a></li>
+								<li><a href="http://wiki.ros.org/ROS/Introduction">http://wiki.ros.org/ROS/Introduction</a></li>
+								<li><a href="http://wiki.ros.org/ROS/Tutorials">http://wiki.ros.org/ROS/Tutorials</a></li>
+							</ul>
+						</p>
+					</li>
+					<li><p>Comenzado el tutorial para crear packages de ROS tras leer la documentación básica.</p></li>
+				</ul>
+			</section>
+			<section>
+				<h2>03/12/2013</h2>
+				<ul>
+					<li>
+						<p>Sigo aprendiendo ROS para desarrollar un paquete que pueda usar la información generada por la librería del Hand Tracker</p>
+					</li>
+					<li>
+						<p>Acabado el tutorial BEGINNER. Sigo con el INTERMEDIATE</p>
+					</li>
+					<li>
+						<p>He cambiado el código del ejemplo de la librería del Hand Tracker para mostrar por pantalla los valores que genera. No parece funcionar bien, tiene problemas para mostrar la mano 3D superpuesta a las imágenes pregrabadas, y parece que esto afecta al cálculo de nuevas coordenadas para el modelo.</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>10/12/2013</h2>
+				<ul>
+					<li>
+						<p>Sigo con los tutoriales de ROS y OpenRAVE.</p>
+					</li>
+					<li>
+						<p>Plan de acción mientras llega la ASUS Xtion o sale una nueva versión del freenect driver para Kinect: capturar los datos producidos por la Hand Tracker library de FORTH y exponerlos en ROS mediante un plugin o un nodo, para ser usados por el simulador.</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>13/12/2013</h2>
+				<ul>
+					<li>
+						<p>He comenzado el módulo de ROS <code>hand_tracker_data_extractor</code> que publicará los valores del vector generado por la librería de FORTH en un mensaje estandard de tipo JointState</p>
+					</li>
+					<li>
+						<p>He adaptado la demo de FORTH y logro compilarla con catkin, pero luego falla al ejecutar. Probablemente sea un error al compilarlo con una configuración distinta. Estoy tratando de entender CMakeLists.txt de catkin y los CFlags de CMake, para igualar la configuración de compilación de ROS a la original del HandTracker</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>19/12/2013</h2>
+				<ul>
+					<li>
+						<p>Ha llegado la XTion de ASUS, así que procedo a instalarla en Ubuntu.</p>
+					</li>
+					<li>
+						<p>Funciona directamente sin tener que instalar nuevos drivers. Los drivers de PrimeSense que vienen con OpenNI2 sirven perfectamente.</p>
+					</li>
+					<li>
+						<p>La ventana del HandTracker sigue sin mostrar la mano superpuesta al streaming de la cámara. Probablemente esté relacionado con alguna opción o configuración de OpenGL. He probado varios ejemplos y otras demos de las librerías que estamos usando y aparentemente todo funciona bien con OpenGL.</p>
+					</li>
+					<li>
+						<p>He probado el wrapper de ROS para Xtion con OpenNI2 (<code>openni2_camera_node</code>), instalando y ejecutando con:</p>
+						<p><code>sudo apt-get install ros-hydro-openni2*<br>rosrun openni2_camera openni2_camera_node</code></p>
+						<p>Obtengo un warning respecto a los threads del USB, aunque no tiene por qué ser crucial.</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>20/12/2013</h2>
+				<ul>
+					<li>
+						<p>Estoy buscando información sobre OpenGL y en especial la librería <code>librenderer_plugin_opengl.so</code>, ya que <code>HandTrackerLib</code> hace uso de ella y probablemente el fallo con OpenGL pueda estar en la configuración.</p>
+					</li>
+					<li>
+						<p>Mi búsqueda no ha dado resultados. Parece ser que la clave está en cómo la librería de FORTH procesa los datos de la cámara y cómo los trata de representar en la matriz de color para su visualización. Es probable que no esté funcionando correctamente y por lo tanto no asigna valores al vector de solución y tampoco dibuja nada en la ventana.</p>
+					</li>
+					<li>
+						<p>He mandado un email a FORTH por si pueden orientarme un poco en la manera de atajar el problema. Aquí está el email:</p>
+					</li>
+					<li>
+						<p>
+							<blockquote class="email">Hi,
+
+I wrote to you a few weeks ago regarding you HandTrackerLib, some issues I came across when trying to use it on Ubuntu 12.04 with the Microsoft Kinect, and the possibility of moving to other cameras.
+
+Finally we ordered an ASUS Xtion PRO Live since it has full support on top of the OpenNI2 libraries, and now we are no longer getting problems with either the camera or the drivers. The live streams of color and depth are showing fluently at 30fps.
+
+But unfortunately we are still experiencing trouble with the sample demo. It looks like it tries to draw the 3D hand on top of the color matrix, unsuccessfully, although no error or warning is logged. I believe it has something to do with OpenGL, because when launching the demo, a blank, translucid window whose title is 'opengl_renderer' appears, detached from the color and depth windows. Please find a screen capture attached on this mail showing this behaviour.
+
+We tested other applications and demos that use OpenGL to check whether there is a problem with those libraries or the graphics adapter drivers, but everything works fine.
+
+I also checked the solution vector's values generated by the HandTrackerLib since I would like to capture them and publish them to other libraries that work with a robotic hand simulator. The problem is, it seems the solution vector isn't filled with valid data either, so maybe the problem is deeper than just not being able to draw the hand. There is a problem in calculating the positions as well.
+
+Attached to this email I've also included a log file I created on one of my tests. It shows how the device and streams are properly initialized and created, and it can be seen how the solution vector doesn't change during tracking (on the two blocks labeled 'Vector evaluación'), but instead remains the same disregarding the hand tracking.
+
+Any help or explanation about how the library works, or any clues you could give about what you believe the problem may be would be very much appreciated.
+
+Thank you in advance, and again, congratulations on your work,
+
+kind regards,
+-- 
+
+Óscar Gómez Alcañiz
+Grado en Informática, 4º Curso
+Colaborador en Robotic Intelligence Lab
+Universitat Jaume I
+</blockquote>
+						</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>27/12/2013</h2>
+				<ul>
+					<li>
+						<p>He recibido respuesta de FORTH. Aquí el contenido del email:</p>
+					</li>
+					<li>
+						<p><blockquote class="email">Dear Oscar Gomez,
+
+It looks like the issue you are having is related with the OpenGL support on your system. The solution vector returns the configuration of the hand in initialization mode but since the OpenGL rendering does not work properly the values remain the same.
+
+You need to make sure your system supports OpenGL 3.3 and the latest Nvidia drivers with cuda support are enabled.
+
+You can try to test your CUDA support by downloading the Nvidia CUDA 4.2 toolkit from here and try to run the sample applications.
+
+Alternately you can try running the 3D Hand Tracker Demo application for windows which uses DirectX instread of OpenGL for rendering.
+
+kind regards,
+--
+The K3DHT team</blockquote></p>
+					</li>
+					<li>
+						<p>Voy a probar si la versión de OpenGL y CUDA son compatibles con las que me especifican y de lo contrario trataré de instalar exactamente dichas versiones. A continuación, el mail que les he enviado:</p>
+					</li>
+					<li>
+						<p>
+							<blockquote class="email">Hi K3DHT team,
+
+first of all, I want to thank you all for your support and hope you are having a nice Christmas holiday!
+
+Currently my system is running CUDA 5.5 and OpenGL 4.3.0, as shown below:
+
+<pre><strong>$ deviceQuery</strong>
+	
+	CUDA Device Query (Runtime API) version (CUDART static linking)
+	
+	Detected 1 CUDA Capable device(s)
+	
+	Device 0: "GeForce GTX 560"
+	  <strong>CUDA Driver Version / Runtime Version          5.5 / 5.5</strong>
+	  CUDA Capability Major/Minor version number:    2.1
+	  Total amount of global memory:                 1023 MBytes (1072889856 bytes)
+	  ( 7) Multiprocessors, ( 48) CUDA Cores/MP:     336 CUDA Cores
+	  GPU Clock rate:                                1660 MHz (1.66 GHz)
+	  Memory Clock rate:                             2004 Mhz
+	  Memory Bus Width:                              256-bit
+	  L2 Cache Size:                                 524288 bytes
+	  Maximum Texture Dimension Size (x,y,z)         1D=(65536), 2D=(65536, 65535), 3D=(2048, 2048, 2048)
+	  Maximum Layered 1D Texture Size, (num) layers  1D=(16384), 2048 layers
+	  Maximum Layered 2D Texture Size, (num) layers  2D=(16384, 16384), 2048 layers
+	  Total amount of constant memory:               65536 bytes
+	  Total amount of shared memory per block:       49152 bytes
+	  Total number of registers available per block: 32768
+	  Warp size:                                     32
+	  Maximum number of threads per multiprocessor:  1536
+	  Maximum number of threads per block:           1024
+	  Max dimension size of a thread block (x,y,z): (1024, 1024, 64)
+	  Max dimension size of a grid size    (x,y,z): (65535, 65535, 65535)
+	  Maximum memory pitch:                          2147483647 bytes
+	  Texture alignment:                             512 bytes
+	  Concurrent copy and kernel execution:          Yes with 1 copy engine(s)
+	  Run time limit on kernels:                     Yes
+	  Integrated GPU sharing Host Memory:            No
+	  Support host page-locked memory mapping:       Yes
+	  Alignment requirement for Surfaces:            Yes
+	  Device has ECC support:                        Disabled
+	  Device supports Unified Addressing (UVA):      Yes
+	  Device PCI Bus ID / PCI location ID:           1 / 0
+	  Compute Mode:
+	     < Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) >
+	
+	deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 5.5, CUDA Runtime Version = 5.5, NumDevs = 1, Device0 = GeForce GTX 560
+	Result = PASS</pre>
+
+<pre><strong>$ glxinfo | grep GL</strong>
+	
+	...
+	OpenGL vendor string: NVIDIA Corporation
+	OpenGL renderer string: GeForce GTX 560/PCIe/SSE2
+	<strong>OpenGL version string: 4.3.0 NVIDIA 319.37</strong>
+	OpenGL shading language version string: 4.30 NVIDIA via Cg compiler
+	OpenGL extensions:
+	    GL_AMD_multi_draw_indirect, GL_ARB_arrays_of_arrays, GL_ARB_base_instance,
+	    GL_ARB_blend_func_extended, GL_ARB_clear_buffer_object,
+	    GL_ARB_color_buffer_float, GL_ARB_compatibility,
+	    GL_ARB_compressed_texture_pixel_storage, GL_ARB_conservative_depth,
+	    GL_ARB_compute_shader, GL_ARB_copy_buffer, GL_ARB_copy_image,
+	    GL_ARB_debug_output, GL_ARB_depth_buffer_float, GL_ARB_depth_clamp,
+	    GL_ARB_depth_texture, GL_ARB_draw_buffers, GL_ARB_draw_buffers_blend,
+	    GL_ARB_draw_indirect, GL_ARB_draw_elements_base_vertex,
+	    GL_ARB_draw_instanced, GL_ARB_ES2_compatibility, GL_ARB_ES3_compatibility,
+	    GL_ARB_explicit_attrib_location, GL_ARB_explicit_uniform_location,
+	    GL_ARB_fragment_coord_conventions, GL_ARB_fragment_layer_viewport,
+	    GL_ARB_fragment_program, GL_ARB_fragment_program_shadow,
+	    GL_ARB_fragment_shader, GL_ARB_framebuffer_no_attachments,
+	    GL_ARB_framebuffer_object, GL_ARB_framebuffer_sRGB,
+	    GL_ARB_geometry_shader4, GL_ARB_get_program_binary, GL_ARB_gpu_shader5,
+	    GL_ARB_gpu_shader_fp64, GL_ARB_half_float_pixel, GL_ARB_half_float_vertex,
+	    GL_ARB_imaging, GL_ARB_instanced_arrays, GL_ARB_internalformat_query,
+	    GL_ARB_internalformat_query2, GL_ARB_invalidate_subdata,
+	    GL_ARB_map_buffer_alignment, GL_ARB_map_buffer_range,
+	    GL_ARB_multi_draw_indirect, GL_ARB_multisample, GL_ARB_multitexture,
+	    GL_ARB_occlusion_query, GL_ARB_occlusion_query2,
+	    GL_ARB_pixel_buffer_object, GL_ARB_point_parameters, GL_ARB_point_sprite,
+	    GL_ARB_program_interface_query, GL_ARB_provoking_vertex,
+	    GL_ARB_robust_buffer_access_behavior, GL_ARB_robustness,
+	    GL_ARB_sample_shading, GL_ARB_sampler_objects, GL_ARB_seamless_cube_map,
+	    GL_ARB_separate_shader_objects, GL_ARB_shader_atomic_counters,
+	    GL_ARB_shader_bit_encoding, GL_ARB_shader_image_load_store,
+	    GL_ARB_shader_image_size, GL_ARB_shader_objects, GL_ARB_shader_precision,
+	    GL_ARB_shader_storage_buffer_object, GL_ARB_shader_subroutine,
+	    GL_ARB_shader_texture_lod, GL_ARB_shading_language_100,
+	    GL_ARB_shading_language_420pack, GL_ARB_shading_language_include,
+	    GL_ARB_shading_language_packing, GL_ARB_shadow, GL_ARB_stencil_texturing,
+	    GL_ARB_sync, GL_ARB_tessellation_shader, GL_ARB_texture_border_clamp,
+	    GL_ARB_texture_buffer_object, GL_ARB_texture_buffer_object_rgb32,
+	    GL_ARB_texture_buffer_range, GL_ARB_texture_compression,
+	    GL_ARB_texture_compression_bptc, GL_ARB_texture_compression_rgtc,
+	    GL_ARB_texture_cube_map, GL_ARB_texture_cube_map_array,
+	    GL_ARB_texture_env_add, GL_ARB_texture_env_combine,
+	    GL_ARB_texture_env_crossbar, GL_ARB_texture_env_dot3,
+	    GL_ARB_texture_float, GL_ARB_texture_gather,
+	    GL_ARB_texture_mirrored_repeat, GL_ARB_texture_multisample,
+	    GL_ARB_texture_non_power_of_two, GL_ARB_texture_query_levels,
+	    GL_ARB_texture_query_lod, GL_ARB_texture_rectangle, GL_ARB_texture_rg,
+	    GL_ARB_texture_rgb10_a2ui, GL_ARB_texture_storage,
+	    GL_ARB_texture_storage_multisample, GL_ARB_texture_swizzle,
+	    GL_ARB_texture_view, GL_ARB_timer_query, GL_ARB_transform_feedback2,
+	    GL_ARB_transform_feedback3, GL_ARB_transform_feedback_instanced,
+	    GL_ARB_transpose_matrix, GL_ARB_uniform_buffer_object,
+	    GL_ARB_vertex_array_bgra, GL_ARB_vertex_array_object,
+	    GL_ARB_vertex_attrib_64bit, GL_ARB_vertex_attrib_binding,
+	    GL_ARB_vertex_buffer_object, GL_ARB_vertex_program, GL_ARB_vertex_shader,
+	    GL_ARB_vertex_type_2_10_10_10_rev, GL_ARB_viewport_array,
+	    GL_ARB_window_pos, GL_ATI_draw_buffers, GL_ATI_texture_float,
+	    GL_ATI_texture_mirror_once, GL_S3_s3tc, GL_EXT_texture_env_add,
+	    GL_EXT_abgr, GL_EXT_bgra, GL_EXT_bindable_uniform, GL_EXT_blend_color,
+	    GL_EXT_blend_equation_separate, GL_EXT_blend_func_separate,
+	    GL_EXT_blend_minmax, GL_EXT_blend_subtract, GL_EXT_compiled_vertex_array,
+	    GL_EXT_Cg_shader, GL_EXT_depth_bounds_test, GL_EXT_direct_state_access,
+	    GL_EXT_draw_buffers2, GL_EXT_draw_instanced, GL_EXT_draw_range_elements,
+	    GL_EXT_fog_coord, GL_EXT_framebuffer_blit, GL_EXT_framebuffer_multisample,
+	    GL_EXTX_framebuffer_mixed_formats,
+	    GL_EXT_framebuffer_multisample_blit_scaled, GL_EXT_framebuffer_object,
+	    GL_EXT_framebuffer_sRGB, GL_EXT_geometry_shader4,
+	    GL_EXT_gpu_program_parameters, GL_EXT_gpu_shader4,
+	    GL_EXT_multi_draw_arrays, GL_EXT_packed_depth_stencil,
+	    GL_EXT_packed_float, GL_EXT_packed_pixels, GL_EXT_pixel_buffer_object,
+	    GL_EXT_point_parameters, GL_EXT_provoking_vertex, GL_EXT_rescale_normal,
+	    GL_EXT_secondary_color, GL_EXT_separate_shader_objects,
+	    GL_EXT_separate_specular_color, GL_EXT_shader_image_load_store,
+	    GL_EXT_shadow_funcs, GL_EXT_stencil_two_side, GL_EXT_stencil_wrap,
+	    GL_EXT_texture3D, GL_EXT_texture_array, GL_EXT_texture_buffer_object,
+	    GL_EXT_texture_compression_dxt1, GL_EXT_texture_compression_latc,
+	    GL_EXT_texture_compression_rgtc, GL_EXT_texture_compression_s3tc,
+	    GL_EXT_texture_cube_map, GL_EXT_texture_edge_clamp,
+	    GL_EXT_texture_env_combine, GL_EXT_texture_env_dot3,
+	    GL_EXT_texture_filter_anisotropic, GL_EXT_texture_integer,
+	    GL_EXT_texture_lod, GL_EXT_texture_lod_bias, GL_EXT_texture_mirror_clamp,
+	    GL_EXT_texture_object, GL_EXT_texture_shared_exponent,
+	    GL_EXT_texture_sRGB, GL_EXT_texture_sRGB_decode, GL_EXT_texture_storage,
+	    GL_EXT_texture_swizzle, GL_EXT_timer_query, GL_EXT_transform_feedback2,
+	    GL_EXT_vertex_array, GL_EXT_vertex_array_bgra, GL_EXT_vertex_attrib_64bit,
+	    GL_EXT_x11_sync_object, GL_EXT_import_sync_object, GL_IBM_rasterpos_clip,
+	    GL_IBM_texture_mirrored_repeat, GL_KHR_debug, GL_KTX_buffer_region,
+	    GL_NV_blend_square, GL_NV_compute_program5, GL_NV_conditional_render,
+	    GL_NV_copy_depth_to_color, GL_NV_copy_image, GL_NV_depth_buffer_float,
+	    GL_NV_depth_clamp, GL_NV_draw_texture, GL_NV_ES1_1_compatibility,
+	    GL_NV_explicit_multisample, GL_NV_fence, GL_NV_float_buffer,
+	    GL_NV_fog_distance, GL_NV_fragment_program, GL_NV_fragment_program_option,
+	    GL_NV_fragment_program2, GL_NV_framebuffer_multisample_coverage,
+	    GL_NV_geometry_shader4, GL_NV_gpu_program4, GL_NV_gpu_program4_1,
+	    GL_NV_gpu_program5, GL_NV_gpu_program5_mem_extended,
+	    GL_NV_gpu_program_fp64, GL_NV_gpu_shader5, GL_NV_half_float,
+	    GL_NV_light_max_exponent, GL_NV_multisample_coverage,
+	    GL_NV_multisample_filter_hint, GL_NV_occlusion_query,
+	    GL_NV_packed_depth_stencil, GL_NV_parameter_buffer_object,
+	    GL_NV_parameter_buffer_object2, GL_NV_path_rendering,
+	    GL_NV_pixel_data_range, GL_NV_point_sprite, GL_NV_primitive_restart,
+	    GL_NV_register_combiners, GL_NV_register_combiners2,
+	    GL_NV_shader_atomic_counters, GL_NV_shader_atomic_float,
+	    GL_NV_shader_buffer_load, GL_NV_shader_storage_buffer_object,
+	    GL_NV_texgen_reflection, GL_NV_texture_barrier,
+	    GL_NV_texture_compression_vtc, GL_NV_texture_env_combine4,
+	    GL_NV_texture_expand_normal, GL_NV_texture_multisample,
+	    GL_NV_texture_rectangle, GL_NV_texture_shader, GL_NV_texture_shader2,
+	    GL_NV_texture_shader3, GL_NV_transform_feedback,
+	    GL_NV_transform_feedback2, GL_NV_vdpau_interop, GL_NV_vertex_array_range,
+	    GL_NV_vertex_array_range2, GL_NV_vertex_attrib_integer_64bit,
+	    GL_NV_vertex_buffer_unified_memory, GL_NV_vertex_program,
+	    GL_NV_vertex_program1_1, GL_NV_vertex_program2,
+	    GL_NV_vertex_program2_option, GL_NV_vertex_program3,
+	    GL_NVX_conditional_render, GL_NVX_gpu_memory_info,
+	    GL_SGIS_generate_mipmap, GL_SGIS_texture_lod, GL_SGIX_depth_texture,
+	    GL_SGIX_shadow, GL_SUN_slice_accum
+	...</pre>
+
+It seems there's some sort of problem with OpenGL but in theory the installed versions should be compatible backwards. I think I will try and downgrade the CUDA and OpenGL libraries to versions 4.2 and 3.3 respectively, and see if it makes any difference.
+
+Another issue could be the library linking at compile time. So far the sample code compiles without any hassle, but I'll check it out again anyway.
+
+Again, thank you for your help and have a nice New Year's Eve.
+
+All the best,
+
+Óscar</blockquote>
+						</p>
+					</li>
+					<li>
+						<p>Por otra parte, he seguido investigando para encontrar alguien que tuviese el mismo problema de la ventana de OpenGL transparente en algún foro, y he encontrado lo siguiente:</p>
+						<p><a href="http://www.opengl.org/discussion_boards/showthread.php/135808-Using-GLUT-windows-are-transparent-Configuration-problem/page2">http://www.opengl.org/discussion_boards/showthread.php/135808-Using-GLUT-windows-are-transparent-Configuration-problem/page2</a></p>
+					</li>
+					<li>
+						<p>Podría ser que necesite activar el direct rendering (<code>DRI</code>) en los drivers Mesa/OpenGL. Fuentes: 
+						<ol>
+							<li>
+								<a href="http://lists.freebsd.org/pipermail/freebsd-stable/2005-October/018645.html">http://lists.freebsd.org/pipermail/freebsd-stable/2005-October/018645.html</a>
+							</li>
+							<li>
+								<a href="http://dri.freedesktop.org/wiki/Building/">http://dri.freedesktop.org/wiki/Building/</a></p>
+							</li>
+						</ol>
+					</li>
+					<li>
+						<p>Parece ser que el direct rendering ya está activado:</p>
+						<p>
+							<pre><strong>$ glxinfo | grep direct</strong>
+direct rendering: Yes
+...</pre>
+						</p>
+					</li>
+					<li>
+						<p>Voy a instalar de nuevo los drivers Mesa/Xorg con el DRI activado. Uso para ello <code>sudo apt-get install libgl1-mesa-dri</code></p>
+					</li>
+					<li>
+						<p>Nada de lo que he probado ha funcionado. El sistema puede ejecutar <code>nvidia-settings</code>, y ésta muestra que se está usando el driver nVidia 319, pero <code>nvidia-detector</code> muestra <code>None</code>. Tanto <code>glxinfo</code> de Mesa como <code>deviceQuery</code> de CUDA muestran una configuración correcta, pero el ejemplo del HandTracker sigue sin funcionar. Estoy instalando los drivers privativos nVidia 319, y aunque probablemente eso desmonte la configuración de CUDA, probablemente pueda configurarlo a posteriori y comprobar si algo ha cambiado.</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>08/01/2014</h2>
+				<ul>
+					<li>
+						<p>Tras la última prueba me cargué el servidor de las X al fallar los drivers de nVidia actualizados. Los he desinstalado y todo ha vuelto a la normalidad.</p>
+					</li>
+					<li>
+						<p>He empezado a leer la documentación de OpenRAVE, ya que una parte del trabajo a realizar consiste en escribir un plugin de ROS que se comunique con este software para introducir datos en el simulador.</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>10/01/2014</h2>
+				<ul>
+					<li>
+						<p>Sigo documentándome en OpenRAVE</p>
+					</li>
+					<li>
+						<p>Investigando en el asunto de la ventana de OpenGL transparente, he llegado a la conclusión de que es algo particular de la librería del HandTracker y que la ventana aparece justo en la llamada a <code>initialize()</code> de la misma. He encontrado un hilo en Stack Overflow sobre el asunto y podría ser debido a la manera de implementar el redibujado con doble o simple buffer en la librería:</p>
+						<p><a href="http://stackoverflow.com/questions/18816882/no-display-transparent-window-with-opengl-2-and-primusrun-on-single-buffer">http://stackoverflow.com/questions/18816882/no-display-transparent-window-with-opengl-2-and-primusrun-on-single-buffer</a></p>
+						<p>Por desgracia no dispongo del código fuente de la librería y sólo puedo esperar que los autores de la misma revisen el código para mejorarlo.</p>
+					</li>
+					<li>
+						<p>Estoy haciendo un downgrade a la versión 4.2 de CUDA, por si la versión 5.5 es incompatible con el rendering, y si esto no funciona les mandaré un email ya que no veo otras opciones.</p>
+					</li>
+					<li>
+						<p><blockquote class="email">Hi K3DHT team,
+
+sorry for the hassle, but I just can't seem to be able to set up my system in order to make your library work. I've tried downgrading my CUDA drivers and toolkit to version 4.2, but it still shows the empty, transparent opengl_renderer window detached from the camera streams. I've been fiddling with the sample code, and I observed that the window is created right after the call to HandTrackerLib::initialize(), so it's the library that's causing the problem, although no error is displayed.
+
+I've been googling for days and the closer I've gotten to a solution to the empty, transparent window was on this post on Stack Overflow:
+
+http://stackoverflow.com/questions/18816882/no-display-transparent-window-with-opengl-2-and-primusrun-on-single-buffer
+
+Apparently the post author has the exact same problem that I'm having, and he solved it by using double buffering for the OpenGL rendering. So far I've written several test programs and tried out lots of demos from different sources, and absolutely every program runs smoothly, with or without double buffer rendering. I'm completely stuck with this, since I can run virtually any OpenGL application out there without issues, except yours...
+
+Is there any possibility of having the source code at least for the rendering part of the library so I can make tests, patch it, and get back to you with my findings? I know I may be asking too much, but my work at Robinlab depends almost entirely on your library and right now I can't use it on my workstation.
+
+In the meantime I will maybe try to setup another PC with different hardware to see if I get different results.
+
+Again, thanks in advance and sorry for the inconvenience.
+
+All the best,
+-- 
+
+Óscar Gómez Alcañiz
+Grado en Informática, 4º Curso
+Universitat Jaume I</blockquote></p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>15/01/2014</h2>
+				<ul>
+					<li>
+						<p>El downgrade no parece ser posible, ya que no me deja installar la versión 4.2 por una serie de problemas que parecen tener su origen en las cabeceras del kernel de Linux. Voy a mandarles el email y a ver si puedo echar una ojeada al código fuente de la parte del rendering.</p>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<p>Estoy haciendo pruebas con OpenGL a ver si encuentro problemas en otros códigos, para poder determinar la solución en caso de obtener el código de rendering del HandTracker.</p>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<p>Para compilar ciertos ejemplos de OpenGL que he bajado de una página de tutoriales [<a href="http://ogldev.atspace.co.uk/">http://ogldev.atspace.co.uk/</a>], he necesitado instalar la librería <code>assimp 3.0.1264.10</code>, y al tratar de instalarla, ha generado un error de dependencias con una versión ya existente y no me deja ni reinstalar ni desinstalar, ni siquiera con el comando <code>sudo apt-get install -f</code>. Estoy arreglando el entuerto...</p>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<p>He podido solucionarlo forzando la sobreescritura de archivos mediante una instalación manual desde la caché de paquetes:</p>
+						<p><code>sudo dpkg -i --force-overwrite /var/cache/apt/archives/libassimp3.0-r1264-dev_3.0.1264.10-ubuntu1~precise1_amd64.deb</code></p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>17/01/2014</h2>
+				<ul>
+				<li>
+					<p>He empezado a investigar cómo usar la versión Windows de la librería HandTracker. Por lo visto puedo habilitar la opción <code>io.print_solutions = 1</code> en el archivo <code>input_output.ini</code> para exportar los valores del vector 27D de soluciones por la consola.</p>
+					<p>Mi problema ahora es cómo usar estos valores sin sacarlos por la consola. Debo cambiar el código de la demo, pero el único código de la demo que tengo es el de la versión Linux. Voy a mandar un email al K3DHT team para var si necesito algo especial para compilar en Windows.</p>
+					<p>Otro descubrimiento que he hecho es que técnicamente se puede cambiar el plugin de rendering que usa la demo. Por ejemplo, la versión Windows usa el Direct3D, y la versión Linux OpenGL.</p>
+					<h5><code>rendering.ini</code>:</h5>
+					<blockquote><pre style="-moz-column-count:2; -webkit-column-count:2; column-count:2;"><strong>Linux</strong>
+plugins.renderer_libraries = librenderer_plugin_opengl.so
+
+plugins.renderer_ids=renderer
+plugins.renderer_classes=OPENGL
+
+rendering.alpha=1 #0.5
+rendering.maxcols=1
+rendering.maxrows=64
+rendering.zfar=2.5
+rendering.znear=0.1
+rendering.vwidth = 512
+rendering.vheight = 400
+rendering.edges = 1
+<strong>Windows</strong>
+plugins.renderer_libraries = plugins/renderer_plugin_D3D9.dll
+
+plugins.renderer_ids=renderer
+plugins.renderer_classes=D3D9
+
+rendering.alpha=0.5
+rendering.maxcols=8
+rendering.maxrows=8
+rendering.zfar=2.5
+rendering.znear=0.1
+rendering.vwidth = 512
+rendering.vheight = 400
+rendering.edges = 1</pre></blockquote>
+					<p>Les pregunto también si es posible usar otro plugin u obtener el código del plugin OpenGL pues probablemente sea el culpable del mal funcionamiento.</p>
+				</li>
+					<li><p>El email:</p>
+						<p><blockquote class="email">Hello K3DHT team,
+
+I apologize for sending you even another email about the issues I'm having with your HandTrackerLib. I hope my findings and tests will somehow help you or future users of the library :)
+
+I found there is a configuration file where the renderer plugin to be used is defined. Currently on the Linux demo this is:
+
+<pre>plugins.renderer_libraries = librenderer_plugin_opengl.so
+plugins.renderer_ids=renderer
+plugins.renderer_classes=OPENGL</pre>
+while the Windows installable demo is set up as follows:
+
+<pre>plugins.renderer_libraries = plugins/renderer_plugin_D3D9.dll
+plugins.renderer_ids=renderer
+plugins.renderer_classes=D3D9</pre>
+I found out that if I set the renderer to OpenGL as on the Linux demo, like this:
+
+<pre>plugins.renderer_libraries = plugins/renderer_plugin_opengl.dll
+plugins.renderer_ids=renderer
+plugins.renderer_classes=OPENGL</pre>
+the demo runs, but I get the same problem: no rendering and default vector values. It seems that the OpenGL renderer plugin does not work properly, while the Direct3D one does, indeed.
+
+My current goal, under these circumstances, is to capture the 27D vectors generated by the Windows hand tracker running with the D3D renderer plugin, and publish them through TCP to an Ubuntu machine (virtual or physical) running ROS. So far I've checked that I can enable vector outputting on the Windows demo by setting the io.print_solutions = 1 on input_output.ini, and I get to see the values on the console.
+
+I know how to tweak and recompile the demo code on Linux, where ROS is installed and everything is ready, but doing so in Windows, along with writing or using a TCP server/client to capture the vector values and publishing them to the Ubuntu machine, may take some time and more effort and besides it will have an impact on performance.
+
+I would really appreciate to be able to fiddle with the <code>librenderer_plugin_opengl</code> code and try to make it work on my Ubuntu machine, considering that every other piece of OpenGL-related code I've come across can be run and compiled seamlessly on my machine.
+
+Please let me know if that's possible, and as always, thanks again for your support, I'll keep you updated about my findings and results.
+
+Yours faithfully,</blockquote></p>
+					</li>
+					<li>
+						<p>Por el momento, hasta que me respondan voy a intentar compilar la demo de Linux en Windows. Probablemente necesite el Visual Studio.</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>21/01/2014</h2>
+				<ul>
+					<li>
+						<p>He enviado el email, y voy a probar en Windows. Alternativamente he hecho una búsqueda por si hubiera un tracker 3D de la mano usando Kinect, y he encontrado esto:</p>
+						<p><a href="http://handkinetics.com/index.php">http://handkinetics.com/index.php</a></p>
+						<p>Aunque parece un proyecto en curso, orientado al uso comercial aparentemente, se lo he comentado a Antonio por email y mientras tanto me pongo a desarrollar en Windows.</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>27/01/2014</h2>
+				<ul>
+					<li>
+						<p>Llevo varias horas dedicadas a configurar Visual Studio 2012 para poder compilar la demo del HandTracker, y por fin he conseguido compilarlo, pero soy incapaz de hacerlo funcionar. El ejecutable no ejecuta y da un montón de errores que no puedo solucionar.</p>
+					</li>
+					<li>
+						<p>Me temo que mi única alternativa es esperar a ver si me dan algo de feedback desde el K3DHT team para hacer funcionar el plugin de OpenGL en Linux, pues Windows no es viable ya que representa más problemas que soluciones.</p>
+					</li>
+					<li>
+						<p>Mientras tanto, puedo ponerme a programar los plugins de ROS/OpenRAVE usando como entrada para las pruebas vectores capturados desde la consola en la versión precompilada de la demo para Windows.</p>
+					</li>
+					<li>
+						<p>He capturado una lista de vectores generados por la demo a partir del loop de vídeo de ejemplo. Voy a programar un plugin que publique estos valores en ROS.</p>
+					</li>
+					<li>
+						<p>Ya he comenzado el plugin. De momento publica el contenido del vector en un mensaje de tipo <code>common_msgs/JointState</code> aunque aún no sé exactamente qué significan los valores.</p>
+						<p>El próximo paso, etiquetar las joints con los nombres del modelo de la mano y conseguir hacer funcionar OpenRAVE junto a ROS para visualizar el modelo en el simulador</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>29/01/2014</h2>
+				<ul>
+					<li>
+						<p>He instalado Eclipse y OpenRAVE en el equipo, y he clonado el Proyecto Umano, para empezar a probar a suministrar los valores capturados del simulador del HandTracker a OpenRAVE para visualizar la pose de la mano, identificar los valores y asignarlos a cada articulación</p>
+					</li>
+					<li>
+						<p>Para ejecutar Umano necesito instalar MatLab, y unas cuantas librerías de Python, como <code>mlabwrap</code>.</p>
+					</li>
+					<li>
+						<p>Tengo problemas con una librería llamada <code>libhfs5</code>. Por lo visto necesito la versión 1.8.4. Estoy instalándola del repositorio de Ubuntu</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>31/01/2014</h2>
+				<ul>
+					<li>
+						<p>Para hacer funcionar OpenRAVE con PyQt4, me ha hecho falta instalar ciertas librerías:</p>
+						<pre>sudo easy_install -U distribute
+sudo pip install pyhull
+sudo apt-get install python-poppler-qt4</pre>
+						<p>También he tenido que actualizar algunas variables de entorno. Actualmente este es my bloque de exports en <code>/etc/bash.bashrc</code>:</p>
+						<pre><code>export PATH=$PATH:/usr/local/cuda-5.5/bin
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
+export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/usr/local/lib64:/usr/lib:/usr/local/cuda-5.5/lib64 #$LD_LIBRARY_PATH
+export OPENNI_PATH='/usr/local/openni'
+export OPENNI2_INCLUDE='/usr/local/include/openni2'
+export OPENNI2_REDIST='/usr/local/openni2'
+export NITE2_INCLUDE='/usr/local/include/nite'
+export NITE2_REDIST64='/usr/local/nite'
+export OPENHAND_PATH=/home/oscar/workspace/umano_journal
+export OPENRAVE_DATA=$OPENRAVE_DATA:$OPENHAND_PATH/env:$OPENHAND_PATH/env/armGeometry/skin:$OPENHAND_PATH/env/armGeometry/bones:$OPENHAND_PATH/env/hands:$OPENHAND_PATH/env/robots:$OPENHAND_PATH/env/scenes:$OPENHAND_PATH/env/postures:
+export OPENRAVE_PLUGINS=$OPENRAVE_PLUGINS:$OPENHAND_PATH/build
+export PYTHONPATH=$PYTHONPATH:`openrave-config --python-dir`</code></pre>
+<p>y en <code>~/.bashrc</code>:</p>
+<pre><code>export MLABRAW_CMD_STR="/home/oscar/MatLab/bin/matlab"
+export PATH=$PATH:~/MatLab/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/MatLab/bin/glnxa64/</code></pre>
+					</li>
+					<li>
+						<p>Ya funciona el simulador Umano, tras reinstalar OpenRAVE y volver a compilar el proyecto.</p>
+					</li>
+					<li>
+						<p>Comenzado a implementar el módulo para suministrar valores del fichero al OpenRAVE Server.</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>04/02/2014</h2>
+				<ul>
+					<li>
+						<p>Sigo implementando el módulo para Umano. He conseguido alimentar el simulador con los datos recopilados del handtracker pero no hay manera humana de averiguar qué valor corresponde a qué articulación.</p>
+					</li>
+					<li>
+						<p>Voy a grabar una secuencia con la demo del HandTracker, moviendo cada dedo individualmente. De esta forma se podrá identificar con más facilidad cada dedo y articulación.</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>05&ndash;06/02/2014</h2>
+				<ul>
+					<li>
+						<p>Windows ha dejado de dar soporte a drivers por haber caducado la licencia. No hay manera de reinstalar los drivers de la Kinect y por lo tanto no es posible usar el HandTracker.</p>
+					</li>
+					<li>
+						<p>Procedo a reinstalar Windows con una versión oficial de la cuenta de Dreamspark</p>
+					</li>
+					<li>
+						<p>Una vez reinstalado, he perdido la partición de datos. Como viene siendo habitual al reinstalar Windows en un disco con particiones, el instalador no respeta nada. Ubuntu tampoco arranca, pues el instalador de Windows ha erradicado el GRUB del MBR.</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>11/02/2014</h2>
+				<ul>
+					<li>
+						<p>He recuperado el GRUB arrancando una versión live de Ubuntu, reinstalando el GRUB en la partición de Ubuntu y haciendo activa dicha partición (<code>/dev/sda3</code>). Para ello, he tenido que aplicar la opción <code>--force</code> ya que por defecto no le parece bien instalarse en una partición.</p>
+					</li>
+					<li>
+						<p>También he bajado los drivers de la placa para Windows desde la versión Live de Ubuntu 12.04 64-bit, ya que Windows recién instalado no detectaba las tarjeta de red, ni la de la placa ni la otra.</p>
+					</li>
+					<li>
+						<p>Al final del día ya tengo operativos ambos sistemas</p>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h2>12/02/2014</h2>
+				<ul>
+					<li>
+						<p>He recibido un email del K3DHT y me comentan que los drivers de nVidia que han usado para las pruebas en Ubuntu son la versión 304, así que procedo a probarlos.</p>
+						<p><blockquote class="email">Dear Oscar Gomez,
+
+OpenGL renderer issue was identified and is caused when an NVIDIA driver older than 304 is used. The issue lies with our shaders implementation and we will provide an updated version through openni.org as soon as we have a solution. Until then the workaround is to install the 304 NVIDIA drivers on your system.
+
+we are sorry for the delayed response.
+kind regards,
+--
+The K3DHT team</blockquote></p>
+					</li>
+					<li>
+						<p>Los he probado en mi portátil, cuya tarjeta es la GT220M, y he conseguido cargarme la interfaz gráfica.</p>
+						<p>La he recuperado tras varias desinstalaciones y reinstalaciones, pero definitivamente con mi tarjeta esos drivers no funcionan. A ver qué pasa en el PC del lab (IA22).</p>
+					</li>
+					<li>
+						<p>En otro orden de cosas, he respondido al K3DHT Team, y he aprovechado para preguntarles por la estructura del vector de resultados del HandTracker. El email a continuación:</p>
+						<p>
+							<blockquote class="email">Hello,
+
+thanks for your support, as of the time of writing, the drivers installed on my Ubuntu system are the 319.37, my X Server version being 11.0, and my graphics card is a GeForce GTX 560.
+
+I will try and downgrade the drivers to version 304 and get back to you with the results.
+
+Another thing I tried was writing a test program using your library on Windows, but after compiling without errors, my test app couldn't run at all (lots of boost library exceptions and errors, and segmentation faults), so I decided that at least I would try and capture some sequences from the pre-compiled demo, and use the result vectors to feed a human hand simulator, back on Ubuntu.
+
+I accomplished that, but now my problem is, I don't know the correspondence between values in the vector and their meaning (joints, ranges, etc.). Can you please give me a description of this vector?
+
+As always, thanks in advance,
+
+all the best,
+
+Óscar</blockquote>
+						</p>
+					</li>
+					<li>
+						<p>La demo del HandTracker <strong>funciona</strong> con la versión 304 del driver de nVidia. Estoy ajustando valores en los archivos de configuración para poder obtener resultados, pues el tracking es bastante impreciso.</p>
+						<p>En el archivo <code>skin_detection.ini</code> he ajustado los valores low y high a 0 y 100 respectivamente, y parece mejorar. También hay un pequeño problema con la luz en la piel, que quema la imagen y parece haber problemas con el blanco a la hora de detectar.</p>
+					</li>
+				</ul>
+			</section>
+		</div>
+	</body>
+	<script src="js/bootstrap.min.js"></script>
+</html>
