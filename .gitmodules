@@ -1,0 +1,3 @@
+[submodule "memoria"]
+	path = memoria
+	url = https://oscar_dr@bitbucket.org/oscar_dr/memoria_robinlab.git
