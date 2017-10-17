@@ -1,0 +1,32 @@
+{
+  "name": "oscardr.github.io",
+  "version": "2.0.0",
+  "description": "My personal profile in GitHub",
+  "main": "index.html",
+  "private": true,
+  "dependencies": {
+    "mongojs": "^0.7.9"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-jade": "^1.1.0",
+    "gulp-sass": "^2.3.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OscardR/OscardR.github.io.git"
+  },
+  "keywords": [
+    "cv",
+    "profile"
+  ],
+  "author": "Óscar Gómez Alcañiz <oscar.gomez.alcaniz@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OscardR/OscardR.github.io/issues"
+  },
+  "homepage": "https://github.com/OscardR/OscardR.github.io#readme"
+}

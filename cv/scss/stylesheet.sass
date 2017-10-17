@@ -3,7 +3,7 @@
  *by Jason Costello, @jsncostello
  ******************************************************************************/
 
-@import url(pygment_trac.css)
+@import url(../css/pygment_trac.css)
 
 /*******************************************************************************
  *MeyerWeb Reset
@@ -24,11 +24,15 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 ol, ul
   list-style: none
 
-blockquote!, q!
+//blockquote!, q!
 
 table
+  //border: 1px solid #373737
+  text-align: left
   border-collapse: collapse
   border-spacing: 0
+  border: none
+  margin-bottom: 20px
 
 small
   font-size: 85%
@@ -163,8 +167,8 @@ ul, ol, dl
   margin-bottom: 15px
 
 ul li
-  //list-style: inside
-  //padding-left: 20px
+//list-style: inside
+//padding-left: 20px
 
 ol li
   list-style: decimal inside
@@ -183,16 +187,13 @@ hr
   border: none
   background: url('../img/bg_hr.png') repeat-x center
 
-table
-  border: 1px solid #373737
-  margin-bottom: 20px
-  text-align: left
-
 th
   font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif
   padding: 10px
   background: #373737
   color: #fff
+  border: 1px solid #373737
+  border-bottom: 1px solid #404040
 
 td
   padding: 10px
