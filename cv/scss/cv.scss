@@ -49,9 +49,35 @@ $gradient-gray: 'linear-gradient(0deg, #999999, #CCCCCC)';
   border-radius: .5em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
   background-color: white;
+
+  & + .skill {
+    margin-top: 3em;
+  }
 }
 
 h4 {
+  &.field {
+    display: block;
+    perspective-origin: center;
+    transform-origin: left top;
+    transform: perspective(60em) rotateX(10deg) rotateZ(-8deg) rotateY(40deg);
+    background: rgba(90, 0, 0, 1);
+    color: white;
+    padding: .6em 1em;
+    margin: -2em 0 0 -1em;
+    width: 50%;
+    box-shadow: -10px 10px 0 rgba(0, 0, 0, .2);
+    text-transform: uppercase;
+    letter-spacing: .2px;
+    font-weight: bold;
+    transition: .1s;
+
+    &:hover {
+      transform: perspective(60em) rotateX(0deg) rotateZ(0deg) rotateY(0deg);
+      box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+    }
+  }
+
   .company, .school {
     @include gradient-text($gradient-red, 'light');
   }

@@ -349,6 +349,27 @@ img {
   border-radius: .5em;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
   background-color: white; }
+  .job + .skill, .education + .skill, .skill + .skill {
+    margin-top: 3em; }
+
+h4.field {
+  display: block;
+  perspective-origin: center;
+  transform-origin: left top;
+  transform: perspective(60em) rotateX(10deg) rotateZ(-8deg) rotateY(40deg);
+  background: #5a0000;
+  color: white;
+  padding: .6em 1em;
+  margin: -2em 0 0 -1em;
+  width: 50%;
+  box-shadow: -10px 10px 0 rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: .2px;
+  font-weight: bold;
+  transition: .1s; }
+  h4.field:hover {
+    transform: perspective(60em) rotateX(0deg) rotateZ(0deg) rotateY(0deg);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2); }
 
 @supports (mix-blend-mode: lighten) {
   h4 .company, h4 .school {
