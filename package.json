@@ -5,15 +5,15 @@
   "main": "index.html",
   "private": true,
   "dependencies": {
-    "mongojs": "^0.7.9"
+    "mongojs": "^0.7.17"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-jade": "^1.1.0",
     "gulp-sass": "^2.3.2"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "gulp": "npx gulp"
   },
   "repository": {
     "type": "git",

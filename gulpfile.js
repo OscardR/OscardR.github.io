@@ -1,23 +1,25 @@
 "use strict";
 
 let gulp = require('gulp'),
-    jade = require('gulp-jade'),
+    pug = require('gulp-jade'),
     sass = require('gulp-sass');
 
-gulp.task('jade', () => {
-    let YOUR_LOCALS = {};
+gulp.task('pug', () => {
+    let YOUR_LOCALS = {
+        v: "2.0.0"
+    };
 
-    gulp.src('./jade/**/*.jade')
-        .pipe(jade({
+    return gulp.src('./pug/**/*.pug')
+        .pipe(pug({
             locals: YOUR_LOCALS
         }))
         .pipe(gulp.dest('./'));
 });
 
-gulp.task('sass', () => {
-    return gulp.src('./cv/scss/**/*.scss')
+gulp.task('sass', () =>
+    gulp.src('./cv/scss/**/*.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./cv/css'));
-});
+        .pipe(gulp.dest('./cv/css'))
+);
 
-gulp.task('default', ['sass', 'jade']);
+gulp.task('default', gulp.parallel('sass', 'pug'));
