@@ -17,9 +17,9 @@ gulp.task('pug', () => {
 });
 
 gulp.task('sass', () =>
-    gulp.src('./cv/scss/**/*.scss')
+    gulp.src('./scss/**/*.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./cv/css'))
+        .pipe(gulp.dest('./css'))
 );
 
 gulp.task('default', gulp.parallel('sass', 'pug'));
