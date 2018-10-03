@@ -42,7 +42,74 @@
 $gradient-red: 'linear-gradient(0deg, #662222, #CC2244)';
 $gradient-gray: 'linear-gradient(0deg, #999999, #CCCCCC)';
 
-.job, .education, .skill {
+h3 {
+  & + .skill {
+    margin-top: 2em;
+  }
+}
+
+h4 {
+  &.field {
+    display: block;
+    perspective-origin: center;
+    transform-origin: left top;
+    transform: perspective(60em) rotateX(10deg) rotateZ(-8deg) rotateY(40deg);
+    background-color: rgba(90, 0, 0, 1);
+    background: linear-gradient(7deg, rgb(90, 0, 0) 50%, rgb(128, 0, 0) 100%);
+    color: white;
+    padding: .6em 1em;
+    margin: -2em 0 1em -1em;
+    width: 50%;
+    box-shadow: -10px 10px 2px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: .2px;
+    font-weight: bold;
+    transition: .1s;
+
+    &:hover {
+      transform: perspective(60em) rotateX(0deg) rotateZ(0deg) rotateY(0deg);
+      box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+    }
+  }
+
+  .company,
+  .school {
+    @include gradient-text($gradient-red, 'light');
+  }
+
+  .location {
+    margin-left: .4em;
+    @include gradient-text($gradient-gray, 'light');
+  }
+}
+
+p {
+  max-width: 65ch;
+}
+
+.dark {
+  background: #222;
+
+  .gradient1 {
+    color: #fff; // Fallback color
+
+    @include gradient-text('linear-gradient(to right,#23966c, #faaa54, #e23b4a, #db0768, #360670)', 'dark');
+  }
+
+  .gradient2 {
+    color: #fff;
+
+    @include gradient-text('radial-gradient(circle, #23966c, #faaa54, #e23b4a, #db0768, #360670)', 'dark');
+  }
+}
+
+.icon {
+  border: none;
+}
+
+.job,
+.education,
+.skill {
   background: linear-gradient(0deg, transparent 60%, rgba(0, 0, 0, 0.025) 100%);
   margin: 1em -2em;
   padding: 1em 2em;
@@ -55,41 +122,8 @@ $gradient-gray: 'linear-gradient(0deg, #999999, #CCCCCC)';
   }
 }
 
-h4 {
-  &.field {
-    display: block;
-    perspective-origin: center;
-    transform-origin: left top;
-    transform: perspective(60em) rotateX(10deg) rotateZ(-8deg) rotateY(40deg);
-    background: rgba(90, 0, 0, 1);
-    color: white;
-    padding: .6em 1em;
-    margin: -2em 0 0 -1em;
-    width: 50%;
-    box-shadow: -10px 10px 0 rgba(0, 0, 0, .2);
-    text-transform: uppercase;
-    letter-spacing: .2px;
-    font-weight: bold;
-    transition: .1s;
-
-    &:hover {
-      transform: perspective(60em) rotateX(0deg) rotateZ(0deg) rotateY(0deg);
-      box-shadow: 0 0 0 rgba(0, 0, 0, .2);
-    }
-  }
-
-  .company, .school {
-    @include gradient-text($gradient-red, 'light');
-  }
-
-  .location {
-    margin-left: .4em;
-    @include gradient-text($gradient-gray, 'light');
-  }
-}
-
 .skill {
-  h5.category {
+  .category {
     @include gradient-text($gradient-red, 'light');
   }
 
@@ -103,18 +137,17 @@ h4 {
   }
 }
 
-section.dark {
-  background: #222;
-
-  .gradient1 {
-    color: #fff; // Fallback color
-
-    @include gradient-text('linear-gradient(to right,#23966c, #faaa54, #e23b4a, #db0768, #360670)', 'dark');
+@media screen and (max-width: 768px) {
+  .job,
+  .education,
+  .skill {
+    margin: 1em 0;
+    padding: 1em 1.4em;
   }
 
-  .gradient2 {
-    color: #fff;
-
-    @include gradient-text('radial-gradient(circle, #23966c, #faaa54, #e23b4a, #db0768, #360670)', 'dark');
+  h4 {
+    &.field {
+      width: 70%;
+    }
   }
 }

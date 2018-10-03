@@ -174,7 +174,7 @@ hr {
   height: 1px;
   margin-bottom: 5px;
   border: none;
-  background: url("../img/bg_hr.png") repeat-x center; }
+  background: url("../../images/bg_hr.png") repeat-x center; }
 
 th {
   font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -342,27 +342,21 @@ img {
     max-width: 480px;
     font-size: 11px; } }
 
-.job, .education, .skill {
-  background: linear-gradient(0deg, transparent 60%, rgba(0, 0, 0, 0.025) 100%);
-  margin: 1em -2em;
-  padding: 1em 2em;
-  border-radius: .5em;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-  background-color: white; }
-  .job + .skill, .education + .skill, .skill + .skill {
-    margin-top: 3em; }
+h3 + .skill {
+  margin-top: 2em; }
 
 h4.field {
   display: block;
   perspective-origin: center;
   transform-origin: left top;
   transform: perspective(60em) rotateX(10deg) rotateZ(-8deg) rotateY(40deg);
-  background: #5a0000;
+  background-color: #5a0000;
+  background: linear-gradient(7deg, #5a0000 50%, maroon 100%);
   color: white;
   padding: .6em 1em;
-  margin: -2em 0 0 -1em;
+  margin: -2em 0 1em -1em;
   width: 50%;
-  box-shadow: -10px 10px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: -10px 10px 2px rgba(0, 0, 0, 0.1);
   text-transform: uppercase;
   letter-spacing: .2px;
   font-weight: bold;
@@ -372,13 +366,15 @@ h4.field {
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.2); }
 
 @supports (mix-blend-mode: lighten) {
-  h4 .company, h4 .school {
+  h4 .company,
+  h4 .school {
     display: inline-block;
     position: relative;
     color: #000;
     background: #fff;
     mix-blend-mode: multiply; }
-    h4 .company::before, h4 .school::before {
+    h4 .company::before,
+    h4 .school::before {
       content: '';
       display: block;
       position: absolute;
@@ -388,7 +384,8 @@ h4.field {
       left: 0;
       background: linear-gradient(0deg, #662222, #CC2244);
       pointer-events: none; }
-    h4 .company::before, h4 .school::before {
+    h4 .company::before,
+    h4 .school::before {
       mix-blend-mode: screen; } }
 
 h4 .location {
@@ -413,14 +410,79 @@ h4 .location {
       h4 .location::before {
         mix-blend-mode: screen; } }
 
+p {
+  max-width: 65ch; }
+
+.dark {
+  background: #222; }
+  .dark .gradient1 {
+    color: #fff; }
+    @supports (mix-blend-mode: lighten) {
+      .dark .gradient1 {
+        display: inline-block;
+        position: relative;
+        color: #fff;
+        background: #000;
+        mix-blend-mode: lighten; }
+        .dark .gradient1::before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: linear-gradient(to right,#23966c, #faaa54, #e23b4a, #db0768, #360670);
+          pointer-events: none; }
+        .dark .gradient1::before {
+          mix-blend-mode: multiply; } }
+  .dark .gradient2 {
+    color: #fff; }
+    @supports (mix-blend-mode: lighten) {
+      .dark .gradient2 {
+        display: inline-block;
+        position: relative;
+        color: #fff;
+        background: #000;
+        mix-blend-mode: lighten; }
+        .dark .gradient2::before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background: radial-gradient(circle, #23966c, #faaa54, #e23b4a, #db0768, #360670);
+          pointer-events: none; }
+        .dark .gradient2::before {
+          mix-blend-mode: multiply; } }
+
+.icon {
+  border: none; }
+
+.job,
+.education,
+.skill {
+  background: linear-gradient(0deg, transparent 60%, rgba(0, 0, 0, 0.025) 100%);
+  margin: 1em -2em;
+  padding: 1em 2em;
+  border-radius: .5em;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  background-color: white; }
+  .job + .skill,
+  .education + .skill,
+  .skill + .skill {
+    margin-top: 3em; }
+
 @supports (mix-blend-mode: lighten) {
-  .skill h5.category {
+  .skill .category {
     display: inline-block;
     position: relative;
     color: #000;
     background: #fff;
     mix-blend-mode: multiply; }
-    .skill h5.category::before {
+    .skill .category::before {
       content: '';
       display: block;
       position: absolute;
@@ -430,7 +492,7 @@ h4 .location {
       left: 0;
       background: linear-gradient(0deg, #662222, #CC2244);
       pointer-events: none; }
-    .skill h5.category::before {
+    .skill .category::before {
       mix-blend-mode: screen; } }
 
 .skill ul li small {
@@ -455,47 +517,11 @@ h4 .location {
       .skill ul li small::before {
         mix-blend-mode: screen; } }
 
-section.dark {
-  background: #222; }
-  section.dark .gradient1 {
-    color: #fff; }
-    @supports (mix-blend-mode: lighten) {
-      section.dark .gradient1 {
-        display: inline-block;
-        position: relative;
-        color: #fff;
-        background: #000;
-        mix-blend-mode: lighten; }
-        section.dark .gradient1::before {
-          content: '';
-          display: block;
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          background: linear-gradient(to right,#23966c, #faaa54, #e23b4a, #db0768, #360670);
-          pointer-events: none; }
-        section.dark .gradient1::before {
-          mix-blend-mode: multiply; } }
-  section.dark .gradient2 {
-    color: #fff; }
-    @supports (mix-blend-mode: lighten) {
-      section.dark .gradient2 {
-        display: inline-block;
-        position: relative;
-        color: #fff;
-        background: #000;
-        mix-blend-mode: lighten; }
-        section.dark .gradient2::before {
-          content: '';
-          display: block;
-          position: absolute;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          background: radial-gradient(circle, #23966c, #faaa54, #e23b4a, #db0768, #360670);
-          pointer-events: none; }
-        section.dark .gradient2::before {
-          mix-blend-mode: multiply; } }
+@media screen and (max-width: 768px) {
+  .job,
+  .education,
+  .skill {
+    margin: 1em 0;
+    padding: 1em 1.4em; }
+  h4.field {
+    width: 70%; } }
