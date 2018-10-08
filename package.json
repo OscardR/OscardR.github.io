@@ -5,7 +5,8 @@
   "main": "index.html",
   "private": true,
   "dependencies": {
-    "mongojs": "^0.7.17"
+    "bootstrap": "^3",
+    "jquery": "^1"
   },
   "devDependencies": {
     "gulp": "^4.0.0",
