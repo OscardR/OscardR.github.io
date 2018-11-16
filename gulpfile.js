@@ -21,9 +21,9 @@ gulp.task('assets', () => copy('images'));
 
 gulp.task('vendor scripts', () =>
     gulp.src([
-            `${vendorDir}/bootstrap/dist/js/bootstrap.js`,
-            `${vendorDir}//jquery/dist/jquery.js`
-        ]).pipe(gulp.dest(jsDir)));
+        `${vendorDir}/bootstrap/dist/js/bootstrap.js`,
+        `${vendorDir}//jquery/dist/jquery.js`
+    ]).pipe(gulp.dest(jsDir)));
 
 // Copy javascript to javascript folders
 gulp.task('scripts', () => copy('js'));
@@ -34,7 +34,7 @@ gulp.task('pug', () => {
         v: "2.0.0"
     };
 
-    return gulp.src('./pug/**/*.pug')
+    return gulp.src(`${srcDir}/**/*.pug`)
         .pipe(pug({
             locals: YOUR_LOCALS
         }))
@@ -43,10 +43,10 @@ gulp.task('pug', () => {
 
 // Compile SASS files
 gulp.task('sass', () =>
-    gulp.src('./scss/**/*.scss')
+    gulp.src(`${srcDir}/**/*.scss`)
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./css'))
-);
+        .pipe(gulp.dest(cssDir)));
+
 
 // By default, do all
 gulp.task('default', gulp.parallel('assets', 'vendor scripts', 'scripts', 'sass', 'pug'));
