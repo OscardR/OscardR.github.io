@@ -6,7 +6,7 @@ let gulp = require('gulp'),
 
 const srcDir = './src',
     jsDir = './js',
-    cssDir = './css',
+    cssDir = './',
     vendorDir = './node_modules',
     distDir = './';
 

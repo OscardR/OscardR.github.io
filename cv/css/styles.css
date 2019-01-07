@@ -174,7 +174,7 @@ hr {
   height: 1px;
   margin-bottom: 5px;
   border: none;
-  background: url("../../src/images/bg_hr.png") repeat-x center; }
+  background: url("../images/bg_hr.png") repeat-x center; }
 
 th {
   font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
