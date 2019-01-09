@@ -14,7 +14,8 @@ html(lang='en')
         #header_wrap.outer
             header.inner
                 h1#project_title Óscar Gómez Alcañiz
-                h2#project_tagline Curriculum Vitae
+
+                h2#project_tagline.text-right Curriculum Vitae
 
             nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
                 // Brand and toggle get grouped for better mobile display
@@ -22,6 +23,7 @@ html(lang='en')
                     .navbar-header
                         button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navegacion-desplegable')
                             span.sr-only Toggle navigation
+
                             span.icon-bar
                             span.icon-bar
                             span.icon-bar
@@ -35,12 +37,16 @@ html(lang='en')
                         ul.nav.navbar-nav
                             li.active
                                 a(href='#contact') Contact Information
+
                             li
                                 a(href='#experience') Work Experience
+
                             li
                                 a(href='#education') Education
+
                             li
                                 a(href='#skills') Skills
+
                             li
                                 a(href='#examples') Work Examples
 
@@ -55,22 +61,27 @@ html(lang='en')
                 dl
                     dt Name
                     dd Óscar Gómez Alcañiz
-                    dt Address
-                    dd
-                        address
-                            | 226 Chemin de l'Ecole
-                            br
-                            | Le Domaine
-                            br
-                            | 01280 Prévessin-Moëns
-                            br
-                            | France
-                    dt Phone Number
-                    dd
-                        a(href='tel:+41765964327') +41 765 96 43 27
+
+                    //-
+                        dt Address
+                        dd
+                            address
+                                | 226 Chemin de l'Ecole
+                                br
+                                | Le Domaine
+                                br
+                                | 01280 Prévessin-Moëns
+                                br
+                                | France
+
+                        dt Phone Number
+                        dd
+                            a(href='tel:+41765964327') +41 765 96 43 27
+
                     dt Email
                     dd
                         a(href='mailto:oscar.gomez.alcaniz@gmail.com') oscar.gomez.alcaniz@gmail.com
+
                     dt Skype
                     dd
                         a(href='callto:oscar.gomez.alcaniz') oscar.gomez.alcaniz
@@ -80,10 +91,13 @@ html(lang='en')
                 dl
                     dt Date of Birth
                     dd 09/06/1983
+
                     dt Born in
                     dd Castellón de la Plana
+
                     dt Nationality
                     dd Spanish
+
                     dt Gender
                     dd Male
 
@@ -256,6 +270,7 @@ html(lang='en')
                     h4
                         span.school Course on Web Design, HTML and FLASH
                         small.location  | Castellón
+
                     p.
                         Intensive course – Completed after three months.
 
@@ -265,6 +280,7 @@ html(lang='en')
                     h4
                         span.school IES Penyagolosa
                         small.location  | Castellón
+
                     p
                         abbr(title='Bachillerato Unificado Polivalente') BUP
                         | +
@@ -286,36 +302,48 @@ html(lang='en')
                             ul
                                 li Linux
                                     small  | Ubuntu / Archlinux / CentOS / AmazonLinux
+
                                 li Windows
                                     small  | XP / Vista / 7 / 8 / 10
+
                                 li Mac OS X
                                     small  | 10.x
+
                         li
                             h5.category Design tools
 
                             ul
                                 li Adobe Creative Suite
                                     small  | Photoshop / InDesign / Illustrator / Flash
+
                         li
                             h5.category Programming languages &amp; Frameworks
 
                             ul
                                 li Modern Web
                                     small  | HTML5 / CSS3
+
                                 li Javascript
                                     small  | jQuery 2 / AngularJS 1.5 / EmberJS / ES2015 / Gulp / Babel
+
                                 li PHP
                                     small  | Slim Framework 3 / CodeIgniter 4 / Laravel 5 / Drupal 7
+
                                 li Java
                                     small  | Spring 3
+
                                 li Python
                                     small  | SciPy / PyBrain
+
                                 li C/C++
                                     small  | OpenCV / ROS
+
                                 li Ruby
                                     small  | Rails 4
+
                                 li DataBases
                                     small  | MySQL 5 / Oracle DB 12 / PL/SQL 11 / MongoDB
+
                                 li Actionscript 3.0
                                     small  | Flash
                         li
@@ -324,22 +352,27 @@ html(lang='en')
                             ul
                                 li CLI Tools
                                     small  | Bash / PowerShell
+
                                 li Development environment
                                     small  | Vagrant / Docker
+
                         li
                             h5.category Office tools
 
                             ul
                                 li Microsoft Office
                                     small  | SharePoint / InfoPath / VBA / Access / Excel
+
                         li
                             h5.category Audio/video editing tools
 
                             ul
                                 li Steinberg Nuendo
                                     small  | Music production / Mixing / Mastering
+
                                 li Adobe Audition
                                     small  | Sound edition
+
                                 li After Effects
                                     small  | Video editing / Special FX
 
@@ -361,6 +394,7 @@ html(lang='en')
                                     th Listening
                                     th Reading
                                     th Writing
+
                             tbody
                                 tr
                                     th English
@@ -368,15 +402,18 @@ html(lang='en')
                                     td C2
                                     td C2
                                     td C1
+
                                 tr
                                     th French
                                     td B1
                                     td B2
                                     td C1
                                     td B2
+
                                 tr
                                     th Spanish
                                     td(colspan='4', style='text-align: center;') C2 (native)
+
                                 tr
                                     th Catalan / Valencian
                                     td C1
@@ -420,18 +457,32 @@ html(lang='en')
                 img(src='images/sample_cd_front.jpg', alt='CD Artwork / Front')
                 img(src='images/sample_cd_back.jpg', alt='CD Artwork / Back')
 
+                h4 Experiments
+
+                h5 Observable
+
+                p
+                    a(href='https://beta.observablehq.com/@oscardr') My Notebooks
+
+                h5 CodePen
+
+                p
+                    a(href='https://codepen.io/OscardR/') My Pens
+
                 h4 Websites
 
                 ul
                     li
                         img.icon(src='http://procurement.web.cern.ch/sites/procurement.web.cern.ch/themes/cern_subtheme_procurement/favicon.ico', alt='Icon')
                         a(href='http://cern.ch/procurement')  Procurement @ CERN
+
                     li
                         img.icon(src='http://fap-dep.web.cern.ch/sites/fap-dep.web.cern.ch/themes/cern_subtheme_fap/favicon.ico', alt='Icon')
                         a(href='http://cern.ch/fap-dep')  Finance and Administrative Processes Department @ CERN
+
                     li
                         img.icon(src='http://www.dayofrising.rocks/img/logo-white.png', alt='Icon')
-                        a(href='http://www.dayofrising.site')  Day Of Rising
+                        a(href='http://www.dayofrising.rocks')  Day Of Rising
 
         #footer_wrap.outer
             footer.inner
@@ -441,12 +492,15 @@ html(lang='en')
                     li
                         i.icon-github
                         a(href='http://www.github.com/OscardR')  GitHub
+
                     li
                         i.icon-bitbucket
                         a(href='http://www.bitbucket.org/oscar_dr')  Bitbucket
+
                     li
                         i.icon-code
                         a(href='https://www.codeplex.com/site/users/view/Oscar_dR')  CodePlex
+
                     li
                         i.icon-twitter
                         a(href='http://www.twitter.com/oscar_dr')  Twitter
