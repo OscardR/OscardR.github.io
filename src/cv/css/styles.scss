@@ -38,7 +38,7 @@
   }
 }
 
-$gradient-red: 'linear-gradient(0deg, #662222, #CC2244)';
+$gradient-red: 'linear-gradient(0deg, #662244, #CC2266)';
 $gradient-gray: 'linear-gradient(0deg, #999999, #CCCCCC)';
 
 h3 {
@@ -54,7 +54,7 @@ h4 {
     transform-origin: left top;
     transform: perspective(60em) rotateX(10deg) rotateZ(-8deg) rotateY(40deg);
     background-color: rgba(90, 0, 0, 1);
-    background: linear-gradient(7deg, rgb(90, 0, 0) 50%, rgb(128, 0, 0) 100%);
+    background: radial-gradient(ellipse at bottom left, rgb(90, 0, 60) 50%, rgb(50, 0, 128) 100%);
     color: white;
     padding: .6em 1em;
     margin: -2em 0 1em -1em;

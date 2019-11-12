@@ -351,7 +351,7 @@ h4.field {
   transform-origin: left top;
   transform: perspective(60em) rotateX(10deg) rotateZ(-8deg) rotateY(40deg);
   background-color: #5a0000;
-  background: linear-gradient(7deg, #5a0000 50%, maroon 100%);
+  background: radial-gradient(ellipse at bottom left, #5a003c 50%, #320080 100%);
   color: white;
   padding: .6em 1em;
   margin: -2em 0 1em -1em;
@@ -382,7 +382,7 @@ h4.field {
       right: 0;
       bottom: 0;
       left: 0;
-      background: linear-gradient(0deg, #662222, #CC2244);
+      background: linear-gradient(0deg, #662244, #CC2266);
       pointer-events: none; }
     h4 .company::before,
     h4 .school::before {
@@ -490,7 +490,7 @@ p {
       right: 0;
       bottom: 0;
       left: 0;
-      background: linear-gradient(0deg, #662222, #CC2244);
+      background: linear-gradient(0deg, #662244, #CC2266);
       pointer-events: none; }
     .skill .category::before {
       mix-blend-mode: screen; } }
