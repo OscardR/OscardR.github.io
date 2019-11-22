@@ -1,56 +1,88 @@
-"use strict";
+import gulp from 'gulp'
+import pug from 'gulp-jade'
+import minify from 'gulp-minify'
+import sass from 'gulp-sass'
 
-let gulp = require('gulp'),
-  pug = require('gulp-jade'),
-  minify = require('gulp-minify'),
-  sass = require('gulp-sass');
+//---------
+// Setup
+//---
+const DIR = {
+  SRC: './src',
+  DIST: './public',
+  get JS() {
+    return `${this.DIST}/js`;
+  },
+  get CSS() {
+    return `${this.DIST}/`;
+  },
+  VENDOR: './node_modules'
+};
 
-const srcDir = './src',
-  jsDir = './js',
-  cssDir = './',
-  vendorDir = './node_modules',
-  distDir = './';
 
-// Utility function to copy specific sub-folders to the dist folder
-let copy = (targetDir) =>
-  gulp.src(`${srcDir}/**/${targetDir}/*`)
-    .pipe(gulp.dest(distDir));
+//-------------------------------------
+// Utility function to copy specific
+// sub-folders to the dist folder
+//----------------------------
+let copy = (targetDir) => gulp
+  .src(`${DIR.SRC}/**/${targetDir}/*`)
+  .pipe(gulp.dest(DIR.DIST));
 
+
+//---------------------------------
 // Copy images to images folders
+//---------------------------
 gulp.task('assets', () => copy('images'));
 
 
-gulp.task('vendor scripts', () =>
-  gulp.src([
-    `${vendorDir}/bootstrap/dist/js/bootstrap.js`,
-    `${vendorDir}//jquery/dist/jquery.js`
-  ]).pipe(minify({
+//------------------
+// Vendor Scripts
+//------------
+gulp.task('vendor scripts', () => gulp
+  .src([
+    `${DIR.VENDOR}/bootstrap/dist/js/bootstrap.js`,
+    `${DIR.VENDOR}/jquery/dist/jquery.js`
+  ])
+  .pipe(minify({
     ext: {src: '.js', min: '.min.js'}
   }))
-    .pipe(gulp.dest(jsDir)));
+  .pipe(gulp.dest(DIR.JS))
+);
 
+
+//-----------------------------------------
 // Copy javascript to javascript folders
+//-----------------------------------
 gulp.task('scripts', () => copy('js'));
 
+
+//---------------------
 // Compile Pug files
+//---------------
 gulp.task('pug', () => {
-  let YOUR_LOCALS = {
+  const LOCALS = {
     v: "2.0.0"
   };
 
-  return gulp.src(`${srcDir}/**/*.pug`)
+  return gulp
+    .src(`${DIR.SRC}/**/*.pug`)
     .pipe(pug({
-      locals: YOUR_LOCALS
+      locals: LOCALS
     }))
-    .pipe(gulp.dest(distDir));
+    .pipe(gulp.dest(DIR.DIST));
 });
 
+
+//----------------------
 // Compile SASS files
-gulp.task('sass', () =>
-  gulp.src(`${srcDir}/**/*.scss`)
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest(cssDir)));
+//----------------
+gulp.task('sass', () => gulp
+  .src([`${DIR.SRC}/**/*.sass`, `${DIR.SRC}/**/*.scss`])
+  .pipe(sass().on('error', sass.logError))
+  .pipe(gulp.dest(DIR.CSS))
+);
 
 
+//----------------------
 // By default, do all
+//----------------
 gulp.task('default', gulp.parallel('assets', 'vendor scripts', 'scripts', 'sass', 'pug'));

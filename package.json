@@ -2,20 +2,24 @@
   "name": "oscardr.github.io",
   "version": "2.0.0",
   "description": "My personal profile in GitHub",
-  "main": "index.html",
+  "main": "public/index.html",
   "private": true,
   "dependencies": {
+    "@babel/cli": "^7.7.0",
     "bootstrap": "^4.3.1",
     "jquery": "^3.4.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
     "gulp": "^4.0.0",
     "gulp-jade": "^1.1.0",
     "gulp-minify": "^3.1.0",
     "gulp-sass": "^4.0.2"
   },
   "scripts": {
-    "gulp": "npx gulp"
+    "gulp": "./node_modules/.bin/babel-node ./node_modules/.bin/gulp"
   },
   "repository": {
     "type": "git",
