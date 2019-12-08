@@ -2,20 +2,17 @@
   "name": "oscardr.github.io",
   "version": "2.0.0",
   "description": "My personal profile in GitHub",
-  "main": "index.html",
+  "main": "public/index.html",
   "private": true,
-  "dependencies": {
-    "bootstrap": "^4.3.1",
-    "jquery": "^3.4.1"
-  },
-  "devDependencies": {
-    "gulp": "^4.0.0",
-    "gulp-jade": "^1.1.0",
-    "gulp-minify": "^3.1.0",
-    "gulp-sass": "^4.0.2"
-  },
   "scripts": {
-    "gulp": "npx gulp"
+    "gulp": "./node_modules/.bin/babel-node ./node_modules/.bin/gulp",
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -30,5 +27,30 @@
   "bugs": {
     "url": "https://github.com/OscardR/OscardR.github.io/issues"
   },
-  "homepage": "https://github.com/OscardR/OscardR.github.io#readme"
+  "homepage": "https://github.com/OscardR/OscardR.github.io#readme",
+  "dependencies": {
+    "@babel/cli": "^7.7.0",
+    "babel-preset-gatsby-package": "^0.2.12",
+    "bootstrap": "^4.3.1",
+    "gatsby": "^2.18.5",
+    "gatsby-cli": "^2.8.16",
+    "gatsby-plugin-react-helmet": "^3.1.16",
+    "gatsby-plugin-sass": "^2.1.24",
+    "gatsby-source-filesystem": "^2.1.40",
+    "gatsby-transformer-json": "^2.2.20",
+    "gatsby-transformer-remark": "^2.6.39",
+    "jquery": "^3.4.1",
+    "netlify-cms": "^2.9.7",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "gulp": "^4.0.0",
+    "gulp-jade": "^1.1.0",
+    "gulp-minify": "^3.1.0",
+    "gulp-sass": "^4.0.2"
+  }
 }
