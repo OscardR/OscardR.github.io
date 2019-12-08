@@ -1,7 +1,7 @@
 ---
 title: CERN
-from: 2014-09-01T00:00:00.000Z
-to: Invalid date
+from: 01.09.2014
+to: ''
 description: International Research Institution based in Switzerland and France.
 position: Data Visualization / Reporting / Web Development
 ---
