@@ -1,4 +1,3 @@
-@import "../../css/stylesheet";
 //https://css-tricks.com/how-to-do-knockout-text/
 @mixin gradient-text($gradient, $bg : 'light') {
   @supports (mix-blend-mode: lighten) {

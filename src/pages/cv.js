@@ -6,6 +6,8 @@ import {graphql} from 'gatsby'
 import head from '../cv/head.pug'
 import body from '../cv/body.pug'
 import footer from '../cv/footer.pug'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import '../cv/css/styles.scss'
 
 export const query = graphql`
   query SiteAndJobs {
@@ -41,14 +43,10 @@ export default ({data}) => {
 
   return <>
     <Helmet>
-      <meta charset="UTF-8"/>
+      <meta charSet="UTF-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
       <title>Óscar Gómez Alcañiz — Curriculum Vitae</title>
-
-      <link rel="stylesheet" href="../css/bootstrap.min.css"/>
-      <link rel="stylesheet" href="../css/font-awesome.min.css" media="screen"/>
-      <link rel="stylesheet" href="css/styles.css" media="screen"/>
     </Helmet>
 
     {body()}
