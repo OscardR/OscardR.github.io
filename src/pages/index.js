@@ -28,8 +28,6 @@ export default ({data}) => {
     meta = site.siteMetadata,
     links = allLinksJson.nodes;
 
-  console.log(links.map(link => link.href));
-
   return <>
     <Helmet>
       <meta

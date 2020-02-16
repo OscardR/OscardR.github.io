@@ -49,9 +49,11 @@
   "devDependencies": {
     "@babel/core": "^7.7.2",
     "@babel/node": "^7.7.0",
+    "babel-loader": "^8.0.6",
     "gulp": "^4.0.0",
     "gulp-jade": "^1.1.0",
     "gulp-minify": "^3.1.0",
-    "gulp-sass": "^4.0.2"
+    "gulp-sass": "^4.0.2",
+    "pug-as-jsx-loader": "^1.0.81"
   }
 }
