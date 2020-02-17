@@ -10,6 +10,8 @@ import '../css/cv/styles.scss'
 import body from '../templates/cv/body.pug'
 import footer from '../templates/cv/footer.pug'
 
+import me from '../images/cv/me.jpg'
+
 export const query = graphql`
   query SiteAndJobs {
     site {
@@ -49,7 +51,7 @@ export default ({data}) => {
       <title>Óscar Gómez Alcañiz — Curriculum Vitae</title>
     </Helmet>
 
-    {body({jobs: list})}
+    {body({jobs: list, images: {me}})}
 
     {footer()}
   </>;

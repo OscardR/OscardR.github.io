@@ -5,32 +5,31 @@
     h2#project_tagline.text-right Curriculum Vitae
 
   nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top(role='navigation')
-    .navigation
-      a.navbar-brand(href='#header_wrap')
-        | Óscar Gómez —
-        strong  CV
-      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navegacion-desplegable' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
-        span.navbar-toggler-icon
-      #navegacion-desplegable.collapse.navbar-collapse
-        ul.nav.navbar-nav
-          li.nav-item.active
-            a.nav-link(href='#contact') Contact Information
+    a.navbar-brand(href='#header_wrap')
+      | Óscar Gómez —
+      strong  CV
+    button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navegacion-desplegable' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navegacion-desplegable.collapse.navbar-collapse(style='{{justifyContent: "flex-end"}}')
+      ul.nav.navbar-nav
+        li.nav-item.active
+          a.nav-link(href='#contact') Contact Information
 
-          li.nav-item
-            a.nav-link(href='#experience') Work Experience
+        li.nav-item
+          a.nav-link(href='#experience') Work Experience
 
-          li.nav-item
-            a.nav-link(href='#education') Education
+        li.nav-item
+          a.nav-link(href='#education') Education
 
-          li.nav-item
-            a.nav-link(href='#skills') Skills
+        li.nav-item
+          a.nav-link(href='#skills') Skills
 
-          li.nav-item
-            a.nav-link(href='#examples') Work Examples
+        li.nav-item
+          a.nav-link(href='#examples') Work Examples
 
 #main_content_wrap.outer
   section#contact.inner.jquery-anchor
-    img.photo(src='../../images/cv/me.jpg', alt='Profile picture')
+    img.photo(src='{images.me}', alt='Profile picture')
 
     h3 Contact Information
 
