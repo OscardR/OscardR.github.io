@@ -4,40 +4,29 @@
 
     h2#project_tagline.text-right Curriculum Vitae
 
-  nav.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
-    // Brand and toggle get grouped for better mobile display
+  nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top(role='navigation')
     .navigation
-      .navbar-header
-        button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navegacion-desplegable')
-          span.sr-only Toggle navigation
-
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-
-        a.navbar-brand(href='#header_wrap')
-          | Óscar Gómez —
-          strong  CV
-
-      // Collect the nav links, forms, and other content for toggling
+      a.navbar-brand(href='#header_wrap')
+        | Óscar Gómez —
+        strong  CV
+      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navegacion-desplegable' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
       #navegacion-desplegable.collapse.navbar-collapse
         ul.nav.navbar-nav
-          li.active
-            a(href='#contact') Contact Information
+          li.nav-item.active
+            a.nav-link(href='#contact') Contact Information
 
-          li
-            a(href='#experience') Work Experience
+          li.nav-item
+            a.nav-link(href='#experience') Work Experience
 
-          li
-            a(href='#education') Education
+          li.nav-item
+            a.nav-link(href='#education') Education
 
-          li
-            a(href='#skills') Skills
+          li.nav-item
+            a.nav-link(href='#skills') Skills
 
-          li
-            a(href='#examples') Work Examples
-
-      // /.navbar-collapse
+          li.nav-item
+            a.nav-link(href='#examples') Work Examples
 
 #main_content_wrap.outer
   section#contact.inner.jquery-anchor
@@ -92,6 +81,20 @@
 
   section#experience.inner.jquery-anchor
     h3 Work Experience
+
+    .job(@repeat='jobs as job')
+      h5.dates {job.from} &mdash; {job.to ? job.to : 'Currently'}
+
+      h4
+        span.company {job.title}
+        small.location  | {job.description}
+        br
+        small.position
+          em {job.position}
+
+      div(dangerouslySetInnerHTML={__html: job.html})
+
+    hr
 
     .job
       h5.dates September 2014 — Currently
