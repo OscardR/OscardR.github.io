@@ -82,7 +82,7 @@
     h3 Work Experience
 
     .job(@repeat='jobs as job')
-      h5.dates {job.from} &mdash; {job.to ? job.to : 'Currently'}
+      h5.dates {formatDate(job.from)} &mdash; {job.to ? formatDate(job.to) : 'Currently'}
 
       h4
         span.company {job.title}
@@ -92,133 +92,6 @@
           em {job.position}
 
       div(dangerouslySetInnerHTML={__html: job.html})
-
-    hr
-
-    .job
-      h5.dates September 2014 — Currently
-
-      h4
-        span.company CERN
-        small.location  | International Research Institution based in Switzerland and France.
-        br
-        small.position
-          em Data Visualization / Reporting / Web Development
-
-      p.
-        Developing solutions for reporting and data visualization using JavaScript and PHP,
-        on Pentaho BI Server.
-
-    .job
-      h5.dates December 2013 — April 2014
-
-      h4
-        span.company Universitat Jaume I
-        small.location  | University in Castellón, Spain.
-        br
-        small.position
-          em Collaboration Scholarship.
-
-      p.
-        I did a collaboration project at the Computer Science Dpt., for the Robotics Group,
-        that involved using Microsoft's Kinect to track a hand in 3D, and translate these
-        movements to a robot hand.
-
-    .job
-      h5.dates May 2013 — November 2013
-
-      h4
-        span.company Digital Ceramic
-        small.location  | Photographic Files for Inkjet in Almazora, Spain.
-        br
-        small.position
-          em Ceramic Tiles Design / Web Development / Photo Process
-
-      p.
-        Web development, graphic design, creating ceramic ambients infographics.
-
-    .job
-      h5.dates January 2011 — May 2013
-
-      h4
-        span.company Private Teacher
-        small.location  | Castellón, Spain.
-        br
-        small.position
-          em English, Science &amp; IT Teacher
-
-      p.
-        In order to cope with my studies, I started to teach maths, physics, programming,
-        technical drawing and English to high school students.
-
-    .job
-      h5.dates January 2008 — December 2010
-
-      h4
-        span.company Signo Comunicación
-        small.location  | Communication Agency in Castellón, Spain.
-        br
-        small.position
-          em Developer / Designer
-
-      p.
-        Web development department. Graphic design, web development & DTP for several magazines.
-
-    .job
-      h5.dates September 2008 — June 2010
-
-      h4
-        span.company Espai d'Art Fotogràfic
-        small.location  | Arts School in Valencia, Spain
-        br
-        small.position
-          em Digital Photography Teacher
-
-      p.
-        Adobe Photoshop teacher at beginner, intermediate and advanced levels, for digital photography
-        students. It also involved weekend courses of 15 practical-theoretical hours.
-
-    .job
-      h5.dates October 2006 — December 2007
-
-      h4
-        span.company Photomart Ltd.
-        small.location  | Photographic Supplies Wholesaler in London, United Kingdom.
-        br
-        small.position
-          em Graphic Designer / Website Manager
-
-      p.
-        My tasks involved the management of the corporate website,
-        the creation of advertising on several media (mainly online and press), development of
-        mini-sites, designing and laying out a monthly magazine and editing an electronic
-        weekly magazine.
-
-    .job
-      h5.dates June 2004 — July 2005
-
-      h4
-        span.company La Lupa
-        small.location  | Local Trade Newspaper in Castellón, Spain.
-        br
-        small.position
-          em  Graphic Designer
-
-      p.
-        Graphic design, advertising campaigns design and weekly magazine DTP.
-
-    .job
-      h5.dates January 2002 — July 2002
-
-      h4
-        span.company CDM – GTFadrell
-        small.location  | Computer Retail &amp; IT Services in Castellón, Spain.
-        br
-        small.position
-          em Technical Support / Equipment Assembly
-
-      p.
-        Technical support, assembly and distribution of computer equipment.
 
     .job
       h5.dates Side jobs

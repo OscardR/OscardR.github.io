@@ -12,6 +12,25 @@ import footer from '../templates/cv/footer.pug'
 
 import me from '../images/cv/me.jpg'
 
+const formatDate = d => {
+  let parts = d.split('.'),
+    month = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ][parseInt(parts[1]) - 1];
+  return [month, parts.pop()].join(' ');
+};
+
 export const query = graphql`
   query SiteAndJobs {
     site {
@@ -51,7 +70,7 @@ export default ({data}) => {
       <title>Óscar Gómez Alcañiz — Curriculum Vitae</title>
     </Helmet>
 
-    {body({jobs: list, images: {me}})}
+    {body({jobs: list, images: {me}, formatDate})}
 
     {footer()}
   </>;
