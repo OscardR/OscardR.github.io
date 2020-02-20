@@ -3,7 +3,7 @@ import {Helmet} from 'react-helmet'
 import {graphql} from 'gatsby'
 
 // Styles
-import 'bootstrap/dist/css/bootstrap.min.css'
+import '../css/stylesheet.sass'
 import '../css/cv/styles.scss'
 
 // Parts of the CV page
@@ -12,27 +12,8 @@ import footer from '../templates/cv/footer.pug'
 
 import me from '../images/cv/me.jpg'
 
-const formatDate = d => {
-  let parts = d.split('.'),
-    month = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ][parseInt(parts[1]) - 1];
-  return [month, parts.pop()].join(' ');
-};
-
 export const query = graphql`
-  query SiteAndJobs {
+  query SiteAndData {
     site {
       siteMetadata {
         description
@@ -42,16 +23,24 @@ export const query = graphql`
         version
       }
     }
-    jobs: allMarkdownRemark(filter: {fields: {collection: {eq: "cv.jobs"}}}) {
+    jobs: allJob(sort: {fields: from, order: DESC}) {
       nodes {
-        html
-        frontmatter {
-          description
-          position
-          from
-          title
-          to
-        }
+        body
+        from(formatString: "MMMM YYYY")
+        id
+        description
+        position
+        title
+        to(formatString: "MMMM YYYY")
+      }
+    }
+    education: allEducation(sort: {fields: from, order: DESC}) {
+      nodes {
+        body
+        location
+        from(formatString: "YYYY")
+        title
+        to(formatString: "YYYY")
       }
     }
   }
@@ -59,9 +48,8 @@ export const query = graphql`
 
 export default ({data}) => {
   const
-    {site, jobs} = data,
-    {siteMetadata: meta} = site,
-    list = jobs.nodes.map(job => Object.assign({}, job.frontmatter, {html: job.html}));
+    {site, jobs, education} = data,
+    {siteMetadata: meta} = site;
 
   return <>
     <Helmet>
@@ -70,7 +58,11 @@ export default ({data}) => {
       <title>Óscar Gómez Alcañiz — Curriculum Vitae</title>
     </Helmet>
 
-    {body({jobs: list, images: {me}, formatDate})}
+    {body({
+      jobs: jobs.nodes,
+      education: education.nodes,
+      images: {me}
+    })}
 
     {footer()}
   </>;

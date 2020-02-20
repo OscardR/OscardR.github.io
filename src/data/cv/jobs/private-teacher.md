@@ -1,7 +1,7 @@
 ---
 title: Private Teacher
-from: 01.01.2011
-to: 01.05.2013
+from: 2011-01-01
+to: 2013-05-01
 description: Castelló, Spain.
 position: English, Science & IT Teacher
 ---

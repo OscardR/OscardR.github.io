@@ -82,7 +82,7 @@
     h3 Work Experience
 
     .job(@repeat='jobs as job')
-      h5.dates {formatDate(job.from)} &mdash; {job.to ? formatDate(job.to) : 'Currently'}
+      h5.dates {job.from} &mdash; {job.to !== 'Invalid date' ? job.to : 'Currently'}
 
       h4
         span.company {job.title}
@@ -91,7 +91,7 @@
         small.position
           em {job.position}
 
-      div(dangerouslySetInnerHTML={__html: job.html})
+      div(dangerouslySetInnerHTML={__html: job.body})
 
     .job
       h5.dates Side jobs
@@ -106,48 +106,37 @@
   section#education.inner.jquery-anchor
     h3 Education
 
-    .education
-      h5.dates 2010 – Currently
+    .education(@repeat='education as school')
+      h5.dates {school.from} – {school.to !== 'Invalid date' ? school.to : 'Currently'}
 
       h4
-        span.school Universitat Jaume I
-        small.location  | Castellón
+        span.school {school.title}
+        small.location  | {school.location}
 
-      p.
-        Degree on Computer Science and Engineering.
+      div(dangerouslySetInnerHTML={__html: school.body})
 
-    .education
-      h5.dates 2004 – 2005
-
-      h4
-        span.school Escola Superior d’Arts i Oficis
-        small.location  | Castellón
-
-      p.
-        Degree on Graphic Design – First year completed.
-
-    .education
-      h5.dates 2003 – 2004
-
-      h4
-        span.school Course on Web Design, HTML and FLASH
-        small.location  | Castellón
-
-      p.
-        Intensive course – Completed after three months.
-
-    .education
-      h5.dates 2000
-
-      h4
-        span.school IES Penyagolosa
-        small.location  | Castellón
-
-      p
-        abbr(title='Bachillerato Unificado Polivalente') BUP
-        | +
-        abbr(title='Curso de Orientación Universitaria') COU
-        |  (high school).
+    //.education
+    //  h5.dates 2003 – 2004
+    //
+    //  h4
+    //    span.school Course on Web Design, HTML and FLASH
+    //    small.location  | Castellón
+    //
+    //  p.
+    //    Intensive course – Completed after three months.
+    //
+    //.education
+    //  h5.dates 2000
+    //
+    //  h4
+    //    span.school IES Penyagolosa
+    //    small.location  | Castellón
+    //
+    //  p
+    //    abbr(title='Bachillerato Unificado Polivalente') BUP
+    //    | +
+    //    abbr(title='Curso de Orientación Universitaria') COU
+    //    |  (high school).
 
   hr
 

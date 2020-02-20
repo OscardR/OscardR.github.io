@@ -20,6 +20,11 @@ exports.onCreatePage = ({actions}) => {
 };
 
 exports.onCreateNode = ({node, actions, getNode, createNodeId}) => {
+  const collectionToContentType ={
+    'cv.jobs': `Job`,
+    'cv.education': `Education`
+  };
+
   if (node.internal.type === `MarkdownRemark`) {
     actions.createNodeField({
       node,
@@ -30,22 +35,23 @@ exports.onCreateNode = ({node, actions, getNode, createNodeId}) => {
     // Create nodes of custom type
     // https://www.christopherbiscardi.com/post/constructing-query-types-in-themes/
     const {frontmatter} = node;
-    const parent = getNode(node.parent);
+    const parent = getNode(node.parent),
+    contentType = collectionToContentType[node.fields.collection];
 
     actions.createNode({
       ...frontmatter,
       // Required fields.
-      id: createNodeId(`${node.id} >>> Job`),
+      id: createNodeId(`${node.id} >>> ${contentType}`),
       parent: node.id,
       children: [],
       internal: {
-        type: `Job`,
+        type: contentType,
         content: JSON.stringify(frontmatter),
         contentDigest: crypto
           .createHash(`md5`)
           .update(JSON.stringify(frontmatter))
           .digest(`hex`),
-        description: `Job Description`
+        description: `${contentType} content type, extracted from Markdown sources`
       }
     });
 
@@ -57,19 +63,39 @@ exports.onCreateNode = ({node, actions, getNode, createNodeId}) => {
 };
 
 exports.sourceNodes = ({actions, schema}) => {
-  actions.createTypes(`
-    type MarkdownRemarkFrontmatter {
-      title: String!
-      from: Date!
-      to: Date
-      description: String!
-      position: String!
-    }
+  // actions.createTypes(`
+  //   type MarkdownRemarkFrontmatter {
+  //     title: String!
+  //     from: Date!
+  //     to: Date
+  //     description: String!
+  //     position: String!
+  //   }
+  //
+  //   type MarkdownRemark implements Node {
+  //     frontmatter: MarkdownRemarkFrontmatter
+  //   }
+  // `);
 
-    type MarkdownRemark implements Node {
-      frontmatter: MarkdownRemarkFrontmatter
+  /**
+   * This field resolver is used to extract the HTML data from MarkdownRemark nodes
+   * @type {{resolve(*, *, *=, *): *, type: string}}
+   */
+  const bodyFieldResolver = {
+    type: "String!",
+    resolve(source, args, context, info) {
+      const
+        type = info.schema.getType(`MarkdownRemark`),
+        mdNode = context.nodeModel.getNodeById({
+          id: source.parent
+        }),
+        resolver = type.getFields()["html"].resolve;
+
+      return resolver(mdNode, {}, context, {
+        fieldName: "html"
+      });
     }
-  `);
+  };
 
   actions.createTypes(
     schema.buildObjectType({
@@ -79,22 +105,22 @@ exports.sourceNodes = ({actions, schema}) => {
         position: {type: `String!`},
         description: {type: `String!`},
         from: {type: `Date!`},
-        to: {type: `Date!`},
-        body: {
-          type: "String!",
-          resolve(source, args, context, info) {
-            const
-              type = info.schema.getType(`MarkdownRemark`),
-              mdNode = context.nodeModel.getNodeById({
-                id: source.parent
-              }),
-              resolver = type.getFields()["html"].resolve;
+        to: {type: `Date`},
+        body: bodyFieldResolver,
+      },
+      interfaces: [`Node`]
+    })
+  );
 
-            return resolver(mdNode, {}, context, {
-              fieldName: "html"
-            });
-          }
-        },
+  actions.createTypes(
+    schema.buildObjectType({
+      name: `Education`,
+      fields: {
+        title: {type: `String!`},
+        location: {type: `String!`},
+        from: {type: `Date!`},
+        to: {type: `Date`},
+        body: bodyFieldResolver,
       },
       interfaces: [`Node`]
     })

@@ -1,7 +1,7 @@
 ---
 title: Photomart Ltd.
-from: 01.10.2006
-to: 01.12.2007
+from: 2006-10-01
+to: 2007-12-01
 description: Photographic Supplies Wholesaler in London, United Kingdom.
 position: Graphic Designer / Website Manager
 ---

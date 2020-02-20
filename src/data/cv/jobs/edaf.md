@@ -1,7 +1,7 @@
 ---
 title: Espai d'Art Fotogràfic
-from: 01.09.2008
-to: 01.06.2010
+from: 2008-09-01
+to: 2010-06-01
 description: Arts School in Valencia, Spain
 position: Digital Photography Teacher
 ---

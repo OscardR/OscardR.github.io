@@ -1,7 +1,7 @@
 ---
 title: Signo Comunicación
-from: 01.01.2008
-to: 01.12.2010
+from: 2008-01-01
+to: 2010-12-01
 description: Communication Agency in Castelló, Spain.
 position: Developer / Designer
 ---

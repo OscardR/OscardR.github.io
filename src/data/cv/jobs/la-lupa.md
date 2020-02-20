@@ -1,7 +1,7 @@
 ---
 title: La Lupa
-from: 01.06.2004
-to: 01.07.2005
+from: 2004-06-01
+to: 2005-07-01
 description: Local Trade Newspaper in Castelló, Spain.
 position: Graphic Designer / Website Manager
 ---

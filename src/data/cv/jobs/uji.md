@@ -1,7 +1,7 @@
 ---
 title: Universitat Jaume I
-from: 01.12.2013
-to: 01.04.2014
+from: 2013-12-01
+to: 2014-04-01
 description: University in Castellón, Spain.
 position: Collaboration Scholarship.
 ---
