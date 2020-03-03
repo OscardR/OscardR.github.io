@@ -299,14 +299,14 @@
 
     h6 Original shots
 
-    img.thumb(src='../../images/cv/cd_raw_1.jpg', alt='Raw Material 1')
-    img.thumb.last(src='../../images/cv/cd_raw_2.jpg', alt='Raw Material 2')
-    img(src='../../images/cv/cd_raw_3.jpg', alt='Raw Material 3')
+    img.thumb(src='{images.cdRaw1}', alt='Raw Material 1')
+    img.thumb.last(src='{images.cdRaw2}', alt='Raw Material 2')
+    img(src='{images.cdRaw3}', alt='Raw Material 3')
 
     h6 Results
 
-    img(src='../../images/cv/sample_cd_front.jpg', alt='CD Artwork / Front')
-    img(src='../../images/cv/sample_cd_back.jpg', alt='CD Artwork / Back')
+    img(src='{images.sampleCdFront}', alt='CD Artwork / Front')
+    img(src='{images.sampleCdBack}', alt='CD Artwork / Back')
 
     h4 Experiments
 
@@ -339,19 +339,4 @@
   footer.inner
     h3 Networking
 
-    ul
-      li
-        i.icon-github
-        a(href='http://www.github.com/OscardR')  GitHub
-
-      li
-        i.icon-bitbucket
-        a(href='http://www.bitbucket.org/oscar_dr')  Bitbucket
-
-      li
-        i.icon-code
-        a(href='https://www.codeplex.com/site/users/view/Oscar_dR')  CodePlex
-
-      li
-        i.icon-twitter
-        a(href='http://www.twitter.com/oscar_dr')  Twitter
+    LinksList(links='{links}')

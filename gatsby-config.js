@@ -16,6 +16,7 @@ module.exports = {
     `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
+    `gatsby-plugin-graphql-loader`,
     `gatsby-transformer-json`,
     `gatsby-transformer-remark`,
     {

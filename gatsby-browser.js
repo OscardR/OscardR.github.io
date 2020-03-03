@@ -1,2 +1,2 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import "./src/css/font-awesome.scss";
+import 'font-awesome/css/font-awesome.min.css'

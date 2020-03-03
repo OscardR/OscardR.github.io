@@ -7,15 +7,10 @@
 
     h2#project_tagline Homepage @ GitHub
 
-// MAIN CONTENT
+// MAIN
 #main_content_wrap.outer
   section#main_content.inner
-    nav
-      ul
-        li(@repeat='links as link')
-          i(className='{"icon-" + link.icon}')
-          | &ensp;
-          a(href='{link.href}') {link.title}
+    LinksList(links='{links}')
 
 // FOOTER
 #footer_wrap.outer

@@ -2,25 +2,19 @@ import React from 'react'
 import {Helmet} from 'react-helmet'
 import {graphql} from 'gatsby'
 
+// Components
+import LinksList from '../components/links-list'
+
+// Templates
 import body from '../templates/index.pug'
 
 export const query = graphql`
   query HomePage {
     site {
-      siteMetadata {
-        description
-        siteUrl
-        tagLine
-        title
-        version
-      }
+      ...Site
     }
     allLinksJson {
-      nodes {
-        href
-        icon
-        title
-      }
+      ...Links
     }
   }`;
 
@@ -44,6 +38,9 @@ export default ({data}) => {
       <title>OscardR.github.io v{meta.version}</title>
     </Helmet>
 
-    {body({links})}
+    {body({
+      links,
+      LinksList
+    })}
   </>
 }
