@@ -21,7 +21,6 @@ import sampleCdBack from '../images/cv/sample_cd_back.jpg'
 import sampleCdFront from '../images/cv/sample_cd_front.jpg'
 
 // Scripts
-import 'bootstrap'
 import {setEventHandlers} from '../js/cv'
 
 export const query = graphql`
