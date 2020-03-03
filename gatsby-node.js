@@ -22,7 +22,8 @@ exports.onCreatePage = ({actions}) => {
 exports.onCreateNode = ({node, actions, getNode, createNodeId}) => {
   const collectionToContentType ={
     'cv.jobs': `Job`,
-    'cv.education': `Education`
+    'cv.education': `Education`,
+    'cv.information': `Information`
   };
 
   if (node.internal.type === `MarkdownRemark`) {
@@ -63,20 +64,6 @@ exports.onCreateNode = ({node, actions, getNode, createNodeId}) => {
 };
 
 exports.sourceNodes = ({actions, schema}) => {
-  // actions.createTypes(`
-  //   type MarkdownRemarkFrontmatter {
-  //     title: String!
-  //     from: Date!
-  //     to: Date
-  //     description: String!
-  //     position: String!
-  //   }
-  //
-  //   type MarkdownRemark implements Node {
-  //     frontmatter: MarkdownRemarkFrontmatter
-  //   }
-  // `);
-
   /**
    * This field resolver is used to extract the HTML data from MarkdownRemark nodes
    * @type {{resolve(*, *, *=, *): *, type: string}}

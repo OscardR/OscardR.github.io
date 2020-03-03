@@ -1,0 +1,11 @@
+.job(@repeat='jobs as job')
+  h5.dates {job.from} &mdash; {job.to !== 'Invalid date' ? job.to : 'Currently'}
+
+  h4
+    span.company {job.title}
+    small.location  | {job.description}
+    br
+    small.position
+      em {job.position}
+
+  div(dangerouslySetInnerHTML={__html: job.body})

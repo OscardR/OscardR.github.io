@@ -3,7 +3,10 @@ import {Helmet} from 'react-helmet'
 import {graphql} from 'gatsby'
 
 // Components
-import LinksList from '../components/links-list'
+import {InformationBlock} from '../components/information-block'
+import {JobsList} from '../components/jobs-list'
+import {EducationList} from '../components/education-list'
+import {LinksList} from '../components/links-list'
 
 // Styles
 import '../css/styles.scss'
@@ -28,11 +31,16 @@ export const query = graphql`
     site {
       ...Site
     }
+    # Get field names for Information block
+    ...InformationFields
+    information: allInformation {
+      ...Information
+    }
     jobs: allJob(sort: {fields: from, order: DESC}) {
       ...Jobs
     }
     education: allEducation(sort: {fields: from, order: DESC}) {
-      ...Schools
+      ...Education
     }
     links: allLinksJson {
       ...Links
@@ -47,7 +55,14 @@ class CV extends React.PureComponent {
   }
 
   render() {
-    const {site, jobs, education, links} = this.props.data,
+    const {
+        site,
+        jobs,
+        education,
+        links,
+        informationFields,
+        information
+      } = this.props.data,
       {siteMetadata: meta} = site;
 
     return <>
@@ -58,6 +73,27 @@ class CV extends React.PureComponent {
       </Helmet>
 
       {body({
+        informationFields: informationFields.fields.map(field => field.name),
+        information: information.nodes.map(node => {
+          let info = Object.keys(node)
+            // Exclude title
+            .filter(key => key !== 'title')
+            // Convert back object
+            .reduce((o, key) => {
+              // Excluding keys that contain null values
+              if (node[key] !== null) {
+                // Give keys proper names
+                o[key.replace(/_/g, " ")] = node[key]
+              }
+              return o;
+            }, {});
+
+          // Package in an information block
+          return {
+            title: node.title.html,
+            info
+          };
+        }),
         jobs: jobs.nodes,
         education: education.nodes,
         links: links.nodes.filter(link => link.title !== 'My CV'),
@@ -70,6 +106,9 @@ class CV extends React.PureComponent {
           sampleCdFront
         },
         // Components
+        InformationBlock,
+        JobsList,
+        EducationList,
         LinksList
       })}
     </>;

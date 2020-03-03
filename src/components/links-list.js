@@ -2,6 +2,6 @@ import React from "react";
 
 import body from './links-list.pug'
 
-export default ({links}) => <>
+export const LinksList = ({links}) => <>
   {body({links})}
 </>;

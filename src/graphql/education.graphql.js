@@ -1,7 +1,7 @@
 import {graphql} from 'gatsby';
 
-export const Schools = graphql`
-  fragment Schools on EducationConnection {
+export const Education = graphql`
+  fragment Education on EducationConnection {
     nodes {
       body
       location
