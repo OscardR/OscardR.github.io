@@ -17,6 +17,9 @@ collections:
       - name: from
         label: From
         widget: datetime
+        format: DD.MM.YYYY
+        dateFormat: true
+        timeFormat: false
       - name: to
         label: To
         widget: datetime

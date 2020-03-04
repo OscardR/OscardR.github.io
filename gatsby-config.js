@@ -13,15 +13,39 @@ module.exports = {
     version: `1.0.0`
   },
   plugins: [
+    `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
+    `gatsby-plugin-graphql-loader`,
     `gatsby-transformer-json`,
     `gatsby-transformer-remark`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `./src/data/`,
+        path: `${__dirname}/src/data/cv/jobs`,
+        name: 'cv.jobs',
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/data/cv/education`,
+        name: 'cv.education',
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/data/cv/information`,
+        name: 'cv.information',
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/data`,
+        name: 'structure',
+      },
+    }
   ]
 };
