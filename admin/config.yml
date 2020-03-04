@@ -1,0 +1,37 @@
+backend:
+  name: git-gateway
+  branch: netlify-cms # Branch to update (optional; defaults to master)
+
+media_folder: "static/images"
+public_folder: "/images"
+
+collections:
+  - name: jobs
+    label: Jobs
+    label_singular: Job
+    folder: src/data/cv/jobs
+    create: true
+    fields:
+      - name: title
+        label: Title
+      - name: from
+        label: From
+        widget: datetime
+        format: DD.MM.YYYY
+        dateFormat: true
+        timeFormat: false
+      - name: to
+        label: To
+        widget: datetime
+        required: false
+        default: ""
+        format: DD.MM.YYYY
+        dateFormat: true
+        timeFormat: false
+      - name: description
+        label: Description
+      - name: position
+        label: Position
+      - name: body
+        label: Body
+        widget: markdown
