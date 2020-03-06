@@ -20,6 +20,22 @@ module.exports = {
     `gatsby-transformer-json`,
     `gatsby-transformer-remark`,
     {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          "@": "src/",
+          "@components": "src/components",
+          "@pages": "src/pages",
+          "@images": "src/images",
+          "@css": "src/css",
+          "@templates": "src/templates",
+        },
+        extensions: [
+          "js", "pug", "scss"
+        ],
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/data/cv/jobs`,

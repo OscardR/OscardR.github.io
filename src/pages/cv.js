@@ -3,25 +3,21 @@ import {Helmet} from 'react-helmet'
 import {graphql} from 'gatsby'
 
 // Components
-import {InformationBlock} from '../components/information-block'
-import {JobsList} from '../components/jobs-list'
-import {EducationList} from '../components/education-list'
-import {LinksList} from '../components/links-list'
-
-// Styles
-import '../css/styles.scss'
-import '../css/cv/styles.scss'
+import {InformationBlock} from '@components/information-block'
+import {JobsList} from '@components/jobs-list'
+import {EducationList} from '@components/education-list'
+import {LinksList} from '@components/links-list'
 
 // Parts of the CV page
-import body from '../templates/cv/body.pug'
+import body from '@templates/cv/body.pug'
 
 // Resources
-import me from '../images/cv/me.jpg'
-import cdRaw1 from '../images/cv/cd_raw_1.jpg'
-import cdRaw2 from '../images/cv/cd_raw_2.jpg'
-import cdRaw3 from '../images/cv/cd_raw_3.jpg'
-import sampleCdBack from '../images/cv/sample_cd_back.jpg'
-import sampleCdFront from '../images/cv/sample_cd_front.jpg'
+import me from '@images/cv/me.jpg'
+import cdRaw1 from '@images/cv/cd_raw_1.jpg'
+import cdRaw2 from '@images/cv/cd_raw_2.jpg'
+import cdRaw3 from '@images/cv/cd_raw_3.jpg'
+import sampleCdBack from '@images/cv/sample_cd_back.jpg'
+import sampleCdFront from '@images/cv/sample_cd_front.jpg'
 
 // Scripts
 import {setEventHandlers} from '../js/cv'

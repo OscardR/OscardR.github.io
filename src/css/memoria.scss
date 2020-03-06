@@ -1,0 +1,25 @@
+$console-alpha: .8;
+$console-color: white;
+$console-background: black;
+$console-padding: 1em;
+
+.email {
+  white-space: pre-wrap;
+  background-color: #FFC;
+  padding: 1em;
+  border-left: .4em solid #EEB;
+}
+
+code {
+  pre {
+    max-width: 100%;
+    width: 100%;
+    display: inline-block;
+    overflow-x: auto;
+    padding: (.6 * $console-padding) 1em;
+    color: $console-color;
+    background-color: transparentize($console-background, 1 - $console-alpha);
+    border-radius: $console-padding / 4;
+    text-shadow: 1px 1px 1px transparentize($console-background, 1 - $console-alpha);
+  }
+}

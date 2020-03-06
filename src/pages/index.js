@@ -3,10 +3,10 @@ import {Helmet} from 'react-helmet'
 import {graphql} from 'gatsby'
 
 // Components
-import {LinksList} from '../components/links-list'
+import {LinksList} from '@components/links-list'
 
 // Templates
-import body from '../templates/index.pug'
+import body from '@templates/index.pug'
 
 export const query = graphql`
   query HomePage {
