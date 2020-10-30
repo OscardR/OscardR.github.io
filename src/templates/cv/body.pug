@@ -8,24 +8,14 @@
     a.navbar-brand(href='#header_wrap')
       | Óscar Gómez —
       strong  CV
+
     button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navegacion-desplegable' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
       span.navbar-toggler-icon
+
     #navegacion-desplegable.collapse.navbar-collapse(style='{{justifyContent: "flex-end"}}')
       ul.nav.navbar-nav
-        li.nav-item.active
-          a.nav-link(href='#contact') Contact Information
-
-        li.nav-item
-          a.nav-link(href='#experience') Work Experience
-
-        li.nav-item
-          a.nav-link(href='#education') Education
-
-        li.nav-item
-          a.nav-link(href='#skills') Skills
-
-        li.nav-item
-          a.nav-link(href='#examples') Work Examples
+        li.nav-item.active(@repeat='menuLinks as link')
+          a.nav-link(href='{link.href}') {link.title}
 
 #main_content_wrap.outer
   section#contact.inner.jquery-anchor
@@ -41,14 +31,6 @@
 
     JobsList(jobs='{jobs}')
 
-    .job
-      h5.dates Side jobs
-
-      p.
-        Throughout all this period, in between jobs or along my studies at high school and university,
-        I always carried out other jobs non-related to IT or design, which contributed towards my
-        – personal rather than professional – development.
-
   hr
 
   section#education.inner.jquery-anchor
@@ -61,150 +43,7 @@
   section#skills.inner.jquery-anchor
     h3 Skills
 
-    .skill
-      h4.field IT Knowledge
-
-      ul
-        li
-          h5.category Operating Systems
-
-          ul
-            li Linux
-              small  | Ubuntu / Archlinux / CentOS / AmazonLinux
-
-            li Windows
-              small  | XP / Vista / 7 / 8 / 10
-
-            li Mac OS X
-              small  | 10.x
-
-        li
-          h5.category Design tools
-
-          ul
-            li Adobe Creative Suite
-              small  | Photoshop / InDesign / Illustrator / Flash
-
-        li
-          h5.category Programming languages &amp; Frameworks
-
-          ul
-            li Modern Web
-              small  | HTML5 / CSS3
-
-            li Javascript
-              small  | jQuery 2 / AngularJS 1.5 / EmberJS / ES2015 / Gulp / Babel
-
-            li PHP
-              small  | Slim Framework 3 / CodeIgniter 4 / Laravel 5 / Drupal 7
-
-            li Java
-              small  | Spring 3
-
-            li Python
-              small  | SciPy / PyBrain
-
-            li C/C++
-              small  | OpenCV / ROS
-
-            li Ruby
-              small  | Rails 4
-
-            li DataBases
-              small  | MySQL 5 / Oracle DB 12 / PL/SQL 11 / MongoDB
-
-            li Actionscript 3.0
-              small  | Flash
-        li
-          h5.category Other computing skills
-
-          ul
-            li CLI Tools
-              small  | Bash / PowerShell
-
-            li Development environment
-              small  | Vagrant / Docker
-
-        li
-          h5.category Office tools
-
-          ul
-            li Microsoft Office
-              small  | SharePoint / InfoPath / VBA / Access / Excel
-
-        li
-          h5.category Audio/video editing tools
-
-          ul
-            li Steinberg Nuendo
-              small  | Music production / Mixing / Mastering
-
-            li Adobe Audition
-              small  | Sound edition
-
-            li After Effects
-              small  | Video editing / Special FX
-
-    .skill
-      h4.field Languages
-
-      p
-        | Level classification according to the
-        a(href='http://en.wikipedia.org/wiki/Common_European_Framework_of_Reference_for_Languages')
-          |  Common European Framework of Reference for Languages
-        | :
-
-      .table-responsive
-        table
-          thead
-            tr
-              td(style={border: 'none'})
-              th Speaking
-              th Listening
-              th Reading
-              th Writing
-
-          tbody
-            tr
-              th English
-              td C1
-              td C2
-              td C2
-              td C1
-
-            tr
-              th French
-              td B1
-              td B2
-              td C1
-              td B2
-
-            tr
-              th Spanish
-              td(colSpan='4', style={textAlign: 'center'}) C2 (native)
-
-            tr
-              th Catalan / Valencian
-              td C1
-              td C1
-              td C2
-              td C1
-
-    .skill
-      h4.field Driving License
-
-      p.
-        I got my driving license on 2003, and I have a wide experience with both tourisms and vans.
-
-    .skill
-      h4.field Personal Skills
-
-      p.
-        I am an extrovert and kind person, who loves enjoying a job as much as possible.
-        I am detail oriented in everything I do. I am always willing to learn in order to solve
-        problems. I consider myself sincere, responsible and committed to my job. I enjoy music,
-        cinema and natural life, I can play several musical instruments and consider myself
-        a creative person.
+    Skillset(@repeat='skillsets as skillset', skillset='{skillset}')
 
   hr
 

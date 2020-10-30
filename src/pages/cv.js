@@ -7,6 +7,7 @@ import {InformationBlock} from '@components/information-block'
 import {JobsList} from '@components/jobs-list'
 import {EducationList} from '@components/education-list'
 import {LinksList} from '@components/links-list'
+import {Skillset} from '@components/skillset'
 
 // Parts of the CV page
 import body from '@templates/cv/body.pug'
@@ -38,8 +39,11 @@ export const query = graphql`
     education: allEducation(sort: {fields: from, order: DESC}) {
       ...Education
     }
-    links: allLinksJson {
+    links: allFile(filter: {name: {eq: "links"}}) {
       ...Links
+    }
+    skillsets: allSkillset {
+      ...Skillset
     }
   }
 `;
@@ -57,7 +61,8 @@ class CV extends React.PureComponent {
         education,
         links,
         informationFields,
-        information
+        information,
+        skillsets
       } = this.props.data,
       {siteMetadata: meta} = site;
 
@@ -92,7 +97,20 @@ class CV extends React.PureComponent {
         }),
         jobs: jobs.nodes,
         education: education.nodes,
-        links: links.nodes.filter(link => link.title !== 'My CV'),
+        skillsets: skillsets.nodes,
+        menuLinks: links.nodes
+          .filter(collection => collection.path === "cv")
+          .reduce(
+            (allLinks, node) => allLinks.concat(node.links),
+            []
+          ),
+        links: links.nodes
+          .filter(collection => collection.path === "")
+          .reduce(
+            (allLinks, node) => allLinks.concat(node.links),
+            []
+          )
+          .filter(link => link.title !== 'My CV'),
         images: {
           me,
           cdRaw1,
@@ -105,7 +123,8 @@ class CV extends React.PureComponent {
         InformationBlock,
         JobsList,
         EducationList,
-        LinksList
+        LinksList,
+        Skillset
       })}
     </>;
   }

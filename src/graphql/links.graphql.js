@@ -1,11 +1,14 @@
 import {graphql} from 'gatsby';
 
 export const Links = graphql`
-  fragment Links on LinksJsonConnection {
+  fragment Links on FileConnection {
     nodes {
-      href
-      icon
-      title
+      links: childrenLinksJson {
+        href
+        icon
+        title
+      }
+      path: relativeDirectory
     }
   }
 `;

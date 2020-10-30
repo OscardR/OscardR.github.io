@@ -13,16 +13,20 @@ export const query = graphql`
     site {
       ...Site
     }
-    allLinksJson {
+    linkCollection: allFile(filter: {name: {eq: "links"}, relativeDirectory: {eq: ""}}) {
       ...Links
     }
   }`;
 
 export default ({data}) => {
   const
-    {site, allLinksJson} = data,
+    {site, linkCollection} = data,
     meta = site.siteMetadata,
-    links = allLinksJson.nodes;
+    links = linkCollection.nodes
+      .reduce(
+        (allLinks, node) => allLinks.concat(node.links),
+        []
+      );
 
   return <>
     <Helmet>

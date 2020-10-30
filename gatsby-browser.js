@@ -16,6 +16,7 @@ export function onRouteUpdate({location}) {
       require('@css/cv.scss');
       // explicitly avoiding break here, so CV page gets also theme CSS
     case withPrefix("/"):
+    default:
       require('@css/theme.scss');
       break;
   }

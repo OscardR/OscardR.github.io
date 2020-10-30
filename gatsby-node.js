@@ -16,28 +16,33 @@ exports.onCreateWebpackConfig = ({actions}) => {
   });
 };
 
-exports.onCreatePage = ({actions}) => {
-};
-
 exports.onCreateNode = ({node, actions, getNode, createNodeId}) => {
-  const collectionToContentType ={
+  const collectionToContentType = {
     'cv.jobs': `Job`,
     'cv.education': `Education`,
-    'cv.information': `Information`
+    'cv.information': `Information`,
+    'cv.skillset': `Skillset`,
+    'structure': `Structure`
   };
 
-  if (node.internal.type === `MarkdownRemark`) {
+  // Add collection field
+  const addCollectionField = () => {
     actions.createNodeField({
       node,
       name: 'collection',
       value: getNode(node.parent).sourceInstanceName,
     });
+  }
+
+  const getContentType = node => collectionToContentType[getNode(node.parent).sourceInstanceName]
+
+  if (node.internal.type === `MarkdownRemark`) {
+    addCollectionField();
 
     // Create nodes of custom type
     // https://www.christopherbiscardi.com/post/constructing-query-types-in-themes/
-    const {frontmatter} = node;
-    const parent = getNode(node.parent),
-    contentType = collectionToContentType[node.fields.collection];
+    const {frontmatter} = node,
+      contentType = getContentType(node)
 
     actions.createNode({
       ...frontmatter,
@@ -57,43 +62,110 @@ exports.onCreateNode = ({node, actions, getNode, createNodeId}) => {
     });
 
     actions.createParentChildLink({
-      parent: parent,
+      parent: getNode(node.parent),
+      child: node
+    });
+  } else if (node.internal.type === `Yaml`) {
+    addCollectionField();
+
+    const contentType = getContentType(node);
+
+    let fields = {};
+    if (contentType === `Skillset`) {
+      const {title, skills} = node;
+      fields = {title, skills};
+    }
+
+    actions.createNode({
+      // Required fields.
+      id: createNodeId(`${node.id} >>> ${contentType}`),
+      parent: node.id,
+      ...fields,
+      children: [],
+      internal: {
+        type: contentType,
+        contentDigest: crypto
+          .createHash(`md5`)
+          .update(JSON.stringify(fields))
+          .digest(`hex`),
+        description: `${contentType} content type, extracted from Yaml sources`
+      }
+    });
+
+    actions.createParentChildLink({
+      parent: getNode(node.parent),
       child: node
     });
   }
 };
 
-exports.sourceNodes = ({actions, schema}) => {
-  /**
-   * This field resolver is used to extract the HTML data from MarkdownRemark nodes
-   * @type {{resolve(*, *, *=, *): *, type: string}}
-   */
-  const bodyFieldResolver = {
-    type: "String!",
-    resolve(source, args, context, info) {
-      const
-        type = info.schema.getType(`MarkdownRemark`),
-        mdNode = context.nodeModel.getNodeById({
-          id: source.parent
-        }),
-        resolver = type.getFields()["html"].resolve;
+/**
+ * This field resolver is used to extract the HTML data from MarkdownRemark nodes
+ * @type {{resolve(*, *, *=, *): *, type: string}}
+ */
+const bodyFieldResolver = {
+  type: "String",
+  resolve(source, args, context, info) {
+    const
+      type = info.schema.getType(`MarkdownRemark`),
+      mdNode = context.nodeModel.getNodeById({
+        id: source.parent
+      }),
+      resolver = type.getFields()["html"].resolve;
 
-      return resolver(mdNode, {}, context, {
-        fieldName: "html"
-      });
+    return resolver(mdNode, {}, context, {
+      fieldName: "html"
+    });
+  }
+};
+
+exports.createSchemaCustomization = ({ actions }) => {
+  const {createFieldExtension, createTypes} = actions
+  createFieldExtension({
+    name: "bodyField",
+    extend(options, prevFieldConfig) {
+      return bodyFieldResolver
+    },
+  })
+}
+
+exports.sourceNodes = ({actions, schema}) => {
+  const datesType = {
+    from: {
+      type: `Date!`,
+      extensions: {
+        dateformat: {
+          formatString: "MMM YYYY",
+          locale: "en_EN"
+        }
+      }
+    },
+    to: {
+      type: `Date`,
+      extensions: {
+        dateformat: {
+          formatString: "MMM YYYY",
+          locale: "en_EN"
+        }
+      }
     }
-  };
+  }
+
+  const jsonType = {
+    title: {type: `String!`},
+    body: bodyFieldResolver,
+  }
 
   actions.createTypes(
     schema.buildObjectType({
       name: `Job`,
+      extensions: {infer: true},
       fields: {
-        title: {type: `String!`},
-        position: {type: `String!`},
-        description: {type: `String!`},
-        from: {type: `Date!`},
-        to: {type: `Date`},
-        body: bodyFieldResolver,
+        ...jsonType,
+        ...datesType,
+        position: {type: `String`},
+        description: {type: `String`},
+
       },
       interfaces: [`Node`]
     })
@@ -102,14 +174,34 @@ exports.sourceNodes = ({actions, schema}) => {
   actions.createTypes(
     schema.buildObjectType({
       name: `Education`,
+      extensions: {infer: true},
       fields: {
-        title: {type: `String!`},
+        ...jsonType,
+        ...datesType,
         location: {type: `String!`},
-        from: {type: `Date!`},
-        to: {type: `Date`},
-        body: bodyFieldResolver,
       },
       interfaces: [`Node`]
     })
   );
+
+  actions.createTypes(`
+    """
+    Skillset Definition
+    """
+    type Skillset implements Node @dontInfer {
+      title: String!
+      body: String @bodyField
+      skills: [Skill!]
+    }
+
+    type Skill implements Node @dontInfer {
+      name: String!
+      items: [SkillItem!]!
+    }
+    
+    type SkillItem implements Node @dontInfer {
+      name: String!
+      details: [String!]
+    }
+    `);
 };
