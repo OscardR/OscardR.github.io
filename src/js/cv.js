@@ -5,7 +5,7 @@ export const setEventHandlers = () => {
   console.debug("CV/Main");
 
   $(function () {
-    $('a').on('click', function (e) {
+    $('ul.nav').on('click', 'a.nav-link', function (e) {
       $(this).closest('li').addClass('active').siblings().removeClass('active');
       $('html, body')
         .animate({

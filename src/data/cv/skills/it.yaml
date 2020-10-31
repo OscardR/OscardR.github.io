@@ -37,7 +37,7 @@ skills:
     - name: Java
       details:
         - SpringBoot 3
-    - name: Python
+    - name: Python 2/3
       details:
         - SciPy / PyBrain
     - name: C/C++

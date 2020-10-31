@@ -14,7 +14,7 @@
 
     #navegacion-desplegable.collapse.navbar-collapse(style='{{justifyContent: "flex-end"}}')
       ul.nav.navbar-nav
-        li.nav-item.active(@repeat='menuLinks as link')
+        li(className='{"nav-item" + (i === 0 ? " active" : "")}', @repeat='menuLinks as link', @key='{i}')
           a.nav-link(href='{link.href}') {link.title}
 
 #main_content_wrap.outer
@@ -81,12 +81,12 @@
 
     ul
       li
-        img.icon(src='https://procurement.web.cern.ch/sites/procurement.web.cern.ch/themes/cern_subtheme_procurement/favicon.ico', alt='Icon')
+        img.icon(src='https://procurement.web.cern.ch/sites/procurement.web.cern.ch/themes/procurement/favicon.ico', alt='Icon')
         a(href='https://cern.ch/procurement')  Procurement @ CERN
 
       li
-        img.icon(src='https://fap-dep.web.cern.ch/sites/fap-dep.web.cern.ch/themes/cern_subtheme_fap/favicon.ico', alt='Icon')
-        a(href='https://cern.ch/fap-dep')  Finance and Administrative Processes Department @ CERN
+        img.icon(src='https://knowledgetransfer.web.cern.ch/sites/knowledgetransfer.web.cern.ch/themes/kt/favicon.ico', alt='Icon')
+        a(href='https://kt.cern')  Knowledge Transfer @ CERN
 
       li
         img.icon(src='https://www.dayofrising.rocks/img/logo-white.png', alt='Icon')
