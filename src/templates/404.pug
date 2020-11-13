@@ -1,6 +1,4 @@
-//----------
 // HEADER
-//----
 #header_wrap.outer
   header.inner
     a#forkme_banner(href='https://github.com/OscardR') View on GitHub
@@ -9,16 +7,19 @@
 
     h2#project_tagline Homepage @ GitHub
 
-//--------
 // MAIN
-//--
 #main_content_wrap.outer
   section#main_content.inner
+    .alert.alert-warning
+      p.lead #[strong 404] Not Found
+
+    p It seems the page you are looking for is not there anymore (or it never was 😅)
+
+    p Use the links below to access pages that #[em do] exist:
+
     LinksList(links='{links}')
 
-//----------
 // FOOTER
-//----
 #footer_wrap.outer
   footer.inner
     p
