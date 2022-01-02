@@ -1,78 +1,106 @@
 title: IT Knowledge
 skills:
-- name: Operating Systems
-  items:
-    - name: Linux
-      details:
-        - Ubuntu
-        - Archlinux
-        - CentOS
-        - AmazonLinux
-    - name: Windows
-      details:
-        - XP
-        - Vista
-        - 7
-        - 8
-        - 10
-    - name: Mac OS X
-      details:
-        - 10.x
-- name: Design tools
-  items:
-    - name: Adobe Creative Suite
-      details:
-        - Photoshop / InDesign / Illustrator / Flash
-- name: Programming languages & Frameworks
-  items:
-    - name: Modern Web
-      details:
-        - HTML5 / CSS3
-    - name: Javascript
-      details:
-        - React 16.x / Vue 2.x / jQuery 2.x / AngularJS 1.5 / EmberJS / ES2015 / Gulp / Babel
-    - name: PHP
-      details:
-        - Slim Framework 3 / CodeIgniter 4 / Laravel 5 / Drupal 7 & 8
-    - name: Java
-      details:
-        - SpringBoot 3
-    - name: Python 2/3
-      details:
-        - SciPy / PyBrain
-    - name: C/C++
-      details:
-        - OpenCV / ROS
-    - name: Ruby
-      details:
-        - Rails 4
-    - name: DataBases
-      details:
-        - MySQL 5 / Oracle DB 19c / PL/SQL 12 / MongoDB
-    - name: Actionscript 3.0
-      details:
-        - Flash
-- name: Other computing skills
-  items:
-    - name: CLI Tools
-      details:
-        - Bash / PowerShell 7
-    - name: Development environment
-      details:
-        - Vagrant / Docker
-- name: Office tools
-  items:
-    - name: Microsoft Office
-      details:
-        - SharePoint / InfoPath / VBA / Access / Excel
-- name: Audio/video editing tools
-  items:
-    - name: Steinberg Nuendo
-      details:
-        - Music production / Mixing / Mastering
-    - name: Adobe Audition
-      details:
-        - Sound edition
-    - name: After Effects
-      details:
-        - Video editing / Special FX
+  - name: Operating Systems
+    items:
+      - name: Linux
+        details:
+          - Ubuntu
+          - Archlinux
+          - CentOS
+          - AmazonLinux
+      - name: Windows
+        details:
+          - XP
+          - Vista
+          - 7
+          - 8
+          - 10
+      - name: Mac OS X
+        details:
+          - 10.x
+  - name: Design tools
+    items:
+      - name: Adobe Creative Suite
+        details:
+          - Photoshop
+          - InDesign
+          - Illustrator
+          - Flash
+  - name: Programming languages & Frameworks
+    items:
+      - name: Modern Web
+        details:
+          - HTML5
+          - CSS3
+      - name: Javascript
+        details:
+          - React 16.x
+          - Vue 2.x
+          - jQuery 2.x
+          - AngularJS 1.5
+          - EmberJS
+          - ES2015
+          - Gulp
+          - Babel
+      - name: PHP
+        details:
+          - Slim Framework 3
+          - CodeIgniter 4
+          - Laravel 5
+          - Drupal 7 & 8
+      - name: Java
+        details:
+          - SpringBoot 3
+      - name: Python 2/3
+        details:
+          - SciPy
+          - PyBrain
+      - name: C/C++
+        details:
+          - OpenCV
+          - ROS
+      - name: Ruby
+        details:
+          - Rails 4
+      - name: DataBases
+        details:
+          - MySQL 5
+          - Oracle DB 19c
+          - PL/SQL 12
+          - MongoDB
+      - name: Actionscript 3.0
+        details:
+          - Flash
+  - name: Other computing skills
+    items:
+      - name: CLI Tools
+        details:
+          - Bash
+          - PowerShell 7
+      - name: Development environment
+        details:
+          - Vagrant
+          - Docker
+  - name: Office tools
+    items:
+      - name: Microsoft Office
+        details:
+          - SharePoint
+          - InfoPath
+          - VBA
+          - Access
+          - Excel
+  - name: Audio/video editing tools
+    items:
+      - name: Steinberg Nuendo
+        details:
+          - Music production
+          - Mixing
+          - Mastering
+      - name: Adobe Audition
+        details:
+          - Sound edition
+      - name: After Effects
+        details:
+          - Video editing
+          - Special FX
