@@ -1,0 +1,127 @@
+@mixin gradient-text($gradient) {
+  background-image: unquote($gradient);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+$gradient-red: 'linear-gradient(0deg, #662244, #CC2266)';
+$gradient-gray: 'linear-gradient(0deg, #999999, #CCCCCC)';
+
+h3 {
+  & + .skill {
+    margin-top: 2em;
+  }
+}
+
+h4 {
+  &.field {
+    display: block;
+    perspective-origin: center;
+    transform-origin: left top;
+    transform: perspective(60em) rotateX(10deg) rotateZ(-8deg) rotateY(40deg);
+    background-color: #{'rgb(90 0 0 / 1)'};
+    background-image: radial-gradient(ellipse at bottom left, #{'rgb(90 0 60)'} 50%, #{'rgb(50 0 128)'} 100%);
+    color: white;
+    padding: .6em 1em;
+    margin: -2em 0 1em -1em;
+    width: 50%;
+    box-shadow: -10px 10px 8px #{'rgb(0 0 0 / 0.16)'};
+    text-transform: uppercase;
+    letter-spacing: .2px;
+    font-weight: bold;
+    transition: .1s;
+
+    &:hover {
+      transform: perspective(60em) rotateX(0deg) rotateZ(0deg) rotateY(0deg);
+      box-shadow: 0 0 0 rgba(0, 0, 0, .2);
+    }
+  }
+
+  .company,
+  .school {
+    @include gradient-text($gradient-red);
+  }
+
+  .location {
+    margin-left: .4em;
+    @include gradient-text($gradient-gray);
+  }
+}
+
+p {
+  max-width: 65ch;
+}
+
+.bg-dark {
+  background: #{'hsl(198deg 100% 9%)'} !important;
+}
+
+.dark {
+  background: #222;
+
+  .gradient1 {
+    color: #fff; // Fallback color
+
+    @include gradient-text('linear-gradient(to right,#23966c, #faaa54, #e23b4a, #db0768, #360670)');
+  }
+
+  .gradient2 {
+    color: #fff;
+
+    @include gradient-text('radial-gradient(circle, #23966c, #faaa54, #e23b4a, #db0768, #360670)');
+  }
+}
+
+.icon {
+  border: none;
+}
+
+.job,
+.education,
+.skill {
+  background-image: radial-gradient(ellipse at bottom right, transparent 50%, #{'hsl(208 60% 40% / 0.05)'} 100%);
+  margin: 1em -2em;
+  padding: 1em 2em;
+  border-radius: .5em;
+  box-shadow: 0 2px 16px #{'rgb(0 0 0 / 0.1)'};
+  backdrop-filter: blur(3px);
+
+  & + .skill {
+    margin-top: 3em;
+  }
+}
+
+.skill {
+  .category {
+    @include gradient-text($gradient-red);
+  }
+
+  ul {
+    li {
+      small {
+        margin-left: .4em;
+        @include gradient-text($gradient-gray);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .job,
+  .education,
+  .skill {
+    margin: 1em 0;
+    padding: 1em 1.4em;
+  }
+
+  h4 {
+    &.field {
+      width: 70%;
+    }
+  }
+}

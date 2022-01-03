@@ -13,12 +13,41 @@ module.exports = {
     version: `1.0.0`
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          "@": "src/",
+          "@components": "src/components",
+          "@pages": "src/pages",
+          "@images": "src/images",
+          "@css": "src/css",
+          "@templates": "src/templates",
+        },
+        extensions: [
+          "js", "pug", "scss"
+        ],
+      }
+    },
     `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-graphql-loader`,
     `gatsby-transformer-json`,
     `gatsby-transformer-remark`,
+    {
+      resolve: `gatsby-transformer-yaml`,
+      options: {
+        typeName: `Yaml`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/data/cv/skills`,
+        name: 'cv.skillset'
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

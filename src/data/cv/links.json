@@ -1,0 +1,27 @@
+[
+  {
+    "icon": null,
+    "href": "#contact",
+    "title": "Contact Information"
+  },
+  {
+    "icon":  null,
+    "href": "#experience",
+    "title": "Work Experience"
+  },
+  {
+    "icon":  null,
+    "href": "#education",
+    "title": "Education"
+  },
+  {
+    "icon":  null,
+    "href": "#skills",
+    "title": "Skills"
+  },
+  {
+    "icon":  null,
+    "href": "#examples",
+    "title": "Work Examples"
+  }
+]

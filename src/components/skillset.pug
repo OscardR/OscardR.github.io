@@ -1,0 +1,13 @@
+.skill
+  h4.field {skillset.title}
+
+  if skillset.body
+    div(dangerouslySetInnerHTML={__html: skillset.body})
+
+  ul
+    li(@repeat='skillset.skills as skill')
+      h5.category {skill.name}
+
+      ul
+        li(@repeat='skill.items as item') {item.name}
+          small= ' | ' + item.details.join(' / ')

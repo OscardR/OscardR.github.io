@@ -13,115 +13,106 @@ interface Node {
 }
 
 type Directory implements Node {
-  absolutePath: String
+  absolutePath: String!
   accessTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
-  ): Date
+  ): Date!
   atime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
-  ): Date
-  atimeMs: Float
-  base: String
+  ): Date!
+  atimeMs: Float!
+  base: String!
   birthTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
-  ): Date
-  birthtime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
-    difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
-    formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
-    fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
-    locale: String
-  ): Date
-  birthtimeMs: Float
+  ): Date!
+  birthtime: Date @deprecated(reason : "Use `birthTime` instead")
+  birthtimeMs: Float @deprecated(reason : "Use `birthTime` instead")
   blksize: Int
   blocks: Int
   changeTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
-  ): Date
+  ): Date!
   children: [Node!]!
   ctime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
-  ): Date
-  ctimeMs: Float
-  dev: Int
-  dir: String
-  ext: String
-  extension: String
-  gid: Int
+  ): Date!
+  ctimeMs: Float!
+  dev: Int!
+  dir: String!
+  ext: String!
+  extension: String!
+  gid: Int!
   id: ID!
-  ino: Float
+  ino: Float!
   internal: Internal!
-  mode: Int
+  mode: Int!
   modifiedTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
-  ): Date
+  ): Date!
   mtime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
-  ): Date
-  mtimeMs: Float
-  name: String
-  nlink: Int
+  ): Date!
+  mtimeMs: Float!
+  name: String!
+  nlink: Int!
   parent: Node
-  prettySize: String
-  rdev: Int
-  relativeDirectory: String
-  relativePath: String
-  root: String
-  size: Int
-  sourceInstanceName: String
-  uid: Int
+  prettySize: String!
+  rdev: Int!
+  relativeDirectory: String!
+  relativePath: String!
+  root: String!
+  size: Int!
+  sourceInstanceName: String!
+  uid: Int!
 }
 
 type DirectoryConnection {
@@ -149,17 +140,17 @@ type DirectoryGroupConnection {
 }
 
 type Education implements Node {
-  body: String!
+  body: String
   children: [Node!]!
   from(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
-    formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+    formatString: String = "MMM YYYY",
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
-    locale: String
+    "Configures the locale Moment.js will use to format the date."
+    locale: String = "en_EN"
   ): Date!
   id: ID!
   internal: Internal!
@@ -167,14 +158,14 @@ type Education implements Node {
   parent: Node
   title: String!
   to(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
-    formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+    formatString: String = "MMM YYYY",
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
-    locale: String
+    "Configures the locale Moment.js will use to format the date."
+    locale: String = "en_EN"
   ): Date
 }
 
@@ -203,110 +194,111 @@ type EducationGroupConnection {
 }
 
 type File implements Node {
-  absolutePath: String
+  absolutePath: String!
   accessTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
-  ): Date
+  ): Date!
   atime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
-  ): Date
-  atimeMs: Float
-  base: String
+  ): Date!
+  atimeMs: Float!
+  base: String!
   birthTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
-  ): Date
+  ): Date!
   birthtime: Date @deprecated(reason : "Use `birthTime` instead")
   birthtimeMs: Float @deprecated(reason : "Use `birthTime` instead")
   blksize: Int
   blocks: Int
   changeTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
-  ): Date
+  ): Date!
   childMarkdownRemark: MarkdownRemark
+  childYaml: Yaml
   children: [Node!]!
   childrenLinksJson: [LinksJson]
   ctime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
-  ): Date
-  ctimeMs: Float
-  dev: Int
-  dir: String
-  ext: String
-  extension: String
-  gid: Int
+  ): Date!
+  ctimeMs: Float!
+  dev: Int!
+  dir: String!
+  ext: String!
+  extension: String!
+  gid: Int!
   id: ID!
-  ino: Float
+  ino: Float!
   internal: Internal!
-  mode: Int
+  mode: Int!
   modifiedTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
-  ): Date
+  ): Date!
   mtime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
-  ): Date
-  mtimeMs: Float
-  name: String
-  nlink: Int
+  ): Date!
+  mtimeMs: Float!
+  name: String!
+  nlink: Int!
   parent: Node
-  prettySize: String
+  prettySize: String!
   "Copy file to static directory and return public url to it"
   publicURL: String
-  rdev: Int
-  relativeDirectory: String
-  relativePath: String
-  root: String
-  size: Int
-  sourceInstanceName: String
-  uid: Int
+  rdev: Int!
+  relativeDirectory: String!
+  relativePath: String!
+  root: String!
+  size: Int!
+  sourceInstanceName: String!
+  uid: Int!
 }
 
 type FileConnection {
@@ -384,33 +376,33 @@ type Internal {
 }
 
 type Job implements Node {
-  body: String!
+  body: String
   children: [Node!]!
-  description: String!
+  description: String
   from(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
-    formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+    formatString: String = "MMM YYYY",
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
-    locale: String
+    "Configures the locale Moment.js will use to format the date."
+    locale: String = "en_EN"
   ): Date!
   id: ID!
   internal: Internal!
   parent: Node
-  position: String!
+  position: String
   title: String!
   to(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
-    formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+    formatString: String = "MMM YYYY",
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
-    locale: String
+    "Configures the locale Moment.js will use to format the date."
+    locale: String = "en_EN"
   ): Date
 }
 
@@ -474,6 +466,7 @@ type LinksJsonGroupConnection {
 
 type MarkdownHeading {
   depth: Int
+  id: String
   value: String
 }
 
@@ -491,7 +484,7 @@ type MarkdownRemark implements Node {
   internal: Internal!
   parent: Node
   rawMarkdownBody: String
-  tableOfContents(heading: String, maxDepth: Int, pathToSlugField: String = "fields.slug"): String
+  tableOfContents(absolute: Boolean = true, heading: String, maxDepth: Int, pathToSlugField: String = "fields.slug"): String
   timeToRead: Int
   wordCount: MarkdownWordCount
 }
@@ -525,26 +518,26 @@ type MarkdownRemarkFrontmatter {
   Skype: String
   description: String
   from(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date
   location: String
   position: String
   title: String
   to(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date
 }
@@ -571,6 +564,7 @@ type PageInfo {
   itemCount: Int!
   pageCount: Int!
   perPage: Int
+  totalCount: Int!
 }
 
 type Query {
@@ -582,29 +576,39 @@ type Query {
   allLinksJson(filter: LinksJsonFilterInput, limit: Int, skip: Int, sort: LinksJsonSortInput): LinksJsonConnection!
   allMarkdownRemark(filter: MarkdownRemarkFilterInput, limit: Int, skip: Int, sort: MarkdownRemarkSortInput): MarkdownRemarkConnection!
   allSite(filter: SiteFilterInput, limit: Int, skip: Int, sort: SiteSortInput): SiteConnection!
+  allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, limit: Int, skip: Int, sort: SiteBuildMetadataSortInput): SiteBuildMetadataConnection!
   allSitePage(filter: SitePageFilterInput, limit: Int, skip: Int, sort: SitePageSortInput): SitePageConnection!
   allSitePlugin(filter: SitePluginFilterInput, limit: Int, skip: Int, sort: SitePluginSortInput): SitePluginConnection!
+  allSkill(filter: SkillFilterInput, limit: Int, skip: Int, sort: SkillSortInput): SkillConnection!
+  allSkillItem(filter: SkillItemFilterInput, limit: Int, skip: Int, sort: SkillItemSortInput): SkillItemConnection!
+  allSkillset(filter: SkillsetFilterInput, limit: Int, skip: Int, sort: SkillsetSortInput): SkillsetConnection!
+  allYaml(filter: YamlFilterInput, limit: Int, skip: Int, sort: YamlSortInput): YamlConnection!
   directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
   education(body: StringQueryOperatorInput, children: NodeFilterListInput, from: DateQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, location: StringQueryOperatorInput, parent: NodeFilterInput, title: StringQueryOperatorInput, to: DateQueryOperatorInput): Education
-  file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childMarkdownRemark: MarkdownRemarkFilterInput, children: NodeFilterListInput, childrenLinksJson: LinksJsonFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
+  file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, blksize: IntQueryOperatorInput, blocks: IntQueryOperatorInput, changeTime: DateQueryOperatorInput, childMarkdownRemark: MarkdownRemarkFilterInput, childYaml: YamlFilterInput, children: NodeFilterListInput, childrenLinksJson: LinksJsonFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, publicURL: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
   information(Born_in: StringQueryOperatorInput, Date_of_Birth: StringQueryOperatorInput, Email: StringQueryOperatorInput, Gender: StringQueryOperatorInput, Name: StringQueryOperatorInput, Nationality: StringQueryOperatorInput, Skype: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, title: StringQueryOperatorInput): Information
   job(body: StringQueryOperatorInput, children: NodeFilterListInput, description: StringQueryOperatorInput, from: DateQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, position: StringQueryOperatorInput, title: StringQueryOperatorInput, to: DateQueryOperatorInput): Job
   linksJson(children: NodeFilterListInput, href: StringQueryOperatorInput, icon: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, title: StringQueryOperatorInput): LinksJson
   markdownRemark(children: NodeFilterListInput, excerpt: StringQueryOperatorInput, excerptAst: JSONQueryOperatorInput, fields: MarkdownRemarkFieldsFilterInput, fileAbsolutePath: StringQueryOperatorInput, frontmatter: MarkdownRemarkFrontmatterFilterInput, headings: MarkdownHeadingFilterListInput, html: StringQueryOperatorInput, htmlAst: JSONQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, rawMarkdownBody: StringQueryOperatorInput, tableOfContents: StringQueryOperatorInput, timeToRead: IntQueryOperatorInput, wordCount: MarkdownWordCountFilterInput): MarkdownRemark
   site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
-  sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
+  siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
+  sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, matchPath: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
   sitePlugin(browserAPIs: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, nodeAPIs: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput, parent: NodeFilterInput, pluginFilepath: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, resolve: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, version: StringQueryOperatorInput): SitePlugin
+  skill(children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, items: SkillItemFilterListInput, name: StringQueryOperatorInput, parent: NodeFilterInput): Skill
+  skillItem(children: NodeFilterListInput, details: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, parent: NodeFilterInput): SkillItem
+  skillset(body: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, skills: SkillFilterListInput, title: StringQueryOperatorInput): Skillset
+  yaml(children: NodeFilterListInput, fields: YamlFieldsFilterInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, skills: YamlSkillsFilterListInput, title: StringQueryOperatorInput): Yaml
 }
 
 type Site implements Node {
   buildTime(
-    #Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\".
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
     difference: String,
-    #Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
     formatString: String,
-    #Returns a string generated with Moment.js' `fromNow` function
+    "Returns a string generated with Moment.js' `fromNow` function"
     fromNow: Boolean,
-    #Configures the locale Moment.js will use to format the date.
+    "Configures the locale Moment.js will use to format the date."
     locale: String
   ): Date
   children: [Node!]!
@@ -616,6 +620,47 @@ type Site implements Node {
   polyfill: Boolean
   port: Int
   siteMetadata: SiteSiteMetadata
+}
+
+type SiteBuildMetadata implements Node {
+  buildTime(
+    "Returns the difference between this date and the current time. Defaults to \"milliseconds\" but you can also pass in as the measurement \"years\", \"months\", \"weeks\", \"days\", \"hours\", \"minutes\", and \"seconds\"."
+    difference: String,
+    "Format the date using Moment.js' date tokens, e.g. `date(formatString: \"YYYY MMMM DD\")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens."
+    formatString: String,
+    "Returns a string generated with Moment.js' `fromNow` function"
+    fromNow: Boolean,
+    "Configures the locale Moment.js will use to format the date."
+    locale: String
+  ): Date
+  children: [Node!]!
+  id: ID!
+  internal: Internal!
+  parent: Node
+}
+
+type SiteBuildMetadataConnection {
+  distinct(field: SiteBuildMetadataFieldsEnum!): [String!]!
+  edges: [SiteBuildMetadataEdge!]!
+  group(field: SiteBuildMetadataFieldsEnum!, limit: Int, skip: Int): [SiteBuildMetadataGroupConnection!]!
+  nodes: [SiteBuildMetadata!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type SiteBuildMetadataEdge {
+  next: SiteBuildMetadata
+  node: SiteBuildMetadata!
+  previous: SiteBuildMetadata
+}
+
+type SiteBuildMetadataGroupConnection {
+  edges: [SiteBuildMetadataEdge!]!
+  field: String!
+  fieldValue: String
+  nodes: [SiteBuildMetadata!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
 }
 
 type SiteConnection {
@@ -644,15 +689,16 @@ type SiteGroupConnection {
 
 type SitePage implements Node {
   children: [Node!]!
-  component: String
-  componentChunkName: String
+  component: String!
+  componentChunkName: String!
   componentPath: String
   id: ID!
   internal: Internal!
-  internalComponentName: String
+  internalComponentName: String!
   isCreatedByStatefulCreatePages: Boolean
+  matchPath: String
   parent: Node
-  path: String
+  path: String!
   pluginCreator: SitePlugin
   pluginCreatorId: String
 }
@@ -750,9 +796,21 @@ type SitePluginPackageJsonPeerDependencies {
 }
 
 type SitePluginPluginOptions {
+  alias: SitePluginPluginOptionsAlias
+  extensions: [String]
   name: String
   path: String
   pathCheck: Boolean
+  typeName: String
+}
+
+type SitePluginPluginOptionsAlias {
+  _: String
+  _components: String
+  _css: String
+  _images: String
+  _pages: String
+  _templates: String
 }
 
 type SiteSiteMetadata {
@@ -761,6 +819,154 @@ type SiteSiteMetadata {
   tagLine: String
   title: String
   version: String
+}
+
+type Skill implements Node {
+  children: [Node!]!
+  id: ID!
+  internal: Internal!
+  items: [SkillItem!]!
+  name: String!
+  parent: Node
+}
+
+type SkillConnection {
+  distinct(field: SkillFieldsEnum!): [String!]!
+  edges: [SkillEdge!]!
+  group(field: SkillFieldsEnum!, limit: Int, skip: Int): [SkillGroupConnection!]!
+  nodes: [Skill!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type SkillEdge {
+  next: Skill
+  node: Skill!
+  previous: Skill
+}
+
+type SkillGroupConnection {
+  edges: [SkillEdge!]!
+  field: String!
+  fieldValue: String
+  nodes: [Skill!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type SkillItem implements Node {
+  children: [Node!]!
+  details: [String!]
+  id: ID!
+  internal: Internal!
+  name: String!
+  parent: Node
+}
+
+type SkillItemConnection {
+  distinct(field: SkillItemFieldsEnum!): [String!]!
+  edges: [SkillItemEdge!]!
+  group(field: SkillItemFieldsEnum!, limit: Int, skip: Int): [SkillItemGroupConnection!]!
+  nodes: [SkillItem!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type SkillItemEdge {
+  next: SkillItem
+  node: SkillItem!
+  previous: SkillItem
+}
+
+type SkillItemGroupConnection {
+  edges: [SkillItemEdge!]!
+  field: String!
+  fieldValue: String
+  nodes: [SkillItem!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+"Skillset Definition"
+type Skillset implements Node {
+  body: String
+  children: [Node!]!
+  id: ID!
+  internal: Internal!
+  parent: Node
+  skills: [Skill!]
+  title: String!
+}
+
+type SkillsetConnection {
+  distinct(field: SkillsetFieldsEnum!): [String!]!
+  edges: [SkillsetEdge!]!
+  group(field: SkillsetFieldsEnum!, limit: Int, skip: Int): [SkillsetGroupConnection!]!
+  nodes: [Skillset!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type SkillsetEdge {
+  next: Skillset
+  node: Skillset!
+  previous: Skillset
+}
+
+type SkillsetGroupConnection {
+  edges: [SkillsetEdge!]!
+  field: String!
+  fieldValue: String
+  nodes: [Skillset!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type Yaml implements Node {
+  children: [Node!]!
+  fields: YamlFields
+  id: ID!
+  internal: Internal!
+  parent: Node
+  skills: [YamlSkills]
+  title: String
+}
+
+type YamlConnection {
+  distinct(field: YamlFieldsEnum!): [String!]!
+  edges: [YamlEdge!]!
+  group(field: YamlFieldsEnum!, limit: Int, skip: Int): [YamlGroupConnection!]!
+  nodes: [Yaml!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type YamlEdge {
+  next: Yaml
+  node: Yaml!
+  previous: Yaml
+}
+
+type YamlFields {
+  collection: String
+}
+
+type YamlGroupConnection {
+  edges: [YamlEdge!]!
+  field: String!
+  fieldValue: String
+  nodes: [Yaml!]!
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type YamlSkills {
+  items: [YamlSkillsItems]
+  name: String
+}
+
+type YamlSkillsItems {
+  name: String
 }
 
 enum DirectoryFieldsEnum {
@@ -1025,6 +1231,7 @@ enum FileFieldsEnum {
   childMarkdownRemark___frontmatter___to
   childMarkdownRemark___headings @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___headings___depth @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  childMarkdownRemark___headings___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___headings___value @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___html @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___htmlAst @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1057,6 +1264,50 @@ enum FileFieldsEnum {
   childMarkdownRemark___wordCount___paragraphs @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___wordCount___sentences @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___wordCount___words @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  childYaml___children
+  childYaml___children___children
+  childYaml___children___children___children
+  childYaml___children___children___id
+  childYaml___children___id
+  childYaml___children___internal___content
+  childYaml___children___internal___contentDigest
+  childYaml___children___internal___description
+  childYaml___children___internal___fieldOwners
+  childYaml___children___internal___ignoreType
+  childYaml___children___internal___mediaType
+  childYaml___children___internal___owner
+  childYaml___children___internal___type
+  childYaml___children___parent___children
+  childYaml___children___parent___id
+  childYaml___fields___collection
+  childYaml___id
+  childYaml___internal___content
+  childYaml___internal___contentDigest
+  childYaml___internal___description
+  childYaml___internal___fieldOwners
+  childYaml___internal___ignoreType
+  childYaml___internal___mediaType
+  childYaml___internal___owner
+  childYaml___internal___type
+  childYaml___parent___children
+  childYaml___parent___children___children
+  childYaml___parent___children___id
+  childYaml___parent___id
+  childYaml___parent___internal___content
+  childYaml___parent___internal___contentDigest
+  childYaml___parent___internal___description
+  childYaml___parent___internal___fieldOwners
+  childYaml___parent___internal___ignoreType
+  childYaml___parent___internal___mediaType
+  childYaml___parent___internal___owner
+  childYaml___parent___internal___type
+  childYaml___parent___parent___children
+  childYaml___parent___parent___id
+  childYaml___skills
+  childYaml___skills___items
+  childYaml___skills___items___name
+  childYaml___skills___name
+  childYaml___title
   children
   childrenLinksJson
   childrenLinksJson___children
@@ -1568,6 +1819,7 @@ enum MarkdownRemarkFieldsEnum {
   frontmatter___to
   headings @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   headings___depth @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+  headings___id @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   headings___value @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   html @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   htmlAst @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1624,6 +1876,96 @@ enum MarkdownRemarkFieldsEnum {
   wordCount___paragraphs @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   wordCount___sentences @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
   wordCount___words @deprecated(reason : "Sorting on fields that need arguments to resolve is deprecated.")
+}
+
+enum SiteBuildMetadataFieldsEnum {
+  buildTime
+  children
+  children___children
+  children___children___children
+  children___children___children___children
+  children___children___children___id
+  children___children___id
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___children___parent___children
+  children___children___parent___id
+  children___id
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  children___parent___children
+  children___parent___children___children
+  children___parent___children___id
+  children___parent___id
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___parent___parent___children
+  children___parent___parent___id
+  id
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  parent___children
+  parent___children___children
+  parent___children___children___children
+  parent___children___children___id
+  parent___children___id
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___children___parent___children
+  parent___children___parent___id
+  parent___id
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  parent___parent___children
+  parent___parent___children___children
+  parent___parent___children___id
+  parent___parent___id
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___parent___parent___children
+  parent___parent___parent___id
 }
 
 enum SiteFieldsEnum {
@@ -1779,6 +2121,7 @@ enum SitePageFieldsEnum {
   internal___owner
   internal___type
   isCreatedByStatefulCreatePages
+  matchPath
   parent___children
   parent___children___children
   parent___children___children___children
@@ -1877,9 +2220,17 @@ enum SitePageFieldsEnum {
   pluginCreator___parent___parent___children
   pluginCreator___parent___parent___id
   pluginCreator___pluginFilepath
+  pluginCreator___pluginOptions___alias____
+  pluginCreator___pluginOptions___alias____components
+  pluginCreator___pluginOptions___alias____css
+  pluginCreator___pluginOptions___alias____images
+  pluginCreator___pluginOptions___alias____pages
+  pluginCreator___pluginOptions___alias____templates
+  pluginCreator___pluginOptions___extensions
   pluginCreator___pluginOptions___name
   pluginCreator___pluginOptions___path
   pluginCreator___pluginOptions___pathCheck
+  pluginCreator___pluginOptions___typeName
   pluginCreator___resolve
   pluginCreator___ssrAPIs
   pluginCreator___version
@@ -1992,17 +2343,490 @@ enum SitePluginFieldsEnum {
   parent___parent___parent___children
   parent___parent___parent___id
   pluginFilepath
+  pluginOptions___alias____
+  pluginOptions___alias____components
+  pluginOptions___alias____css
+  pluginOptions___alias____images
+  pluginOptions___alias____pages
+  pluginOptions___alias____templates
+  pluginOptions___extensions
   pluginOptions___name
   pluginOptions___path
   pluginOptions___pathCheck
+  pluginOptions___typeName
   resolve
   ssrAPIs
   version
 }
 
+enum SkillFieldsEnum {
+  children
+  children___children
+  children___children___children
+  children___children___children___children
+  children___children___children___id
+  children___children___id
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___children___parent___children
+  children___children___parent___id
+  children___id
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  children___parent___children
+  children___parent___children___children
+  children___parent___children___id
+  children___parent___id
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___parent___parent___children
+  children___parent___parent___id
+  id
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  items
+  items___children
+  items___children___children
+  items___children___children___children
+  items___children___children___id
+  items___children___id
+  items___children___internal___content
+  items___children___internal___contentDigest
+  items___children___internal___description
+  items___children___internal___fieldOwners
+  items___children___internal___ignoreType
+  items___children___internal___mediaType
+  items___children___internal___owner
+  items___children___internal___type
+  items___children___parent___children
+  items___children___parent___id
+  items___details
+  items___id
+  items___internal___content
+  items___internal___contentDigest
+  items___internal___description
+  items___internal___fieldOwners
+  items___internal___ignoreType
+  items___internal___mediaType
+  items___internal___owner
+  items___internal___type
+  items___name
+  items___parent___children
+  items___parent___children___children
+  items___parent___children___id
+  items___parent___id
+  items___parent___internal___content
+  items___parent___internal___contentDigest
+  items___parent___internal___description
+  items___parent___internal___fieldOwners
+  items___parent___internal___ignoreType
+  items___parent___internal___mediaType
+  items___parent___internal___owner
+  items___parent___internal___type
+  items___parent___parent___children
+  items___parent___parent___id
+  name
+  parent___children
+  parent___children___children
+  parent___children___children___children
+  parent___children___children___id
+  parent___children___id
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___children___parent___children
+  parent___children___parent___id
+  parent___id
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  parent___parent___children
+  parent___parent___children___children
+  parent___parent___children___id
+  parent___parent___id
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___parent___parent___children
+  parent___parent___parent___id
+}
+
+enum SkillItemFieldsEnum {
+  children
+  children___children
+  children___children___children
+  children___children___children___children
+  children___children___children___id
+  children___children___id
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___children___parent___children
+  children___children___parent___id
+  children___id
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  children___parent___children
+  children___parent___children___children
+  children___parent___children___id
+  children___parent___id
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___parent___parent___children
+  children___parent___parent___id
+  details
+  id
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  name
+  parent___children
+  parent___children___children
+  parent___children___children___children
+  parent___children___children___id
+  parent___children___id
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___children___parent___children
+  parent___children___parent___id
+  parent___id
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  parent___parent___children
+  parent___parent___children___children
+  parent___parent___children___id
+  parent___parent___id
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___parent___parent___children
+  parent___parent___parent___id
+}
+
+enum SkillsetFieldsEnum {
+  body
+  children
+  children___children
+  children___children___children
+  children___children___children___children
+  children___children___children___id
+  children___children___id
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___children___parent___children
+  children___children___parent___id
+  children___id
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  children___parent___children
+  children___parent___children___children
+  children___parent___children___id
+  children___parent___id
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___parent___parent___children
+  children___parent___parent___id
+  id
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  parent___children
+  parent___children___children
+  parent___children___children___children
+  parent___children___children___id
+  parent___children___id
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___children___parent___children
+  parent___children___parent___id
+  parent___id
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  parent___parent___children
+  parent___parent___children___children
+  parent___parent___children___id
+  parent___parent___id
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___parent___parent___children
+  parent___parent___parent___id
+  skills
+  skills___children
+  skills___children___children
+  skills___children___children___children
+  skills___children___children___id
+  skills___children___id
+  skills___children___internal___content
+  skills___children___internal___contentDigest
+  skills___children___internal___description
+  skills___children___internal___fieldOwners
+  skills___children___internal___ignoreType
+  skills___children___internal___mediaType
+  skills___children___internal___owner
+  skills___children___internal___type
+  skills___children___parent___children
+  skills___children___parent___id
+  skills___id
+  skills___internal___content
+  skills___internal___contentDigest
+  skills___internal___description
+  skills___internal___fieldOwners
+  skills___internal___ignoreType
+  skills___internal___mediaType
+  skills___internal___owner
+  skills___internal___type
+  skills___items
+  skills___items___children
+  skills___items___children___children
+  skills___items___children___id
+  skills___items___details
+  skills___items___id
+  skills___items___internal___content
+  skills___items___internal___contentDigest
+  skills___items___internal___description
+  skills___items___internal___fieldOwners
+  skills___items___internal___ignoreType
+  skills___items___internal___mediaType
+  skills___items___internal___owner
+  skills___items___internal___type
+  skills___items___name
+  skills___items___parent___children
+  skills___items___parent___id
+  skills___name
+  skills___parent___children
+  skills___parent___children___children
+  skills___parent___children___id
+  skills___parent___id
+  skills___parent___internal___content
+  skills___parent___internal___contentDigest
+  skills___parent___internal___description
+  skills___parent___internal___fieldOwners
+  skills___parent___internal___ignoreType
+  skills___parent___internal___mediaType
+  skills___parent___internal___owner
+  skills___parent___internal___type
+  skills___parent___parent___children
+  skills___parent___parent___id
+  title
+}
+
 enum SortOrderEnum {
   ASC
   DESC
+}
+
+enum YamlFieldsEnum {
+  children
+  children___children
+  children___children___children
+  children___children___children___children
+  children___children___children___id
+  children___children___id
+  children___children___internal___content
+  children___children___internal___contentDigest
+  children___children___internal___description
+  children___children___internal___fieldOwners
+  children___children___internal___ignoreType
+  children___children___internal___mediaType
+  children___children___internal___owner
+  children___children___internal___type
+  children___children___parent___children
+  children___children___parent___id
+  children___id
+  children___internal___content
+  children___internal___contentDigest
+  children___internal___description
+  children___internal___fieldOwners
+  children___internal___ignoreType
+  children___internal___mediaType
+  children___internal___owner
+  children___internal___type
+  children___parent___children
+  children___parent___children___children
+  children___parent___children___id
+  children___parent___id
+  children___parent___internal___content
+  children___parent___internal___contentDigest
+  children___parent___internal___description
+  children___parent___internal___fieldOwners
+  children___parent___internal___ignoreType
+  children___parent___internal___mediaType
+  children___parent___internal___owner
+  children___parent___internal___type
+  children___parent___parent___children
+  children___parent___parent___id
+  fields___collection
+  id
+  internal___content
+  internal___contentDigest
+  internal___description
+  internal___fieldOwners
+  internal___ignoreType
+  internal___mediaType
+  internal___owner
+  internal___type
+  parent___children
+  parent___children___children
+  parent___children___children___children
+  parent___children___children___id
+  parent___children___id
+  parent___children___internal___content
+  parent___children___internal___contentDigest
+  parent___children___internal___description
+  parent___children___internal___fieldOwners
+  parent___children___internal___ignoreType
+  parent___children___internal___mediaType
+  parent___children___internal___owner
+  parent___children___internal___type
+  parent___children___parent___children
+  parent___children___parent___id
+  parent___id
+  parent___internal___content
+  parent___internal___contentDigest
+  parent___internal___description
+  parent___internal___fieldOwners
+  parent___internal___ignoreType
+  parent___internal___mediaType
+  parent___internal___owner
+  parent___internal___type
+  parent___parent___children
+  parent___parent___children___children
+  parent___parent___children___id
+  parent___parent___id
+  parent___parent___internal___content
+  parent___parent___internal___contentDigest
+  parent___parent___internal___description
+  parent___parent___internal___fieldOwners
+  parent___parent___internal___ignoreType
+  parent___parent___internal___mediaType
+  parent___parent___internal___owner
+  parent___parent___internal___type
+  parent___parent___parent___children
+  parent___parent___parent___id
+  skills
+  skills___items
+  skills___items___name
+  skills___name
+  title
 }
 
 input BooleanQueryOperatorInput {
@@ -2098,6 +2922,7 @@ input FileFilterInput {
   blocks: IntQueryOperatorInput
   changeTime: DateQueryOperatorInput
   childMarkdownRemark: MarkdownRemarkFilterInput
+  childYaml: YamlFilterInput
   children: NodeFilterListInput
   childrenLinksJson: LinksJsonFilterListInput
   ctime: DateQueryOperatorInput
@@ -2234,6 +3059,7 @@ input LinksJsonSortInput {
 
 input MarkdownHeadingFilterInput {
   depth: IntQueryOperatorInput
+  id: StringQueryOperatorInput
   value: StringQueryOperatorInput
 }
 
@@ -2302,6 +3128,19 @@ input NodeFilterListInput {
   elemMatch: NodeFilterInput
 }
 
+input SiteBuildMetadataFilterInput {
+  buildTime: DateQueryOperatorInput
+  children: NodeFilterListInput
+  id: StringQueryOperatorInput
+  internal: InternalFilterInput
+  parent: NodeFilterInput
+}
+
+input SiteBuildMetadataSortInput {
+  fields: [SiteBuildMetadataFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
 input SiteFilterInput {
   buildTime: DateQueryOperatorInput
   children: NodeFilterListInput
@@ -2324,6 +3163,7 @@ input SitePageFilterInput {
   internal: InternalFilterInput
   internalComponentName: StringQueryOperatorInput
   isCreatedByStatefulCreatePages: BooleanQueryOperatorInput
+  matchPath: StringQueryOperatorInput
   parent: NodeFilterInput
   path: StringQueryOperatorInput
   pluginCreator: SitePluginFilterInput
@@ -2391,10 +3231,22 @@ input SitePluginPackageJsonPeerDependenciesFilterListInput {
   elemMatch: SitePluginPackageJsonPeerDependenciesFilterInput
 }
 
+input SitePluginPluginOptionsAliasFilterInput {
+  _: StringQueryOperatorInput
+  _components: StringQueryOperatorInput
+  _css: StringQueryOperatorInput
+  _images: StringQueryOperatorInput
+  _pages: StringQueryOperatorInput
+  _templates: StringQueryOperatorInput
+}
+
 input SitePluginPluginOptionsFilterInput {
+  alias: SitePluginPluginOptionsAliasFilterInput
+  extensions: StringQueryOperatorInput
   name: StringQueryOperatorInput
   path: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
+  typeName: StringQueryOperatorInput
 }
 
 input SitePluginSortInput {
@@ -2415,6 +3267,57 @@ input SiteSortInput {
   order: [SortOrderEnum] = [ASC]
 }
 
+input SkillFilterInput {
+  children: NodeFilterListInput
+  id: StringQueryOperatorInput
+  internal: InternalFilterInput
+  items: SkillItemFilterListInput
+  name: StringQueryOperatorInput
+  parent: NodeFilterInput
+}
+
+input SkillFilterListInput {
+  elemMatch: SkillFilterInput
+}
+
+input SkillItemFilterInput {
+  children: NodeFilterListInput
+  details: StringQueryOperatorInput
+  id: StringQueryOperatorInput
+  internal: InternalFilterInput
+  name: StringQueryOperatorInput
+  parent: NodeFilterInput
+}
+
+input SkillItemFilterListInput {
+  elemMatch: SkillItemFilterInput
+}
+
+input SkillItemSortInput {
+  fields: [SkillItemFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+input SkillSortInput {
+  fields: [SkillFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
+input SkillsetFilterInput {
+  body: StringQueryOperatorInput
+  children: NodeFilterListInput
+  id: StringQueryOperatorInput
+  internal: InternalFilterInput
+  parent: NodeFilterInput
+  skills: SkillFilterListInput
+  title: StringQueryOperatorInput
+}
+
+input SkillsetSortInput {
+  fields: [SkillsetFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
+}
+
 input StringQueryOperatorInput {
   eq: String
   glob: String
@@ -2422,6 +3325,42 @@ input StringQueryOperatorInput {
   ne: String
   nin: [String]
   regex: String
+}
+
+input YamlFieldsFilterInput {
+  collection: StringQueryOperatorInput
+}
+
+input YamlFilterInput {
+  children: NodeFilterListInput
+  fields: YamlFieldsFilterInput
+  id: StringQueryOperatorInput
+  internal: InternalFilterInput
+  parent: NodeFilterInput
+  skills: YamlSkillsFilterListInput
+  title: StringQueryOperatorInput
+}
+
+input YamlSkillsFilterInput {
+  items: YamlSkillsItemsFilterListInput
+  name: StringQueryOperatorInput
+}
+
+input YamlSkillsFilterListInput {
+  elemMatch: YamlSkillsFilterInput
+}
+
+input YamlSkillsItemsFilterInput {
+  name: StringQueryOperatorInput
+}
+
+input YamlSkillsItemsFilterListInput {
+  elemMatch: YamlSkillsItemsFilterInput
+}
+
+input YamlSortInput {
+  fields: [YamlFieldsEnum]
+  order: [SortOrderEnum] = [ASC]
 }
 
 

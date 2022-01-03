@@ -6,10 +6,10 @@ import { graphql } from "gatsby";
 import { LinksList } from "@components/links-list";
 
 // Templates
-import body from "@templates/index.pug";
+import body from "@templates/404.pug";
 
 export const query = graphql`
-  query HomePage {
+  query FourOhFourPage {
     site {
       ...Site
     }
@@ -21,7 +21,7 @@ export const query = graphql`
   }
 `;
 
-const Index = ({ data }) => {
+const NotFound = ({ data }) => {
   const { site, linkCollection } = data,
     meta = site.siteMetadata,
     links = linkCollection.nodes.reduce(
@@ -39,7 +39,7 @@ const Index = ({ data }) => {
           content="oscardr.github.io : Personal Page on GitHub"
         />
 
-        <title>OscardR.github.io v{meta.version}</title>
+        <title>OscardR.github.io v{meta.version}: 404 Not Found</title>
       </Helmet>
 
       {body({
@@ -50,4 +50,4 @@ const Index = ({ data }) => {
   );
 };
 
-export default Index;
+export default NotFound;
