@@ -1,0 +1,40 @@
+@charset "UTF-8";
+.cycle-diagram td {
+  width: 48px;
+  text-align: center;
+  font-family: monospace;
+  padding: 8px 0 !important;
+}
+
+.cycle-diagram td:first-child {
+  text-align: right;
+  font-family: monospace;
+  white-space: nowrap;
+  padding: 8px !important;
+}
+
+.cycle-diagram td > div.alert {
+  margin-bottom: 0;
+}
+
+.cycle-diagram td > div.alert.start:after {
+  content: "↓";
+  font-weight: bold;
+}
+
+.cycle-diagram td > div.alert.end:before {
+  content: "↑";
+  font-weight: bold;
+}
+
+.cycle-diagram th {
+  text-align: center;
+}
+
+.cycle-diagram tfoot > tr > td {
+  text-align: right;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}

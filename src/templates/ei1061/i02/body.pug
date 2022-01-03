@@ -1,49 +1,3 @@
-doctype html
-head
-    meta(http-equiv='Content-Type' content='text/html; charset=utf-8')
-    title EI1061 &mdash; Entregable i02
-    // Latest compiled and minified CSS
-    link(rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css')
-    // Optional theme
-    link(rel='stylesheet' href='https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css')
-    // Latest compiled and minified JavaScript
-    script(src='https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js')
-    style.
-        .cycle-diagram td {
-            width: 48px;
-            text-align: center;
-            font-family: monospace;
-            padding: 8px 0 !important;
-        }
-
-        .cycle-diagram td:first-child {
-            text-align: right;
-            font-family: monospace;
-            white-space: nowrap;
-            padding: 8px !important;
-        }
-
-        .cycle-diagram th {
-            text-align: center;
-        }
-
-        .cycle-diagram tfoot > tr > td {
-            text-align: right;
-        }
-
-        .cycle-diagram td > div.alert {
-            margin-bottom: 0
-        }
-
-        .cycle-diagram td > div.alert.start:after {
-            content: "↓";
-            font-weight: bold;
-        }
-
-        .cycle-diagram td > div.alert.end:before {
-            content: "↑";
-            font-weight: bold;
-        }
 .container
     .row
         .col-xs-12.col-md-2
@@ -80,59 +34,54 @@ head
             ol
                 li
                     a(name='1')
-                    p
-                        | Lee la secci&oacute;n 2.3.2 del cap&iacute;tulo 2 del libro &ldquo;Arquitectura de Computadores&rdquo; (&ap; 5 p&aacute;ginas). Identifica aquellas partes que se corresponden con los objetivos formativos de dicho tema (los objetivos formativos del tema 1 est&aacute;n en un documento propio en el Aula Virtual).
+                    | Lee la secci&oacute;n 2.3.2 del cap&iacute;tulo 2 del libro &ldquo;Arquitectura de Computadores&rdquo; (&ap; 5 p&aacute;ginas). Identifica aquellas partes que se corresponden con los objetivos formativos de dicho tema (los objetivos formativos del tema 1 est&aacute;n en un documento propio en el Aula Virtual).
                     blockquote
                         strong 1.5
                         |  Explicar en qu&eacute; consisten los riesgos de control, y sus causas, consecuencias y soluciones
                 li
                     a(name='2')
-                    p
-                        | Distingue entre evaluar la condici&oacute;n de salto y resolver el salto: Evaluar la condici&oacute;n supone realizar las operaciones necesarias para conocer si el salto se debe producir o no. Resolver un salto incluye evaluarlo, realizar las operaciones necesarias para averiguar la direcci&oacute;n de salto y escribir esa direcci&oacute;n en el PC.
+                    | Distingue entre evaluar la condici&oacute;n de salto y resolver el salto: Evaluar la condici&oacute;n supone realizar las operaciones necesarias para conocer si el salto se debe producir o no. Resolver un salto incluye evaluarlo, realizar las operaciones necesarias para averiguar la direcci&oacute;n de salto y escribir esa direcci&oacute;n en el PC.
                 li
                     a(name='3')
-                    p
-                        | Considera el procesador sencillo (4 etapas:
-                        code IF
-                        | ,
-                        code ID
-                        | ,
-                        code ALU
-                        | ,
-                        code OS
-                        | , de un ciclo cada una), donde los riesgos de control se resuelven insertando instrucciones
-                        code nop
-                        |  tras el salto. &iquest;Cu&aacute;ntas instrucciones
-                        code nop
-                        |  ser&iacute;a necesario insertar si el salto se resuelve en la etapa ALU? &iquest;Por qu&eacute;?
+                    | Considera el procesador sencillo (4 etapas:
+                    code IF
+                    | ,
+                    code ID
+                    | ,
+                    code ALU
+                    | ,
+                    code OS
+                    | , de un ciclo cada una), donde los riesgos de control se resuelven insertando instrucciones
+                    code nop
+                    |  tras el salto. &iquest;Cu&aacute;ntas instrucciones
+                    code nop
+                    |  ser&iacute;a necesario insertar si el salto se resuelve en la etapa ALU? &iquest;Por qu&eacute;?
                     blockquote
                         | Dos instrucciones
                         code nop
                         | , ya que no se podr&iacute;a saber si se da la condici&oacute;n de salto hasta el tercer ciclo de la instrucci&oacute;n que precede al salto. Si el salto es efectivo, el nuevo PC se calcula en la tercera etapa de la instrucci&oacute;n del salto, y para entonces ya hay dos instrucciones en el cauce de ejecuci&oacute;n.
                 li
                     a(name='4')
-                    p
-                        | En el procesador sencillo, si el salto se resuelve en la etapa
-                        code ID
-                        | , &iquest;cu&aacute;ntas instrucciones
-                        code nop
-                        |  ser&iacute;a necesario insertar y qu&eacute; tipo de dato (direccionamiento) podremos usar para el desplazamiento respecto al PC? &iquest;Por qu&eacute;?
+                    | En el procesador sencillo, si el salto se resuelve en la etapa
+                    code ID
+                    | , &iquest;cu&aacute;ntas instrucciones
+                    code nop
+                    |  ser&iacute;a necesario insertar y qu&eacute; tipo de dato (direccionamiento) podremos usar para el desplazamiento respecto al PC? &iquest;Por qu&eacute;?
                     blockquote
                         | Basta una instrucci&oacute;n
                         code nop
                         | , pues en el segundo ciclo de la instrucci&oacute;n del salto ya se puede calcular el nuevo PC, usando para ello un offset sumado al PC actual, que se extrae directamente de un campo de la instrucci&oacute;n.
                 li
                     a(name='5')
-                    p
-                        | En el procesador sencillo, a la hora de evaluar el salto en la etapa
-                        code ID
-                        | , &iquest;qu&eacute; ventaja presenta el formato de instrucci&oacute;n de salto
-                        code bz r3, despl
-                        | , donde el salto se produce si
-                        code r3
-                        |  es cero, frente al formato
-                        code bz despl
-                        | , donde el salto se produce si el resultado de la instrucci&oacute;n anterior al salto fue cero? Ilustra tu respuesta mediante alg&uacute;n ejemplo.
+                    | En el procesador sencillo, a la hora de evaluar el salto en la etapa
+                    code ID
+                    | , &iquest;qu&eacute; ventaja presenta el formato de instrucci&oacute;n de salto
+                    code bz r3, despl
+                    | , donde el salto se produce si
+                    code r3
+                    |  es cero, frente al formato
+                    code bz despl
+                    | , donde el salto se produce si el resultado de la instrucci&oacute;n anterior al salto fue cero? Ilustra tu respuesta mediante alg&uacute;n ejemplo.
                     blockquote
                         | En el caso del formato
                         code bz r3, despl
@@ -141,7 +90,7 @@ head
                         |  de la anterior instrucci&oacute;n termine si no hay dependencias en el salto. En el otro formato la dependencia entre la instrucci&oacute;n anterior al salto y la del salto obliga a que vayan seguidas y no pueden intercalarse instrucciones no dependientes entre ambas.
                 li
                     a(name='6')
-                    p Considera el siguiente c&oacute;digo
+                    | Considera el siguiente c&oacute;digo
                     pre.
 
                     p
@@ -165,7 +114,7 @@ head
                                 th 11
                                 th 12
                                 th 13
-                                th &mldr;
+                                th &hellip;
                         tbody
                             tr
                                 td addi r1, r0, 20
@@ -232,7 +181,7 @@ head
                                 td
                                     .alert.alert-warning IF
                                 td
-                                    .alert.alert-warning(style='opacity: 0.5') IF
+                                    .alert.alert-warning.opacity-50 IF
                                 td
                                     .alert.alert-success.end ID
                                 td
@@ -243,20 +192,20 @@ head
                             tr
                                 td NOP
                                 td(colspan='7')
-                                td(style='opacity: 0.5')
+                                td.opacity-50
                                     .alert.alert-warning *
-                                td(style='opacity: 0.5')
+                                td.opacity-50
                                     .alert.alert-warning *
-                                td(style='opacity: 0.5')
+                                td.opacity-50
                                     .alert.alert-warning *
-                                td(style='opacity: 0.5')
+                                td.opacity-50
                                     .alert.alert-warning *
                                 td(colspan='3') &larr; ciclo de parada
                             tr
                                 td
                                 td(colspan='14') (se repite 20 veces m&aacute;s)
                             tr
-                                th(colspan='2') &mldr;
+                                th(colspan='2') &hellip;
                                 th 136
                                 th 137
                                 th 138
@@ -330,7 +279,7 @@ head
                                 th 11
                                 th 12
                                 th 13
-                                th &mldr;
+                                th &hellip;
                         tbody
                             tr
                                 td addi r1, r0, 20
@@ -407,20 +356,20 @@ head
                             tr
                                 td NOP
                                 td(colspan='6')
-                                td(style='opacity: 0.5')
+                                td.opacity-50
                                     .alert.alert-warning *
-                                td(style='opacity: 0.5')
+                                td.opacity-50
                                     .alert.alert-warning *
-                                td(style='opacity: 0.5')
+                                td.opacity-50
                                     .alert.alert-warning *
-                                td(style='opacity: 0.5')
+                                td.opacity-50
                                     .alert.alert-warning *
                                 td(colspan='4') &larr; ciclo de parada
                             tr
                                 td
                                 td(colspan='14') (se repite 20 veces m&aacute;s)
                             tr
-                                th(colspan='2') &mldr;
+                                th(colspan='2') &hellip;
                                 th 116
                                 th 117
                                 th 118
@@ -477,8 +426,7 @@ head
                                     |  4 + 20 &times; 6 + 3 = 127 ciclos
                 li
                     a(name='7')
-                    p
-                        | Una posible soluci&oacute;n para los saltos es la t&eacute;cnica de predicci&oacute;n no tomado en la que el procesador sigue ejecutanto la(s) instrucci&oacute;n(es) siguiente(s) al salto como si &eacute;ste no se tomase y, cuando el salto se resuelve, las aborta si &eacute;ste s&iacute; deb&iacute;a haber sido tomado. Para el c&oacute;digo anterior, &iquest;cu&aacute;ntos ciclos necesita el procesador sencillo para ejecutarlo si los saltos se resuelven en la etapa ID y se tratan mediante la t&eacute;cnica predicci&oacute;n no tomado? &iquest;y si los saltos se resuelven en la etapa ALU?
+                    | Una posible soluci&oacute;n para los saltos es la t&eacute;cnica de predicci&oacute;n no tomado en la que el procesador sigue ejecutanto la(s) instrucci&oacute;n(es) siguiente(s) al salto como si &eacute;ste no se tomase y, cuando el salto se resuelve, las aborta si &eacute;ste s&iacute; deb&iacute;a haber sido tomado. Para el c&oacute;digo anterior, &iquest;cu&aacute;ntos ciclos necesita el procesador sencillo para ejecutarlo si los saltos se resuelven en la etapa ID y se tratan mediante la t&eacute;cnica predicci&oacute;n no tomado? &iquest;y si los saltos se resuelven en la etapa ALU?
                     table.cycle-diagram.table.table-striped
                         caption
                             strong Resoluci&oacute;n en ALU, tratamiento con predicci&oacute;n no tomado
@@ -498,7 +446,7 @@ head
                                 th 11
                                 th 12
                                 th 13
-                                th &mldr;
+                                th &hellip;
                         tbody
                             tr
                                 td addi r1, r0, 20
@@ -576,31 +524,31 @@ head
                                 td add r5, r2, r4
                                 td(colspan='6') se descarta excepto en la &uacute;ltima iteraci&oacute;n &rarr;
                                 td
-                                    .alert.alert-warning(style='opacity: 0.5') IF
+                                    .alert.alert-warning.opacity-50 IF
                                 td
-                                    .alert.alert-warning(style='opacity: 0.5') ID
+                                    .alert.alert-warning.opacity-50 ID
                                 td
-                                    .alert.alert-warning(style='opacity: 0.5') ALU
+                                    .alert.alert-warning.opacity-50 ALU
                                 td
-                                    .alert.alert-warning(style='opacity: 0.5') OS
+                                    .alert.alert-warning.opacity-50 OS
                                 td(colspan='4')
                             tr
                                 td sub r6, r2, r4
                                 td(colspan='7') &quot; idem
                                 td
-                                    .alert.alert-warning(style='opacity: 0.5') IF
+                                    .alert.alert-warning.opacity-50 IF
                                 td
-                                    .alert.alert-warning(style='opacity: 0.5') ID
+                                    .alert.alert-warning.opacity-50 ID
                                 td
-                                    .alert.alert-warning(style='opacity: 0.5') ALU
+                                    .alert.alert-warning.opacity-50 ALU
                                 td
-                                    .alert.alert-warning(style='opacity: 0.5') OS
+                                    .alert.alert-warning.opacity-50 OS
                                 td(colspan='3')
                             tr
                                 td
                                 td(colspan='14') (se repite 20 veces m&aacute;s)
                             tr
-                                th(colspan='2') &mldr;
+                                th(colspan='2') &hellip;
                                 th 116
                                 th 117
                                 th 118

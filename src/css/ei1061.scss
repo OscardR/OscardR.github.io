@@ -1,0 +1,41 @@
+.cycle-diagram {
+  td {
+    width: 48px;
+    text-align: center;
+    font-family: monospace;
+    padding: 8px 0 !important;
+
+    &:first-child {
+      text-align: right;
+      font-family: monospace;
+      white-space: nowrap;
+      padding: 8px !important;
+    }
+
+    > div.alert {
+      margin-bottom: 0;
+
+      &.start:after {
+        content: "↓";
+        font-weight: bold;
+      }
+
+      &.end:before {
+        content: "↑";
+        font-weight: bold;
+      }
+    }
+  }
+
+  th {
+    text-align: center;
+  }
+
+  tfoot > tr > td {
+    text-align: right;
+  }
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
