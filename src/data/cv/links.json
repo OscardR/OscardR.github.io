@@ -1,26 +1,26 @@
 [
   {
-    "icon": null,
+    "icon": ["fas", "user"],
     "href": "#contact",
     "title": "Contact Information"
   },
   {
-    "icon":  null,
+    "icon":  ["fas", "briefcase"],
     "href": "#experience",
     "title": "Work Experience"
   },
   {
-    "icon":  null,
+    "icon":  ["fas", "university"],
     "href": "#education",
     "title": "Education"
   },
   {
-    "icon":  null,
+    "icon":  ["fas", "tools"],
     "href": "#skills",
     "title": "Skills"
   },
   {
-    "icon":  null,
+    "icon":  ["fas", "paperclip"],
     "href": "#examples",
     "title": "Work Examples"
   }

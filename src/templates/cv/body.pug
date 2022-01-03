@@ -15,7 +15,9 @@
     #navegacion-desplegable.collapse.navbar-collapse(style='{{justifyContent: "flex-end"}}')
       ul.nav.navbar-nav
         li(className='{"nav-item" + (i === 0 ? " active" : "")}', @repeat='menuLinks as link', @key='{i}')
-          a.nav-link(href='{link.href}') {link.title}
+          a.nav-link(href='{link.href}') 
+            i(className='{`${link.icon[0]} fa-${link.icon[1]}`}') &ensp;
+            | {link.title}
 
 #main_content_wrap.outer
   section#contact.inner.jquery-anchor

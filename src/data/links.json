@@ -1,26 +1,31 @@
 [
   {
-    "icon": "file",
+    "icon": ["fa", "file"],
     "href": "cv",
     "title": "My CV"
   },
   {
-    "icon": "github",
+    "icon": ["fab", "github"],
     "href": "http://www.github.com/OscardR",
     "title": "GitHub"
   },
   {
-    "icon": "bitbucket",
+    "icon": ["fab", "bitbucket"],
     "href": "http://www.bitbucket.org/oscar_dr",
     "title": "Bitbucket"
   },
   {
-    "icon": "code",
-    "href": "https://www.codeplex.com/site/users/view/Oscar_dR",
-    "title": "CodePlex"
+    "icon": ["fab", "gitlab"],
+    "href": "https://gitlab.com/oscar.gomez.alcaniz",
+    "title": "Gitlab"
   },
   {
-    "icon": "twitter",
+    "icon": ["fab", "stack-overflow"],
+    "href": "https://stackoverflow.com/users/1038490/%c3%93scar-g%c3%b3mez-alca%c3%b1iz",
+    "title": "StackOverflow"
+  },
+  {
+    "icon": ["fab", "twitter"],
     "href": "http://www.twitter.com/oscar_dr",
     "title": "Twitter"
   }

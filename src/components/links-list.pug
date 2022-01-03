@@ -1,6 +1,6 @@
 nav
   ul
     li(@repeat='links as link')
-      i(className='{"fa fa-" + link.icon}')
+      i(className='{`${link.iconType} fa-${link.iconCode} fa-fw`}')
       | &ensp;
       a(href='{link.href}') {link.title}

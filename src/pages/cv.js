@@ -9,6 +9,9 @@ import { EducationList } from "@components/education-list";
 import { LinksList } from "@components/links-list";
 import { Skillset } from "@components/skillset";
 
+// Styles
+import "@css/cv.scss";
+
 // Parts of the CV page
 import body from "@templates/cv/body.pug";
 
