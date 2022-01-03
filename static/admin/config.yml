@@ -17,21 +17,48 @@ collections:
       - name: from
         label: From
         widget: datetime
-        format: DD.MM.YYYY
-        dateFormat: true
-        timeFormat: false
+        format: YYYY-MM-DD
+        date_format: true
+        time_format: false
       - name: to
         label: To
         widget: datetime
         required: false
         default: ""
-        format: DD.MM.YYYY
-        dateFormat: true
-        timeFormat: false
+        format: YYYY-MM-DD
+        date_format: true
+        time_format: false
       - name: description
         label: Description
       - name: position
         label: Position
+      - name: body
+        label: Body
+        widget: markdown
+  - name: education
+    label: Education
+    label_singular: Education
+    folder: src/data/cv/education
+    create: true
+    fields:
+      - name: title
+        label: Title
+      - name: from
+        label: From
+        widget: datetime
+        format: YYYY-MM-DD
+        date_format: true
+        time_format: false
+      - name: to
+        label: To
+        widget: datetime
+        required: false
+        default: ""
+        format: YYYY-MM-DD
+        date_format: true
+        time_format: false
+      - name: location
+        label: Location
       - name: body
         label: Body
         widget: markdown
