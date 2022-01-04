@@ -5,9 +5,9 @@
   header.inner
     a#forkme_banner(href='https://github.com/OscardR') View on GitHub
 
-    h1#project_title OscardR
+    h1#project_title {meta.title} #[small v{meta.version}]
 
-    h2#project_tagline Homepage @ GitHub
+    h2#project_tagline {meta.tagLine}
 
 //--------
 // MAIN
@@ -22,4 +22,5 @@
 #footer_wrap.outer
   footer.inner
     p
-      | Published with #[a(href='http://pages.github.com') GitHub Pages]
+      | Built with #[a(href="https://www.gatsbyjs.com/") #[i.fab.fa-react] GatsbyJS ] 
+      | and deployed and hosted via #[a(href='https://www.netlify.com/') #[i.fab.fa-git-alt] Netlify]

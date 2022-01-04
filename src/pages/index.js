@@ -36,13 +36,14 @@ const Index = ({ data }) => {
         <meta httpEquiv="X-UA-Compatible" content="chrome=1" />
         <meta
           name="description"
-          content="oscardr.github.io : Personal Page on GitHub"
+          content="{meta.description}"
         />
 
-        <title>OscardR.github.io v{meta.version}</title>
+        <title>{meta.title} v{meta.version}</title>
       </Helmet>
 
       {body({
+        meta,
         links,
         LinksList,
       })}

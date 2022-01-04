@@ -6,11 +6,11 @@
 
 module.exports = {
   siteMetadata: {
-    title: `OscardR`,
-    tagLine: `Homepage @ GitHub`,
-    siteUrl: `https://oscardr.github.io`,
-    description: `This is a test to migrate OscardR.github.io to Gatsby`,
-    version: `1.0.0`
+    title: `gomez.host`,
+    tagLine: `Óscar Gómez Alcañiz's personal website`,
+    siteUrl: `https://oscar.gomez.host`,
+    description: `Personal site, built with Gatsby`,
+    version: `2.0.0`,
   },
   plugins: [
     {
@@ -24,10 +24,8 @@ module.exports = {
           "@css": "src/css",
           "@templates": "src/templates",
         },
-        extensions: [
-          "js", "pug", "scss"
-        ],
-      }
+        extensions: ["js", "pug", "scss"],
+      },
     },
     `gatsby-plugin-netlify-cms`,
     `gatsby-plugin-react-helmet`,
@@ -45,36 +43,36 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/data/cv/skills`,
-        name: 'cv.skillset'
+        name: "cv.skillset",
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/data/cv/jobs`,
-        name: 'cv.jobs',
+        name: "cv.jobs",
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/data/cv/education`,
-        name: 'cv.education',
+        name: "cv.education",
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/data/cv/information`,
-        name: 'cv.information',
+        name: "cv.information",
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/src/data`,
-        name: 'structure',
+        name: "structure",
       },
-    }
-  ]
+    },
+  ],
 };
