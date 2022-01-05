@@ -28,5 +28,15 @@
     "icon": ["fab", "twitter"],
     "href": "http://www.twitter.com/oscar_dr",
     "title": "Twitter"
+  },
+  {
+    "icon": ["fas", "dot-circle"],
+    "href": "https://observablehq.com/@oscardr",
+    "title": "Observable"
+  },
+  {
+    "icon": ["fab", "codepen"],
+    "href": "https://codepen.io/oscardr",
+    "title": "Codepen"
   }
 ]
