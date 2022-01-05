@@ -1,5 +1,6 @@
 backend:
   name: git-gateway
+  # name: test-repo
   branch: netlify-cms # Branch to update (optional; defaults to master)
 
 media_folder: "static/images"
@@ -62,3 +63,25 @@ collections:
       - name: body
         label: Body
         widget: markdown
+  - name: links
+    label: Links
+    label_singular: Link
+    files:
+      - file: src/data/links.json
+        label: Profile Links
+        name: profile_links
+        fields:
+          - name: links_list
+            label: Links List
+            widget: list
+            fields:
+              - { name: title, label: Title }
+              - {
+                  name: icon,
+                  label: icon,
+                  widget: list,
+                  min: 2,
+                  max: 2,
+                  default: ["fas", ""],
+                }
+              - { name: href, label: URL }
