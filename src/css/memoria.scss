@@ -26,3 +26,26 @@ code {
       transparentize($console-background, 1 - $console-alpha);
   }
 }
+
+ul,
+ol {
+  margin-left: 1em;
+
+  li {
+    list-style-position: outside;
+    list-style-type: square;
+    margin-bottom: 0.6em;
+
+    li {
+      list-style-type: disc;
+    }
+  }
+}
+
+h3.date {
+  text-indent: -1.3em;
+
+  &:before {
+    content: "📅 ";
+  }
+}
