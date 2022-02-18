@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @use "sass:math";
 
 $console-alpha: 0.8;
@@ -49,3 +50,33 @@ h3.date {
     content: "📅 ";
   }
 }
+=======
+@use "sass:math";
+
+$console-alpha: 0.8;
+$console-color: white;
+$console-background: #202020;
+$console-padding: 1em;
+
+.email {
+  white-space: pre-wrap;
+  background-color: #ffc;
+  padding: 1em;
+  border-left: 0.4em solid #eeb;
+}
+
+code {
+  pre {
+    max-width: 100%;
+    width: 100%;
+    display: inline-block;
+    overflow-x: auto;
+    padding: (0.6 * $console-padding) 1em;
+    color: $console-color;
+    background-color: transparentize($console-background, 1 - $console-alpha);
+    border-radius: math.div($console-padding, 4);
+    text-shadow: 1px 1px 1px
+      transparentize($console-background, 1 - $console-alpha);
+  }
+}
+>>>>>>> 6b4bceb03d907e5e2b9df7a3b5b10eb7eea150e4
