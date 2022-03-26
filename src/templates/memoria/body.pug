@@ -645,7 +645,7 @@ $ rosrun openni2_camera openni2_camera_node`}
             Universitat Jaume I
 
   section
-    h2 27/12/2013
+    h3.date 27/12/2013
 
     ul
       li
@@ -656,20 +656,22 @@ $ rosrun openni2_camera openni2_camera_node`}
             Dear Oscar Gomez,
 
           p.
-            It looks like the issue you are having is related with the OpenGL support on your system. The solution vector
-            returns the configuration of the hand in initialization mode but since the OpenGL rendering does not work
-            properly the values remain the same.
+            It looks like the issue you are having is related with the OpenGL 
+            support on your system. The solution vector returns the configuration 
+            of the hand in initialization mode but since the OpenGL rendering 
+            does not work properly the values remain the same.
 
           p.
-            You need to make sure your system supports OpenGL 3.3 and the latest Nvidia drivers with cuda support are enabled.
+            You need to make sure your system supports OpenGL 3.3 and the latest 
+            Nvidia drivers with cuda support are enabled.
 
           p.
-            You can try to test your CUDA support by downloading the Nvidia CUDA 4.2 toolkit from here and try to run
-            the sample applications.
+            You can try to test your CUDA support by downloading the Nvidia CUDA 
+            4.2 toolkit from here and try to run the sample applications.
 
           p.
-            Alternately you can try running the 3D Hand Tracker Demo application for windows which uses DirectX instread
-            of OpenGL for rendering.
+            Alternately you can try running the 3D Hand Tracker Demo application 
+            for windows which uses DirectX instread of OpenGL for rendering.
 
           p.
             kind regards, #[br]
@@ -678,15 +680,20 @@ $ rosrun openni2_camera openni2_camera_node`}
 
       li
         p.
-          Voy a probar si la versión de OpenGL y CUDA son compatibles con las que me especifican y de lo contrario trataré
-          de instalar exactamente dichas versiones. A continuación, el mail que les he enviado:
+          Voy a probar si la versión de OpenGL y CUDA son compatibles con las que 
+          me especifican y de lo contrario trataré de instalar exactamente dichas 
+          versiones. A continuación, el mail que les he enviado:
 
         blockquote.email
           p Hi K3DHT team,
 
-          p first of all, I want to thank you all for your support and hope you are having a nice Christmas holiday!
+          p.
+            first of all, I want to thank you all for your support and hope you 
+            are having a nice Christmas holiday!
 
-          p Currently my system is running CUDA 5.5 and OpenGL 4.3.0, as shown below:
+          p.
+            Currently my system is running CUDA 5.5 and OpenGL 4.3.0, as shown 
+            below:
 
           code
             pre
@@ -862,14 +869,15 @@ OpenGL extensions:
   ...`}
 
           p.
-            It seems there's some sort of problem with OpenGL but in theory the installed 
-            versions should be compatible backwards. I think I will try and downgrade 
-            the CUDA and OpenGL libraries to versions 4.2 and 3.3 respectively, and see 
-            if it makes any difference.
+            It seems there's some sort of problem with OpenGL but in theory the 
+            installed versions should be compatible backwards. I think I will try 
+            and downgrade the CUDA and OpenGL libraries to versions 4.2 and 3.3 
+            respectively, and see if it makes any difference.
 
           p.
-            Another issue could be the library linking at compile time. So far the sample 
-            code compiles without any hassle, but I'll check it out again anyway.
+            Another issue could be the library linking at compile time. So far 
+            the sample code compiles without any hassle, but I'll check it out 
+            again anyway.
 
           p Again, thank you for your help and have a nice New Year's Eve.
 
@@ -879,21 +887,27 @@ OpenGL extensions:
           
       li
         p.
-          Por otra parte, he seguido investigando para encontrar alguien que tuviese el mismo problema de la ventana
-          de OpenGL transparente en algún foro, y he encontrado lo siguiente:
+          Por otra parte, he seguido investigando para encontrar alguien que 
+          tuviese el mismo problema de la ventana de OpenGL transparente en 
+          algún foro, y he encontrado lo siguiente:
 
         p
           a(href="http://www.opengl.org/discussion_boards/showthread.php/135808-Using-GLUT-windows-are-transparent-Configuration-problem/page2")
             | http://www.opengl.org/discussion_boards/showthread.php/135808-Using-GLUT-windows-are-transparent-Configuration-problem/page2
       li
-        p Podría ser que necesite activar el direct rendering (#[code DRI]) en los drivers Mesa/OpenGL. Fuentes:
+        p.
+          Podría ser que necesite activar el direct rendering (#[code DRI]) en 
+          los drivers Mesa/OpenGL. Fuentes:
 
-          ol
-            li
-              a(href="http://lists.freebsd.org/pipermail/freebsd-stable/2005-October/018645.html") http://lists.freebsd.org/pipermail/freebsd-stable/2005-October/018645.html
+        ol
+          li
+            a(href="http://lists.freebsd.org/pipermail/freebsd-stable/2005-October/018645.html") 
+              | http://lists.freebsd.org/pipermail/freebsd-stable/2005-October/018645.html
 
-            li
-              a(href="http://dri.freedesktop.org/wiki/Building/") http://dri.freedesktop.org/wiki/Building/
+          li
+            a(href="http://dri.freedesktop.org/wiki/Building/") 
+              | http://dri.freedesktop.org/wiki/Building/
+
       li
         p Parece ser que el direct rendering ya está activado:
 
@@ -904,151 +918,187 @@ OpenGL extensions:
 direct rendering: Yes
 ...`}
 
-  li
-    p.
-      Voy a instalar de nuevo los drivers Mesa/Xorg con el DRI activado. Uso para ello #[code sudo apt-get install libgl1-mesa-dri]
+  li.
+    Voy a instalar de nuevo los drivers Mesa/Xorg con el DRI activado. Uso para 
+    ello #[code sudo apt-get install libgl1-mesa-dri]
 
-  li
-    p.
-      Nada de lo que he probado ha funcionado. El sistema puede ejecutar #[code nvidia-settings], y ésta muestra
-      que se está usando el driver nVidia 319, pero #[code nvidia-detector] muestra #[code None] . Tanto #[code glxinfo] de
-      Mesa como #[code deviceQuery] de CUDA muestran una configuración correcta, pero el ejemplo del HandTracker
-      sigue sin funcionar. Estoy instalando los drivers privativos nVidia 319, y aunque probablemente eso desmonte
-      la configuración de CUDA, probablemente pueda configurarlo a posteriori y comprobar si algo ha cambiado.
-
-  section
-    h2 08/01/2014
-    ul
-      li
-        p.
-          Tras la última prueba me cargué el servidor de las X al fallar los drivers de nVidia actualizados. Los he
-            desinstalado y todo ha vuelto a la normalidad.
-
-      li
-        p.
-          He empezado a leer la documentación de OpenRAVE, ya que una parte del trabajo a realizar consiste en escribir
-          un plugin de ROS que se comunique con este software para introducir datos en el simulador.
+  li.
+    Nada de lo que he probado ha funcionado. El sistema puede ejecutar 
+    #[code nvidia-settings], y ésta muestra que se está usando el driver nVidia 
+    319, pero #[code nvidia-detector] muestra #[code None] . Tanto #[code glxinfo] 
+    de Mesa como #[code deviceQuery] de CUDA muestran una configuración correcta, 
+    pero el ejemplo del HandTracker sigue sin funcionar. Estoy instalando los 
+    drivers privativos nVidia 319, y aunque probablemente eso desmonte la 
+    configuración de CUDA, probablemente pueda configurarlo a posteriori 
+    y comprobar si algo ha cambiado.
 
   section
-    h2 10/01/2014
+    h3.date 08/01/2014
+    ul
+      li.
+        Tras la última prueba me cargué el servidor de las X al fallar los drivers 
+        de nVidia actualizados. Los he desinstalado y todo ha vuelto a la normalidad.
+
+      li.
+        He empezado a leer la documentación de OpenRAVE, ya que una parte del 
+        trabajo a realizar consiste en escribir un plugin de ROS que se comunique 
+        con este software para introducir datos en el simulador.
+
+  section
+    h3.date 10/01/2014
 
     ul
-      li
-        p Sigo documentándome en OpenRAVE
+      li Sigo documentándome en OpenRAVE
 
       li
-        p
-          | Investigando en el asunto de la ventana de OpenGL transparente, he llegado a la conclusión de que es algo particular de la librería del HandTracker y que la ventana aparece justo en la llamada a
-          code initialize()
-          |  de la misma. He encontrado un hilo en Stack Overflow sobre el asunto y podría ser debido a la manera de implementar el redibujado con doble o simple buffer en la librería:
+        p.
+          Investigando en el asunto de la ventana de OpenGL transparente, he llegado 
+          a la conclusión de que es algo particular de la librería del HandTracker 
+          y que la ventana aparece justo en la llamada a #[code initialize()]
+          de la misma. He encontrado un hilo en Stack Overflow sobre el asunto 
+          y podría ser debido a la manera de implementar el redibujado con doble 
+          o simple buffer en la librería:
+
         p
           a(href="http://stackoverflow.com/questions/18816882/no-display-transparent-window-with-opengl-2-and-primusrun-on-single-buffer")
             | http://stackoverflow.com/questions/18816882/no-display-transparent-window-with-opengl-2-and-primusrun-on-single-buffer
-        p
-          | Por desgracia no dispongo del código fuente de la librería y sólo puedo esperar que los autores de la misma revisen el código para mejorarlo.
+        p.
+          Por desgracia no dispongo del código fuente de la librería y sólo puedo 
+          esperar que los autores de la misma revisen el código para mejorarlo.
+
+      li.
+        Estoy haciendo un downgrade a la versión 4.2 de CUDA, por si la versión 
+        5.5 es incompatible con el rendering, y si esto no funciona les mandaré 
+        un email ya que no veo otras opciones.
+
       li
-        p
-          | Estoy haciendo un downgrade a la versión 4.2 de CUDA, por si la versión 5.5 es incompatible con el rendering, y si esto no funciona les mandaré un email ya que no veo otras opciones.
-      li
-        p
-          blockquote.email
-            p Hi K3DHT team,
+        blockquote.email
+          p Hi K3DHT team,
 
-            p sorry for the hassle, but I just can't seem to be able to set up my system in order to make your library work. I've tried downgrading my CUDA drivers and toolkit to version 4.2, but it still shows the empty, transparent opengl_renderer window detached from the camera streams. I've been fiddling with the sample code, and I observed that the window is created right after the call to HandTrackerLib::initialize(), so it's the library that's causing the problem, although no error is displayed.
+          p.
+            sorry for the hassle, but I just can't seem to be able to set up my 
+            system in order to make your library work. I've tried downgrading my 
+            CUDA drivers and toolkit to version 4.2, but it still shows the empty, 
+            transparent opengl_renderer window detached from the camera streams. 
+            I've been fiddling with the sample code, and I observed that the window 
+            is created right after the call to HandTrackerLib::initialize(), so 
+            it's the library that's causing the problem, although no error is 
+            displayed.
 
-            p I've been googling for days and the closer I've gotten to a solution to the empty, transparent window was on this post on Stack Overflow:
+          p.
+            I've been googling for days and the closer I've gotten to a solution 
+            to the empty, transparent window was on this post on Stack Overflow:
 
-            p http://stackoverflow.com/questions/18816882/no-display-transparent-window-with-opengl-2-and-primusrun-on-single-buffer
+          p http://stackoverflow.com/questions/18816882/no-display-transparent-window-with-opengl-2-and-primusrun-on-single-buffer
 
-            p Apparently the post author has the exact same problem that I'm having, and he solved it by using double buffering for the OpenGL rendering. So far I've written several test programs and tried out lots of demos from different sources, and absolutely every program runs smoothly, with or without double buffer rendering. I'm completely stuck with this, since I can run virtually any OpenGL application out there without issues, except yours...
+          p.
+            Apparently the post author has the exact same problem that I'm having, 
+            and he solved it by using double buffering for the OpenGL rendering. 
+            So far I've written several test programs and tried out lots of demos 
+            from different sources, and absolutely every program runs smoothly, 
+            with or without double buffer rendering. I'm completely stuck with this, 
+            since I can run virtually any OpenGL application out there without 
+            issues, except yours...
 
-            p Is there any possibility of having the source code at least for the rendering part of the library so I can make tests, patch it, and get back to you with my findings? I know I may be asking too much, but my work at Robinlab depends almost entirely on your library and right now I can't use it on my workstation.
+          p.
+            Is there any possibility of having the source code at least for the 
+            rendering part of the library so I can make tests, patch it, and get 
+            back to you with my findings? I know I may be asking too much, but 
+            my work at Robinlab depends almost entirely on your library and right 
+            now I can't use it on my workstation.
 
-            p In the meantime I will maybe try to setup another PC with different hardware to see if I get different results.
+          p.
+            In the meantime I will maybe try to setup another PC with different 
+            hardware to see if I get different results.
 
-            p Again, thanks in advance and sorry for the inconvenience.
+          p Again, thanks in advance and sorry for the inconvenience.
 
-            p All the best,
-            p --
+          p All the best,
+          p --
 
-            p.
-              Óscar Gómez Alcañiz#[br]
-              Grado en Informática, 4º Curso#[br]
-              Universitat Jaume I
+          p.
+            Óscar Gómez Alcañiz#[br]
+            Grado en Informática, 4º Curso#[br]
+            Universitat Jaume I
   section
-    h2 15/01/2014
+    h3.date 15/01/2014
     ul
+      li.
+        El downgrade no parece ser posible, ya que no me deja installar la 
+        versión 4.2 por una serie de problemas que parecen tener su origen en 
+        las cabeceras del kernel de Linux. Voy a mandarles el email y a ver 
+        si puedo echar una ojeada al código fuente de la parte del rendering.
+      li.
+        Estoy haciendo pruebas con OpenGL a ver si encuentro problemas en otros 
+        códigos, para poder determinar la solución en caso de obtener el código 
+        de rendering del HandTracker.
+      li.
+        Para compilar ciertos ejemplos de OpenGL que he bajado de una página de 
+        tutoriales [#[a(href="http://ogldev.atspace.co.uk/") http://ogldev.atspace.co.uk/]], 
+        he necesitado instalar la librería #[code assimp 3.0.1264.10], y al tratar 
+        de instalarla, ha generado un error de dependencias con una versión 
+        ya existente y no me deja ni reinstalar ni desinstalar, ni siquiera 
+        con el comando #[code sudo apt-get install -f]. Estoy arreglando el 
+        entuerto...
       li
+        p.
+          He podido solucionarlo forzando la sobreescritura de archivos mediante 
+          una instalación manual desde la caché de paquetes:
         p
-          | El downgrade no parece ser posible, ya que no me deja installar la versión 4.2 por una serie de problemas que parecen tener su origen en las cabeceras del kernel de Linux. Voy a mandarles el email y a ver si puedo echar una ojeada al código fuente de la parte del rendering.
-    ul
-      li
-        p
-          | Estoy haciendo pruebas con OpenGL a ver si encuentro problemas en otros códigos, para poder determinar la solución en caso de obtener el código de rendering del HandTracker.
-    ul
-      li
-        p
-          | Para compilar ciertos ejemplos de OpenGL que he bajado de una página de tutoriales [
-          a(href="http://ogldev.atspace.co.uk/") http://ogldev.atspace.co.uk/
-          | ], he necesitado instalar la librería
-          code assimp 3.0.1264.10
-          | , y al tratar de instalarla, ha generado un error de dependencias con una versión ya existente y no me deja ni reinstalar ni desinstalar, ni siquiera con el comando
-          code sudo apt-get install -f
-          | . Estoy arreglando el entuerto...
-    ul
-      li
-        p
-          | He podido solucionarlo forzando la sobreescritura de archivos mediante una instalación manual desde la caché de paquetes:
-        p
-          code
-            | sudo dpkg -i --force-overwrite /var/cache/apt/archives/libassimp3.0-r1264-dev_3.0.1264.10-ubuntu1~precise1_amd64.deb
+          code sudo dpkg -i --force-overwrite /var/cache/apt/archives/libassimp3.0-r1264-dev_3.0.1264.10-ubuntu1~precise1_amd64.deb
+
   section
-    h2 17/01/2014
+    h3.date 17/01/2014
     ul
       li
-        p
-          | He empezado a investigar cómo usar la versión Windows de la librería HandTracker. Por lo visto puedo habilitar la opción
-          code io.print_solutions = 1
-          |  en el archivo
-          code input_output.ini
-          |  para exportar los valores del vector 27D de soluciones por la consola.
-        p
-          | Mi problema ahora es cómo usar estos valores sin sacarlos por la consola. Debo cambiar el código de la demo, pero el único código de la demo que tengo es el de la versión Linux. Voy a mandar un email al K3DHT team para var si necesito algo especial para compilar en Windows.
-        p
-          | Otro descubrimiento que he hecho es que técnicamente se puede cambiar el plugin de rendering que usa la demo. Por ejemplo, la versión Windows usa el Direct3D, y la versión Linux OpenGL.
+        p.
+          He empezado a investigar cómo usar la versión Windows de la librería 
+          HandTracker. Por lo visto puedo habilitar la opción #[code io.print_solutions = 1] 
+          en el archivo #[code input_output.ini] para exportar los valores del 
+          vector 27D de soluciones por la consola.
+        p.
+          Mi problema ahora es cómo usar estos valores sin sacarlos por la consola. 
+          Debo cambiar el código de la demo, pero el único código de la demo que 
+          tengo es el de la versión Linux. Voy a mandar un email al K3DHT team 
+          para var si necesito algo especial para compilar en Windows.
+        p.
+          Otro descubrimiento que he hecho es que técnicamente se puede cambiar 
+          el plugin de rendering que usa la demo. Por ejemplo, la versión Windows 
+          usa el Direct3D, y la versión Linux OpenGL.
         h5
           code rendering.ini
           | :
         blockquote
-          pre(style={columnCount: 2})
-            strong Linux
-            | plugins.renderer_libraries = librenderer_plugin_opengl.so
-            |
-            | plugins.renderer_ids=renderer
-            | plugins.renderer_classes=OPENGL
-            |
-            | rendering.alpha=1 #0.5
-            | rendering.maxcols=1
-            | rendering.maxrows=64
-            | rendering.zfar=2.5
-            | rendering.znear=0.1
-            | rendering.vwidth = 512
-            | rendering.vheight = 400
-            | rendering.edges = 1
-            strong Windows
-            | plugins.renderer_libraries = plugins/renderer_plugin_D3D9.dll
-            |
-            | plugins.renderer_ids=renderer
-            | plugins.renderer_classes=D3D9
-            |
-            | rendering.alpha=0.5
-            | rendering.maxcols=8
-            | rendering.maxrows=8
-            | rendering.zfar=2.5
-            | rendering.znear=0.1
-            | rendering.vwidth = 512
-            | rendering.vheight = 400
-            | rendering.edges = 1
+          pre(style={columnCount: 2, whiteSpace: 'normal'}).
+            #[strong Linux]#[br]
+            plugins.renderer_libraries = librenderer_plugin_opengl.so
+            
+            plugins.renderer_ids=renderer
+            plugins.renderer_classes=OPENGL
+            
+            rendering.alpha=1 #0.5
+            rendering.maxcols=1
+            rendering.maxrows=64
+            rendering.zfar=2.5
+            rendering.znear=0.1
+            rendering.vwidth = 512
+            rendering.vheight = 400
+            rendering.edges = 1
+            #[br]
+            #[strong Windows]#[br]
+            plugins.renderer_libraries = plugins/renderer_plugin_D3D9.dll
+            
+            plugins.renderer_ids=renderer
+            plugins.renderer_classes=D3D9
+            
+            rendering.alpha=0.5
+            rendering.maxcols=8
+            rendering.maxrows=8
+            rendering.zfar=2.5
+            rendering.znear=0.1
+            rendering.vwidth = 512
+            rendering.vheight = 400
+            rendering.edges = 1
         p
           | Les pregunto también si es posible usar otro plugin u obtener el código del plugin OpenGL pues probablemente sea el culpable del mal funcionamiento.
       li
