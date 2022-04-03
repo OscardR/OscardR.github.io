@@ -12,11 +12,23 @@ $console-padding: 1em;
   border-left: 0.4em solid #eeb;
 }
 
-code {
-  pre {
+section {
+  max-width: 83ch;
+  margin: 1.2em auto;
+  padding: 1em 2em;
+  background: rgb(0 0 0 / 2%);
+  border-radius: 1em;
+  box-shadow: 0.6em 0.6em 0em rgb(0 0 0 / 4%);
+}
+
+pre {
+  overflow: hidden;
+  padding: 0;
+  border-radius: math.div($console-padding, 4);
+
+  code {
     max-width: 100%;
     width: 100%;
-    display: inline-block;
     overflow-x: auto;
     padding: (0.6 * $console-padding) 1em;
     color: $console-color;
@@ -24,6 +36,7 @@ code {
     border-radius: math.div($console-padding, 4);
     text-shadow: 1px 1px 1px
       transparentize($console-background, 1 - $console-alpha);
+    margin: 0;
   }
 }
 
@@ -43,9 +56,10 @@ ol {
 }
 
 h3.date {
-  text-indent: -1.3em;
+  text-indent: -1.8ex;
 
   &:before {
-    content: "📅 ";
+    content: "📅";
+    margin-right: 1ex;
   }
 }
