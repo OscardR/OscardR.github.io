@@ -100,8 +100,8 @@
       li
         p Instalar OpenNI2-FreenectDriver: Error al hacer build:
 
-        code
-          pre {
+        pre
+          code {
 `oscar@ia22:/datos/OpenNI2-FreenectDriver-master$ sudo ./waf configure build
 Setting top to                           : /datos/OpenNI2-FreenectDriver-master
 Setting out to                           : /datos/OpenNI2-FreenectDriver-master/build
@@ -116,30 +116,27 @@ Build failed
 [task 21479504: vnum libFreenectDriver.so -> libFreenectDriver.so.1,libFreenectDriver.so.1.2.1]
 ''`}
 
-  li.
-    Solucionado: No se puede compilar desde la partición de datos, al ser NTFS 
-    no permite symlinks, necesarios durante el proceso de compilación.
+      li.
+        Solucionado: No se puede compilar desde la partición de datos, al ser NTFS 
+        no permite symlinks, necesarios durante el proceso de compilación.
 
-  li
-    p.
-      Tratando ejecutar el 3D Hand Tracking Library de FORTH con los drivers 
-      Freenect recién compilados, obtengo el siguiente error:
+      li
+        p.
+          Tratando ejecutar el 3D Hand Tracking Library de FORTH con los drivers 
+          Freenect recién compilados, obtengo el siguiente error:
 
-    code
-      pre {
-`oscar@ia22:/datos/HandTracker_0.4b/HandTracker_0.4_linux_x64/Bin$ sudo ./HandTrackerSample
+        pre
+          code {`oscar@ia22:/datos/HandTracker_0.4b/HandTracker_0.4_linux_x64/Bin$ sudo ./HandTrackerSample
 Initialize OpenNI
 1385037193471665 INFO       New log started on 2013-11-21 13:33:13
 1385037193471679 INFO       --- Filter Info --- Minimum Severity: VERBOSE
 1385037193471699 VERBOSE    OpenNI 2.0.0 (Build 29)-Linux-x86 (Dec  6 2012 11:36:35)
 1385037193471709 VERBOSE    Using './OpenNI2/Drivers' as driver path
 1385037193471716 VERBOSE    Looking for drivers in drivers repository './OpenNI2/Drivers'`}
-  br
-  strong {
-`1385037193472297 WARNING    LibraryHandler: Couldn't find function oniDriverStreamAddRefToFrame in libFreenectDriver.so. Stopping`}
-  br
-  | {
-`1385037193472318 VERBOSE    Couldn't use file 'libFreenectDriver.so' as a device driver
+            br
+            strong {`1385037193472297 WARNING    LibraryHandler: Couldn't find function oniDriverStreamAddRefToFrame in libFreenectDriver.so. Stopping`}
+            br
+            | {`1385037193472318 VERBOSE    Couldn't use file 'libFreenectDriver.so' as a device driver
 1385037193472781 INFO       New log started on 2013-11-21 13:33:13
 1385037193472794 INFO       --- Filter Info --- Minimum Severity: VERBOSE
 1385037193472805 VERBOSE    Initializing USB...
@@ -151,34 +148,34 @@ Shutdown complete
 
 0x7f4e1b4bf5b8`}
 
-  p.
-    Parece ser que los drivers están incompletos. Abro un issue en la página 
-    de GitHub de los drivers, y mandaré un email a FORTH para ver si se puede 
-    usar la versión 1.5 de OpenNI con su demo, y cómo conseguirla.
+        p.
+          Parece ser que los drivers están incompletos. Abro un issue en la página 
+          de GitHub de los drivers, y mandaré un email a FORTH para ver si se puede 
+          usar la versión 1.5 de OpenNI con su demo, y cómo conseguirla.
 
-  li
-    p.
-      Cambio de táctica: Intentar recompilar los samples que vienen con la 3D 
-      Hand Tracking library. Obtengo errores con respecto a OpenCV:
+      li
+        p.
+          Cambio de táctica: Intentar recompilar los samples que vienen con la 3D 
+          Hand Tracking library. Obtengo errores con respecto a OpenCV:
 
-    code
-      pre {`oscar@ia22:/datos/HandTracker_0.4b/HandTracker_0.4_linux_x64/Sample$ make
+        pre
+          code {`oscar@ia22:/datos/HandTracker_0.4b/HandTracker_0.4_linux_x64/Sample$ make
 g++ -MD -MP -MT "./../Bin/Intermediate/x64-Release/HandTrackerSample/main.d ../Bin/Intermediate/x64-Release/HandTrackerSample/main.o" -c -msse3 -DUNIX -DGLX_GLXEXT_LEGACY -Wall -O2 -DNDEBUG -I../Include -I/usr/local/include -I/datos/OpenNI/openni-x64-2.2/Include  -fPIC -fvisibility=hidden -o ../Bin/Intermediate/x64-Release/HandTrackerSample/main.o main.cpp
 main.cpp:5:30: error fatal: opencv2/opencv.hpp: No existe el archivo o el directorio
 compilaci&oacute;n terminada.
 make: *** [../Bin/Intermediate/x64-Release/HandTrackerSample/main.o] Error 1`}
 
-  p.
-    Voy a tratar de instalar OpenCV 2.4.6 manualmente [#[a(href="http://www.samontab.com/web/2012/06/installing-opencv-2-4-1-ubuntu-12-04-lts/") http://www.samontab.com/web/2012/06/installing-opencv-2-4-1-ubuntu-12-04-lts/]]
+      p.
+        Voy a tratar de instalar OpenCV 2.4.6 manualmente [#[a(href="http://www.samontab.com/web/2012/06/installing-opencv-2-4-1-ubuntu-12-04-lts/") http://www.samontab.com/web/2012/06/installing-opencv-2-4-1-ubuntu-12-04-lts/]]
 
-  li
-    p.
-      #[code 15:15] OpenCV compilando sin problemas. Lleva casi una hora. 
-      Puede ser debido a que por defecto compila para varias versiones de la 
-      arquitectura CUDA [#[a(href="http://answers.opencv.org/question/5090/why-opencv-building-is-so-slow-with-cuda/") http://answers.opencv.org/question/5090/why-opencv-building-is-so-slow-with-cuda/]]
+      li
+        p.
+          #[code 15:15] OpenCV compilando sin problemas. Lleva casi una hora. 
+          Puede ser debido a que por defecto compila para varias versiones de la 
+          arquitectura CUDA [#[a(href="http://answers.opencv.org/question/5090/why-opencv-building-is-so-slow-with-cuda/") http://answers.opencv.org/question/5090/why-opencv-building-is-so-slow-with-cuda/]]
 
-  li
-    p #[code 17:14] Tras dos horas se acaba de compilar. Paso a instalar...
+      li
+        p #[code 17:14] Tras dos horas se acaba de compilar. Paso a instalar...
 
   section
     h3.date 22/11/2013
@@ -189,8 +186,8 @@ make: *** [../Bin/Intermediate/x64-Release/HandTrackerSample/main.o] Error 1`}
           ejecutar y compilar con OpenNI, los drivers Freenect, NiTE, OpenCV y CUDA. 
           Añadidas las líneas siguientes a #[code bash.bashrc]:
 
-        code
-          pre {`export PATH=$PATH:/usr/local/cuda-5.5/bin
+        pre
+          code {`export PATH=$PATH:/usr/local/cuda-5.5/bin
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 export LD_LIBRARY_PATH=/usr/local/cuda-5.5/lib64:$LD_LIBRARY_PATH
 export OPENNI_PATH='/datos/OpenNI/openni-x64-1.5.7.10'
@@ -199,33 +196,33 @@ export OPENNI2_REDIST='/datos/OpenNI/openni-x64-2.2/Redist'
 export NITE2_INCLUDE='/datos/NiTE/nite-x64-2.2/Include'
 export NITE2_REDIST64='/datos/NiTE/nite-x64-2.2/Redist'`}
 
-  p Reiniciar sesión
+        p Reiniciar sesión
 
-    li.
-      He recompilado con éxito el ejemplo de la librería 3D Hand Tracking, pero 
-      sigo viendo el mensaje de error anterior. Es posible que el driver freenect 
-      para OpenNI2 esté en una fase inicial y no está completo, por lo que no 
-      va a ser posible hacer funcionar la librería con dicho driver.
+      li.
+        He recompilado con éxito el ejemplo de la librería 3D Hand Tracking, pero 
+        sigo viendo el mensaje de error anterior. Es posible que el driver freenect 
+        para OpenNI2 esté en una fase inicial y no está completo, por lo que no 
+        va a ser posible hacer funcionar la librería con dicho driver.
 
-    li Posibilidades:
+      li Posibilidades:
 
-      ol
-        li.
-          Completar el driver / esperar a que lo completen / buscar un fork 
-          que implemente las funciones que faltan
+        ol
+          li.
+            Completar el driver / esperar a que lo completen / buscar un fork 
+            que implemente las funciones que faltan
 
-        li.
-          Reescribir la librería para que funcione con OpenNI 1.5 / solicitar 
-          a FORTH, si la tienen, una versión que funcione con 1.5
+          li.
+            Reescribir la librería para que funcione con OpenNI 1.5 / solicitar 
+            a FORTH, si la tienen, una versión que funcione con 1.5
 
-    li.
-      Optamos por la primera opción: en la rama #[code develop] del repositorio 
-      del FreenectDriver para OpenNI2 [#[a(href="https://github.com/piedar/OpenNI2-FreenectDriver/tree/develop") https://github.com/piedar/OpenNI2-FreenectDriver/tree/develop]] 
-      parece haber más código desarrollado, lo he descargado y voy a compilar.
+      li.
+        Optamos por la primera opción: en la rama #[code develop] del repositorio 
+        del FreenectDriver para OpenNI2 [#[a(href="https://github.com/piedar/OpenNI2-FreenectDriver/tree/develop") https://github.com/piedar/OpenNI2-FreenectDriver/tree/develop]] 
+        parece haber más código desarrollado, lo he descargado y voy a compilar.
 
-    li.
-      No ha dado resultado. Mandaré un email a FORTH por si tienen la versión 
-      de su demo funcionando con OpenNI 1.5
+      li.
+        No ha dado resultado. Mandaré un email a FORTH por si tienen la versión 
+        de su demo funcionando con OpenNI 1.5
 
   section
     h3.date 26/11/2013
@@ -264,8 +261,8 @@ export NITE2_REDIST64='/datos/NiTE/nite-x64-2.2/Redist'`}
           I found out it compiles successfully, but I get the following error 
           when running it:
 
-        code
-          pre {`$ ./HandTrackerSample
+        pre
+          code {`$ ./HandTrackerSample
 Initialize OpenNI
 1385037193471665 INFO       New log started on 2013-11-21 13:33:13
 1385037193471679 INFO       --- Filter Info --- Minimum Severity: VERBOSE
@@ -285,31 +282,31 @@ Exception: Couldn't open device     DeviceOpen using default: no devices found
 Shutdown complete
 0x7f4e1b4bf5b8`}
 
-  p.
-    As far as I'm concerned — given my little knowledge of all the software 
-    and libraries involved — this seems to be a problem with the drivers, 
-    which at this point are yet incomplete.
+        p.
+          As far as I'm concerned — given my little knowledge of all the software 
+          and libraries involved — this seems to be a problem with the drivers, 
+          which at this point are yet incomplete.
 
-  p.
-    I know that there are complete drivers — or at least more complete drivers 
-    — which will only work with OpenNI 1.5 [#[a(href="https://github.com/avin2/SensorKinect/") https://github.com/avin2/SensorKinect/]].
+        p.
+          I know that there are complete drivers — or at least more complete drivers 
+          — which will only work with OpenNI 1.5 [#[a(href="https://github.com/avin2/SensorKinect/") https://github.com/avin2/SensorKinect/]].
 
-  p.
-    Therefore, my question is: Do you have a version of your 3D Hand Tracking 
-    Library which works on top of OpenNI 1.5 and NiTE 1.5? If that's not 
-    the case, do you know of a different driver or workaround for the
-    problems explained? I would really appreciate some advice.
+        p.
+          Therefore, my question is: Do you have a version of your 3D Hand Tracking 
+          Library which works on top of OpenNI 1.5 and NiTE 1.5? If that's not 
+          the case, do you know of a different driver or workaround for the
+          problems explained? I would really appreciate some advice.
 
-  p Thank you in advance for your time,
+        p Thank you in advance for your time,
 
-  p.
-    Yours faithfully, #[br]
-    --
+        p.
+          Yours faithfully, #[br]
+          --
 
-  p.
-    Óscar Gómez Alcañiz #[br]
-    Grado en Informática, 4º Curso #[br]
-    Universitat Jaume I
+        p.
+          Óscar Gómez Alcañiz #[br]
+          Grado en Informática, 4º Curso #[br]
+          Universitat Jaume I
 
       li
         p.
@@ -391,8 +388,8 @@ Shutdown complete
             Here's the code:
 
           p
-            code
-              pre {`if (device.open(openni::ANY_DEVICE) != STATUS_OK)
+            pre
+              code {`if (device.open(openni::ANY_DEVICE) != STATUS_OK)
   if (device.open(argv[1]) != STATUS_OK)    // opens a .oni file supplied via console args
     throw std::runtime_error(std::string("Couldn't open device ")+ OpenNI::getExtendedError());`}
       p.
@@ -549,13 +546,13 @@ Shutdown complete
           He probado el wrapper de ROS para Xtion con OpenNI2 (#[code openni2_camera_node]), 
           instalando y ejecutando con:
 
-        code
-          pre {`$ sudo apt-get install ros-hydro-openni2*
+        pre
+          code {`$ sudo apt-get install ros-hydro-openni2*
 $ rosrun openni2_camera openni2_camera_node`}
 
-  p.
-    Obtengo un warning respecto a los threads del USB, aunque no tiene 
-    por qué ser crucial.
+        p.
+          Obtengo un warning respecto a los threads del USB, aunque no tiene 
+          por qué ser crucial.
 
   section
     h3.date 20/12/2013
@@ -645,7 +642,7 @@ $ rosrun openni2_camera openni2_camera_node`}
             Universitat Jaume I
 
   section
-    h2 27/12/2013
+    h3.date 27/12/2013
 
     ul
       li
@@ -656,20 +653,22 @@ $ rosrun openni2_camera openni2_camera_node`}
             Dear Oscar Gomez,
 
           p.
-            It looks like the issue you are having is related with the OpenGL support on your system. The solution vector
-            returns the configuration of the hand in initialization mode but since the OpenGL rendering does not work
-            properly the values remain the same.
+            It looks like the issue you are having is related with the OpenGL 
+            support on your system. The solution vector returns the configuration 
+            of the hand in initialization mode but since the OpenGL rendering 
+            does not work properly the values remain the same.
 
           p.
-            You need to make sure your system supports OpenGL 3.3 and the latest Nvidia drivers with cuda support are enabled.
+            You need to make sure your system supports OpenGL 3.3 and the latest 
+            Nvidia drivers with cuda support are enabled.
 
           p.
-            You can try to test your CUDA support by downloading the Nvidia CUDA 4.2 toolkit from here and try to run
-            the sample applications.
+            You can try to test your CUDA support by downloading the Nvidia CUDA 
+            4.2 toolkit from here and try to run the sample applications.
 
           p.
-            Alternately you can try running the 3D Hand Tracker Demo application for windows which uses DirectX instread
-            of OpenGL for rendering.
+            Alternately you can try running the 3D Hand Tracker Demo application 
+            for windows which uses DirectX instread of OpenGL for rendering.
 
           p.
             kind regards, #[br]
@@ -678,18 +677,23 @@ $ rosrun openni2_camera openni2_camera_node`}
 
       li
         p.
-          Voy a probar si la versión de OpenGL y CUDA son compatibles con las que me especifican y de lo contrario trataré
-          de instalar exactamente dichas versiones. A continuación, el mail que les he enviado:
+          Voy a probar si la versión de OpenGL y CUDA son compatibles con las que 
+          me especifican y de lo contrario trataré de instalar exactamente dichas 
+          versiones. A continuación, el mail que les he enviado:
 
         blockquote.email
           p Hi K3DHT team,
 
-          p first of all, I want to thank you all for your support and hope you are having a nice Christmas holiday!
+          p.
+            first of all, I want to thank you all for your support and hope you 
+            are having a nice Christmas holiday!
 
-          p Currently my system is running CUDA 5.5 and OpenGL 4.3.0, as shown below:
+          p.
+            Currently my system is running CUDA 5.5 and OpenGL 4.3.0, as shown 
+            below:
 
-          code
-            pre
+          pre
+            code
               strong $ deviceQuery
               | {`
 CUDA Device Query (Runtime API) version (CUDART static linking)
@@ -732,10 +736,11 @@ CUDA Device Query (Runtime API) version (CUDART static linking)
     < Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) >
 
 deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 5.5, CUDA Runtime Version = 5.5, NumDevs = 1, Device0 = GeForce GTX 560
-Result = PASS`}
+Result = PASS
+`}
 
-          code
-            pre
+          pre
+            code
               strong $ glxinfo | grep GL
               | {`
 ...
@@ -862,14 +867,15 @@ OpenGL extensions:
   ...`}
 
           p.
-            It seems there's some sort of problem with OpenGL but in theory the installed 
-            versions should be compatible backwards. I think I will try and downgrade 
-            the CUDA and OpenGL libraries to versions 4.2 and 3.3 respectively, and see 
-            if it makes any difference.
+            It seems there's some sort of problem with OpenGL but in theory the 
+            installed versions should be compatible backwards. I think I will try 
+            and downgrade the CUDA and OpenGL libraries to versions 4.2 and 3.3 
+            respectively, and see if it makes any difference.
 
           p.
-            Another issue could be the library linking at compile time. So far the sample 
-            code compiles without any hassle, but I'll check it out again anyway.
+            Another issue could be the library linking at compile time. So far 
+            the sample code compiles without any hassle, but I'll check it out 
+            again anyway.
 
           p Again, thank you for your help and have a nice New Year's Eve.
 
@@ -879,793 +885,1077 @@ OpenGL extensions:
           
       li
         p.
-          Por otra parte, he seguido investigando para encontrar alguien que tuviese el mismo problema de la ventana
-          de OpenGL transparente en algún foro, y he encontrado lo siguiente:
+          Por otra parte, he seguido investigando para encontrar alguien que 
+          tuviese el mismo problema de la ventana de OpenGL transparente en 
+          algún foro, y he encontrado lo siguiente:
 
         p
           a(href="http://www.opengl.org/discussion_boards/showthread.php/135808-Using-GLUT-windows-are-transparent-Configuration-problem/page2")
             | http://www.opengl.org/discussion_boards/showthread.php/135808-Using-GLUT-windows-are-transparent-Configuration-problem/page2
       li
-        p Podría ser que necesite activar el direct rendering (#[code DRI]) en los drivers Mesa/OpenGL. Fuentes:
+        p.
+          Podría ser que necesite activar el direct rendering (#[code DRI]) en 
+          los drivers Mesa/OpenGL. Fuentes:
 
-          ol
-            li
-              a(href="http://lists.freebsd.org/pipermail/freebsd-stable/2005-October/018645.html") http://lists.freebsd.org/pipermail/freebsd-stable/2005-October/018645.html
+        ol
+          li
+            a(href="http://lists.freebsd.org/pipermail/freebsd-stable/2005-October/018645.html") 
+              | http://lists.freebsd.org/pipermail/freebsd-stable/2005-October/018645.html
 
-            li
-              a(href="http://dri.freedesktop.org/wiki/Building/") http://dri.freedesktop.org/wiki/Building/
+          li
+            a(href="http://dri.freedesktop.org/wiki/Building/") 
+              | http://dri.freedesktop.org/wiki/Building/
+
       li
         p Parece ser que el direct rendering ya está activado:
 
-        code
-          pre
+        pre
+          code
             strong $ glxinfo | grep direct
             | {`
 direct rendering: Yes
 ...`}
 
-  li
-    p.
-      Voy a instalar de nuevo los drivers Mesa/Xorg con el DRI activado. Uso para ello #[code sudo apt-get install libgl1-mesa-dri]
+    li.
+      Voy a instalar de nuevo los drivers Mesa/Xorg con el DRI activado. Uso para 
+      ello #[code sudo apt-get install libgl1-mesa-dri]
 
-  li
-    p.
-      Nada de lo que he probado ha funcionado. El sistema puede ejecutar #[code nvidia-settings], y ésta muestra
-      que se está usando el driver nVidia 319, pero #[code nvidia-detector] muestra #[code None] . Tanto #[code glxinfo] de
-      Mesa como #[code deviceQuery] de CUDA muestran una configuración correcta, pero el ejemplo del HandTracker
-      sigue sin funcionar. Estoy instalando los drivers privativos nVidia 319, y aunque probablemente eso desmonte
-      la configuración de CUDA, probablemente pueda configurarlo a posteriori y comprobar si algo ha cambiado.
-
-  section
-    h2 08/01/2014
-    ul
-      li
-        p.
-          Tras la última prueba me cargué el servidor de las X al fallar los drivers de nVidia actualizados. Los he
-            desinstalado y todo ha vuelto a la normalidad.
-
-      li
-        p.
-          He empezado a leer la documentación de OpenRAVE, ya que una parte del trabajo a realizar consiste en escribir
-          un plugin de ROS que se comunique con este software para introducir datos en el simulador.
+    li.
+      Nada de lo que he probado ha funcionado. El sistema puede ejecutar 
+      #[code nvidia-settings], y ésta muestra que se está usando el driver nVidia 
+      319, pero #[code nvidia-detector] muestra #[code None] . Tanto #[code glxinfo] 
+      de Mesa como #[code deviceQuery] de CUDA muestran una configuración correcta, 
+      pero el ejemplo del HandTracker sigue sin funcionar. Estoy instalando los 
+      drivers privativos nVidia 319, y aunque probablemente eso desmonte la 
+      configuración de CUDA, probablemente pueda configurarlo a posteriori 
+      y comprobar si algo ha cambiado.
 
   section
-    h2 10/01/2014
+    h3.date 08/01/2014
+    ul
+      li.
+        Tras la última prueba me cargué el servidor de las X al fallar los drivers 
+        de nVidia actualizados. Los he desinstalado y todo ha vuelto a la normalidad.
+
+      li.
+        He empezado a leer la documentación de OpenRAVE, ya que una parte del 
+        trabajo a realizar consiste en escribir un plugin de ROS que se comunique 
+        con este software para introducir datos en el simulador.
+
+  section
+    h3.date 10/01/2014
 
     ul
-      li
-        p Sigo documentándome en OpenRAVE
+      li Sigo documentándome en OpenRAVE
 
       li
-        p
-          | Investigando en el asunto de la ventana de OpenGL transparente, he llegado a la conclusión de que es algo particular de la librería del HandTracker y que la ventana aparece justo en la llamada a
-          code initialize()
-          |  de la misma. He encontrado un hilo en Stack Overflow sobre el asunto y podría ser debido a la manera de implementar el redibujado con doble o simple buffer en la librería:
+        p.
+          Investigando en el asunto de la ventana de OpenGL transparente, he llegado 
+          a la conclusión de que es algo particular de la librería del HandTracker 
+          y que la ventana aparece justo en la llamada a #[code initialize()]
+          de la misma. He encontrado un hilo en Stack Overflow sobre el asunto 
+          y podría ser debido a la manera de implementar el redibujado con doble 
+          o simple buffer en la librería:
+
         p
           a(href="http://stackoverflow.com/questions/18816882/no-display-transparent-window-with-opengl-2-and-primusrun-on-single-buffer")
             | http://stackoverflow.com/questions/18816882/no-display-transparent-window-with-opengl-2-and-primusrun-on-single-buffer
-        p
-          | Por desgracia no dispongo del código fuente de la librería y sólo puedo esperar que los autores de la misma revisen el código para mejorarlo.
+        p.
+          Por desgracia no dispongo del código fuente de la librería y sólo puedo 
+          esperar que los autores de la misma revisen el código para mejorarlo.
+
+      li.
+        Estoy haciendo un downgrade a la versión 4.2 de CUDA, por si la versión 
+        5.5 es incompatible con el rendering, y si esto no funciona les mandaré 
+        un email ya que no veo otras opciones.
+
       li
-        p
-          | Estoy haciendo un downgrade a la versión 4.2 de CUDA, por si la versión 5.5 es incompatible con el rendering, y si esto no funciona les mandaré un email ya que no veo otras opciones.
-      li
-        p
-          blockquote.email
-            p Hi K3DHT team,
+        blockquote.email
+          p Hi K3DHT team,
 
-            p sorry for the hassle, but I just can't seem to be able to set up my system in order to make your library work. I've tried downgrading my CUDA drivers and toolkit to version 4.2, but it still shows the empty, transparent opengl_renderer window detached from the camera streams. I've been fiddling with the sample code, and I observed that the window is created right after the call to HandTrackerLib::initialize(), so it's the library that's causing the problem, although no error is displayed.
+          p.
+            sorry for the hassle, but I just can't seem to be able to set up my 
+            system in order to make your library work. I've tried downgrading my 
+            CUDA drivers and toolkit to version 4.2, but it still shows the empty, 
+            transparent opengl_renderer window detached from the camera streams. 
+            I've been fiddling with the sample code, and I observed that the window 
+            is created right after the call to HandTrackerLib::initialize(), so 
+            it's the library that's causing the problem, although no error is 
+            displayed.
 
-            p I've been googling for days and the closer I've gotten to a solution to the empty, transparent window was on this post on Stack Overflow:
+          p.
+            I've been googling for days and the closer I've gotten to a solution 
+            to the empty, transparent window was on this post on Stack Overflow:
 
-            p http://stackoverflow.com/questions/18816882/no-display-transparent-window-with-opengl-2-and-primusrun-on-single-buffer
+          p http://stackoverflow.com/questions/18816882/no-display-transparent-window-with-opengl-2-and-primusrun-on-single-buffer
 
-            p Apparently the post author has the exact same problem that I'm having, and he solved it by using double buffering for the OpenGL rendering. So far I've written several test programs and tried out lots of demos from different sources, and absolutely every program runs smoothly, with or without double buffer rendering. I'm completely stuck with this, since I can run virtually any OpenGL application out there without issues, except yours...
+          p.
+            Apparently the post author has the exact same problem that I'm having, 
+            and he solved it by using double buffering for the OpenGL rendering. 
+            So far I've written several test programs and tried out lots of demos 
+            from different sources, and absolutely every program runs smoothly, 
+            with or without double buffer rendering. I'm completely stuck with this, 
+            since I can run virtually any OpenGL application out there without 
+            issues, except yours...
 
-            p Is there any possibility of having the source code at least for the rendering part of the library so I can make tests, patch it, and get back to you with my findings? I know I may be asking too much, but my work at Robinlab depends almost entirely on your library and right now I can't use it on my workstation.
+          p.
+            Is there any possibility of having the source code at least for the 
+            rendering part of the library so I can make tests, patch it, and get 
+            back to you with my findings? I know I may be asking too much, but 
+            my work at Robinlab depends almost entirely on your library and right 
+            now I can't use it on my workstation.
 
-            p In the meantime I will maybe try to setup another PC with different hardware to see if I get different results.
+          p.
+            In the meantime I will maybe try to setup another PC with different 
+            hardware to see if I get different results.
 
-            p Again, thanks in advance and sorry for the inconvenience.
+          p Again, thanks in advance and sorry for the inconvenience.
 
-            p All the best,
-            p --
+          p All the best,
+          p --
 
-            p.
-              Óscar Gómez Alcañiz#[br]
-              Grado en Informática, 4º Curso#[br]
-              Universitat Jaume I
+          p.
+            Óscar Gómez Alcañiz#[br]
+            Grado en Informática, 4º Curso#[br]
+            Universitat Jaume I
   section
-    h2 15/01/2014
+    h3.date 15/01/2014
     ul
+      li.
+        El downgrade no parece ser posible, ya que no me deja installar la 
+        versión 4.2 por una serie de problemas que parecen tener su origen en 
+        las cabeceras del kernel de Linux. Voy a mandarles el email y a ver 
+        si puedo echar una ojeada al código fuente de la parte del rendering.
+      li.
+        Estoy haciendo pruebas con OpenGL a ver si encuentro problemas en otros 
+        códigos, para poder determinar la solución en caso de obtener el código 
+        de rendering del HandTracker.
+      li.
+        Para compilar ciertos ejemplos de OpenGL que he bajado de una página de 
+        tutoriales [#[a(href="http://ogldev.atspace.co.uk/") http://ogldev.atspace.co.uk/]], 
+        he necesitado instalar la librería #[code assimp 3.0.1264.10], y al tratar 
+        de instalarla, ha generado un error de dependencias con una versión 
+        ya existente y no me deja ni reinstalar ni desinstalar, ni siquiera 
+        con el comando #[code sudo apt-get install -f]. Estoy arreglando el 
+        entuerto...
       li
+        p.
+          He podido solucionarlo forzando la sobreescritura de archivos mediante 
+          una instalación manual desde la caché de paquetes:
         p
-          | El downgrade no parece ser posible, ya que no me deja installar la versión 4.2 por una serie de problemas que parecen tener su origen en las cabeceras del kernel de Linux. Voy a mandarles el email y a ver si puedo echar una ojeada al código fuente de la parte del rendering.
-    ul
-      li
-        p
-          | Estoy haciendo pruebas con OpenGL a ver si encuentro problemas en otros códigos, para poder determinar la solución en caso de obtener el código de rendering del HandTracker.
-    ul
-      li
-        p
-          | Para compilar ciertos ejemplos de OpenGL que he bajado de una página de tutoriales [
-          a(href="http://ogldev.atspace.co.uk/") http://ogldev.atspace.co.uk/
-          | ], he necesitado instalar la librería
-          code assimp 3.0.1264.10
-          | , y al tratar de instalarla, ha generado un error de dependencias con una versión ya existente y no me deja ni reinstalar ni desinstalar, ni siquiera con el comando
-          code sudo apt-get install -f
-          | . Estoy arreglando el entuerto...
-    ul
-      li
-        p
-          | He podido solucionarlo forzando la sobreescritura de archivos mediante una instalación manual desde la caché de paquetes:
-        p
-          code
-            | sudo dpkg -i --force-overwrite /var/cache/apt/archives/libassimp3.0-r1264-dev_3.0.1264.10-ubuntu1~precise1_amd64.deb
+          code sudo dpkg -i --force-overwrite /var/cache/apt/archives/libassimp3.0-r1264-dev_3.0.1264.10-ubuntu1~precise1_amd64.deb
+
   section
-    h2 17/01/2014
+    h3.date 17/01/2014
     ul
       li
-        p
-          | He empezado a investigar cómo usar la versión Windows de la librería HandTracker. Por lo visto puedo habilitar la opción
-          code io.print_solutions = 1
-          |  en el archivo
-          code input_output.ini
-          |  para exportar los valores del vector 27D de soluciones por la consola.
-        p
-          | Mi problema ahora es cómo usar estos valores sin sacarlos por la consola. Debo cambiar el código de la demo, pero el único código de la demo que tengo es el de la versión Linux. Voy a mandar un email al K3DHT team para var si necesito algo especial para compilar en Windows.
-        p
-          | Otro descubrimiento que he hecho es que técnicamente se puede cambiar el plugin de rendering que usa la demo. Por ejemplo, la versión Windows usa el Direct3D, y la versión Linux OpenGL.
+        p.
+          He empezado a investigar cómo usar la versión Windows de la librería 
+          HandTracker. Por lo visto puedo habilitar la opción #[code io.print_solutions = 1] 
+          en el archivo #[code input_output.ini] para exportar los valores del 
+          vector 27D de soluciones por la consola.
+        p.
+          Mi problema ahora es cómo usar estos valores sin sacarlos por la consola. 
+          Debo cambiar el código de la demo, pero el único código de la demo que 
+          tengo es el de la versión Linux. Voy a mandar un email al K3DHT team 
+          para var si necesito algo especial para compilar en Windows.
+        p.
+          Otro descubrimiento que he hecho es que técnicamente se puede cambiar 
+          el plugin de rendering que usa la demo. Por ejemplo, la versión Windows 
+          usa el Direct3D, y la versión Linux OpenGL.
         h5
           code rendering.ini
           | :
         blockquote
-          pre(style={columnCount: 2})
-            strong Linux
-            | plugins.renderer_libraries = librenderer_plugin_opengl.so
-            |
-            | plugins.renderer_ids=renderer
-            | plugins.renderer_classes=OPENGL
-            |
-            | rendering.alpha=1 #0.5
-            | rendering.maxcols=1
-            | rendering.maxrows=64
-            | rendering.zfar=2.5
-            | rendering.znear=0.1
-            | rendering.vwidth = 512
-            | rendering.vheight = 400
-            | rendering.edges = 1
-            strong Windows
-            | plugins.renderer_libraries = plugins/renderer_plugin_D3D9.dll
-            |
-            | plugins.renderer_ids=renderer
-            | plugins.renderer_classes=D3D9
-            |
-            | rendering.alpha=0.5
-            | rendering.maxcols=8
-            | rendering.maxrows=8
-            | rendering.zfar=2.5
-            | rendering.znear=0.1
-            | rendering.vwidth = 512
-            | rendering.vheight = 400
-            | rendering.edges = 1
-        p
-          | Les pregunto también si es posible usar otro plugin u obtener el código del plugin OpenGL pues probablemente sea el culpable del mal funcionamiento.
+          pre(style={columnCount: 2, whiteSpace: 'normal'}).
+            #[strong Linux]#[br]
+            plugins.renderer_libraries = librenderer_plugin_opengl.so
+            
+            plugins.renderer_ids=renderer
+            plugins.renderer_classes=OPENGL
+            
+            rendering.alpha=1 #0.5
+            rendering.maxcols=1
+            rendering.maxrows=64
+            rendering.zfar=2.5
+            rendering.znear=0.1
+            rendering.vwidth = 512
+            rendering.vheight = 400
+            rendering.edges = 1
+            #[br]
+            #[strong Windows]#[br]
+            plugins.renderer_libraries = plugins/renderer_plugin_D3D9.dll
+            
+            plugins.renderer_ids=renderer
+            plugins.renderer_classes=D3D9
+            
+            rendering.alpha=0.5
+            rendering.maxcols=8
+            rendering.maxrows=8
+            rendering.zfar=2.5
+            rendering.znear=0.1
+            rendering.vwidth = 512
+            rendering.vheight = 400
+            rendering.edges = 1
+        p.
+          Les pregunto también si es posible usar otro plugin u obtener el código 
+          del plugin OpenGL pues probablemente sea el culpable del mal funcionamiento.
       li
         p El email:
         p
           blockquote.email
-            | Hello K3DHT team,
-            |
-            | I apologize for sending you even another email about the issues I'm having with your HandTrackerLib. I hope my findings and tests will somehow help you or future users of the library :)
-            |
-            | I found there is a configuration file where the renderer plugin to be used is defined. Currently on the Linux demo this is:
-            pre
-              | plugins.renderer_libraries = librenderer_plugin_opengl.so
-              | plugins.renderer_ids=renderer
-              | plugins.renderer_classes=OPENGL
-            | while the Windows installable demo is set up as follows:
-            pre
-              | plugins.renderer_libraries = plugins/renderer_plugin_D3D9.dll
-              | plugins.renderer_ids=renderer
-              | plugins.renderer_classes=D3D9
-            | I found out that if I set the renderer to OpenGL as on the Linux demo, like this:
-            pre
-              | plugins.renderer_libraries = plugins/renderer_plugin_opengl.dll
-              | plugins.renderer_ids=renderer
-              | plugins.renderer_classes=OPENGL
-            | the demo runs, but I get the same problem: no rendering and default vector values. It seems that the OpenGL renderer plugin does not work properly, while the Direct3D one does, indeed.
-            |
-            | My current goal, under these circumstances, is to capture the 27D vectors generated by the Windows hand tracker running with the D3D renderer plugin, and publish them through TCP to an Ubuntu machine (virtual or physical) running ROS. So far I've checked that I can enable vector outputting on the Windows demo by setting the io.print_solutions = 1 on input_output.ini, and I get to see the values on the console.
-            |
-            | I know how to tweak and recompile the demo code on Linux, where ROS is installed and everything is ready, but doing so in Windows, along with writing or using a TCP server/client to capture the vector values and publishing them to the Ubuntu machine, may take some time and more effort and besides it will have an impact on performance.
-            |
-            | I would really appreciate to be able to fiddle with the
-            code librenderer_plugin_opengl
-            |  code and try to make it work on my Ubuntu machine, considering that every other piece of OpenGL-related code I've come across can be run and compiled seamlessly on my machine.
-            |
-            | Please let me know if that's possible, and as always, thanks again for your support, I'll keep you updated about my findings and results.
-            |
-            | Yours faithfully,
+            p Hello K3DHT team,
+            
+            p.
+              I apologize for sending you even another email about the issues I'm 
+              having with your HandTrackerLib. I hope my findings and tests will 
+              somehow help you or future users of the library :)
+            
+            p.
+              I found there is a configuration file where the renderer plugin to 
+              be used is defined. Currently on the Linux demo this is:
+
+            pre.
+              plugins.renderer_libraries = librenderer_plugin_opengl.so#[br]
+              plugins.renderer_ids=renderer#[br]
+              plugins.renderer_classes=OPENGL
+
+            p while the Windows installable demo is set up as follows:
+
+            pre.
+              plugins.renderer_libraries = plugins/renderer_plugin_D3D9.dll#[br]
+              plugins.renderer_ids=renderer#[br]
+              plugins.renderer_classes=D3D9
+
+            p.
+              I found out that if I set the renderer to OpenGL as on the Linux 
+              demo, like this:
+
+            pre.
+              plugins.renderer_libraries = plugins/renderer_plugin_opengl.dll#[br]
+              plugins.renderer_ids=renderer#[br]
+              plugins.renderer_classes=OPENGL
+
+            p.
+              the demo runs, but I get the same problem: no rendering and default 
+              vector values. It seems that the OpenGL renderer plugin does not 
+              work properly, while the Direct3D one does, indeed.
+
+            p.
+              My current goal, under these circumstances, is to capture the 27D 
+              vectors generated by the Windows hand tracker running with the D3D 
+              renderer plugin, and publish them through TCP to an Ubuntu machine 
+              (virtual or physical) running ROS. So far I've checked that I can 
+              enable vector outputting on the Windows demo by setting the 
+              #[code io.print_solutions = 1] on #[code input_output.ini], and 
+              I get to see the values on the console.
+
+            p.
+              I know how to tweak and recompile the demo code on Linux, where 
+              ROS is installed and everything is ready, but doing so in Windows, 
+              along with writing or using a TCP server/client to capture the vector 
+              values and publishing them to the Ubuntu machine, may take some time 
+              and more effort and besides it will have an impact on performance.
+
+            p.
+              I would really appreciate to be able to fiddle with the #[code librenderer_plugin_opengl] 
+              code and try to make it work on my Ubuntu machine, considering that 
+              every other piece of OpenGL-related code I've come across can be run 
+              and compiled seamlessly on my machine.
+
+            p.
+              Please let me know if that's possible, and as always, thanks again 
+              for your support, I'll keep you updated about my findings and results.
+
+            p Yours faithfully,
+
       li
-        p
-          | Por el momento, hasta que me respondan voy a intentar compilar la demo de Linux en Windows. Probablemente necesite el Visual Studio.
+        p.
+          Por el momento, hasta que me respondan voy a intentar compilar la demo 
+          de Linux en Windows. Probablemente necesite el Visual Studio.
+
   section
-    h2 21/01/2014
+    h3.date 21/01/2014
+
     ul
       li
-        p
-          | He enviado el email, y voy a probar en Windows. Alternativamente he hecho una búsqueda por si hubiera un tracker 3D de la mano usando Kinect, y he encontrado esto:
-        p
-          a(href="http://handkinetics.com/index.php") http://handkinetics.com/index.php
-        p
-          | Aunque parece un proyecto en curso, orientado al uso comercial aparentemente, se lo he comentado a Antonio por email y mientras tanto me pongo a desarrollar en Windows.
+        p.
+          He enviado el email, y voy a probar en Windows. Alternativamente he hecho 
+          una búsqueda por si hubiera un tracker 3D de la mano usando Kinect, 
+          y he encontrado esto:
+        p.
+          #[a(href="http://handkinetics.com/index.php") http://handkinetics.com/index.php]
+        p.
+          Aunque parece un proyecto en curso, orientado al uso comercial 
+          aparentemente, se lo he comentado a Antonio por email y mientras tanto 
+          me pongo a desarrollar en Windows.
+
   section
-    h2 27/01/2014
+    h3.date 27/01/2014
+    ul
+      li.
+        Llevo varias horas dedicadas a configurar Visual Studio 2012 para poder 
+        compilar la demo del HandTracker, y por fin he conseguido compilarlo, 
+        pero soy incapaz de hacerlo funcionar. El ejecutable no ejecuta y da 
+        un montón de errores que no puedo solucionar.
+      li.
+        Me temo que mi única alternativa es esperar a ver si me dan algo de feedback 
+        desde el K3DHT team para hacer funcionar el plugin de OpenGL en Linux, 
+        pues Windows no es viable ya que representa más problemas que soluciones.
+      li.
+        Mientras tanto, puedo ponerme a programar los plugins de ROS/OpenRAVE 
+        usando como entrada para las pruebas vectores capturados desde la consola 
+        en la versión precompilada de la demo para Windows.
+      li.
+        He capturado una lista de vectores generados por la demo a partir del 
+        loop de vídeo de ejemplo. Voy a programar un plugin que publique estos 
+        valores en ROS.
+      li
+        p.
+          Ya he comenzado el plugin. De momento publica el contenido del vector 
+          en un mensaje de tipo #[code common_msgs/JointState] aunque aún no sé 
+          exactamente qué significan los valores.
+        p.
+          El próximo paso, etiquetar las joints con los nombres del modelo de 
+          la mano y conseguir hacer funcionar OpenRAVE junto a ROS para visualizar 
+          el modelo en el simulador.
+
+  section
+    h3.date 29/01/2014
+    ul
+      li.
+        He instalado Eclipse y OpenRAVE en el equipo, y he clonado el Proyecto 
+        Umano, para empezar a probar a suministrar los valores capturados del 
+        simulador del HandTracker a OpenRAVE para visualizar la pose de la mano, 
+        identificar los valores y asignarlos a cada articulación
+      li.
+        Para ejecutar Umano necesito instalar MatLab, y unas cuantas librerías 
+        de Python, como #[code mlabwrap].
+      li.
+        Tengo problemas con una librería llamada #[code libhfs5]. Por lo visto 
+        necesito la versión 1.8.4. Estoy instalándola del repositorio de Ubuntu
+
+  section
+    h3.date 31/01/2014
     ul
       li
-        p
-          | Llevo varias horas dedicadas a configurar Visual Studio 2012 para poder compilar la demo del HandTracker, y por fin he conseguido compilarlo, pero soy incapaz de hacerlo funcionar. El ejecutable no ejecuta y da un montón de errores que no puedo solucionar.
-      li
-        p
-          | Me temo que mi única alternativa es esperar a ver si me dan algo de feedback desde el K3DHT team para hacer funcionar el plugin de OpenGL en Linux, pues Windows no es viable ya que representa más problemas que soluciones.
-      li
-        p
-          | Mientras tanto, puedo ponerme a programar los plugins de ROS/OpenRAVE usando como entrada para las pruebas vectores capturados desde la consola en la versión precompilada de la demo para Windows.
-      li
-        p
-          | He capturado una lista de vectores generados por la demo a partir del loop de vídeo de ejemplo. Voy a programar un plugin que publique estos valores en ROS.
-      li
-        p
-          | Ya he comenzado el plugin. De momento publica el contenido del vector en un mensaje de tipo
-          code common_msgs/JointState
-          |  aunque aún no sé exactamente qué significan los valores.
-        p
-          | El próximo paso, etiquetar las joints con los nombres del modelo de la mano y conseguir hacer funcionar OpenRAVE junto a ROS para visualizar el modelo en el simulador
-  section
-    h2 29/01/2014
-    ul
-      li
-        p
-          | He instalado Eclipse y OpenRAVE en el equipo, y he clonado el Proyecto Umano, para empezar a probar a suministrar los valores capturados del simulador del HandTracker a OpenRAVE para visualizar la pose de la mano, identificar los valores y asignarlos a cada articulación
-      li
-        p
-          | Para ejecutar Umano necesito instalar MatLab, y unas cuantas librerías de Python, como
-          code mlabwrap
-          | .
-      li
-        p
-          | Tengo problemas con una librería llamada
-          code libhfs5
-          | . Por lo visto necesito la versión 1.8.4. Estoy instalándola del repositorio de Ubuntu
-  section
-    h2 31/01/2014
-    ul
-      li
-        p
-          | Para hacer funcionar OpenRAVE con PyQt4, me ha hecho falta instalar ciertas librerías:
+        p.
+          Para hacer funcionar OpenRAVE con PyQt4, me ha hecho falta instalar 
+          ciertas librerías:
+        
+        pre.
+          sudo easy_install -U distribute#[br]
+          sudo pip install pyhull#[br]
+          sudo apt-get install python-poppler-qt4
+
+        p.
+          También he tenido que actualizar algunas variables de entorno. Actualmente 
+          este es my bloque de exports en #[code /etc/bash.bashrc]:
+
         pre
-          | sudo easy_install -U distribute
-          | sudo pip install pyhull
-          | sudo apt-get install python-poppler-qt4
-        p
-          | También he tenido que actualizar algunas variables de entorno. Actualmente este es my bloque de exports en
-          code /etc/bash.bashrc
-          | :
+          code.
+            {`export PATH=$PATH:/usr/local/cuda-5.5/bin
+export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
+export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/usr/local/lib64:/usr/lib:/usr/local/cuda-5.5/lib64 #$LD_LIBRARY_PATH
+export OPENNI_PATH='/usr/local/openni'
+export OPENNI2_INCLUDE='/usr/local/include/openni2'
+export OPENNI2_REDIST='/usr/local/openni2'
+export NITE2_INCLUDE='/usr/local/include/nite'
+export NITE2_REDIST64='/usr/local/nite'
+export OPENHAND_PATH=/home/oscar/workspace/umano_journal
+export OPENRAVE_DATA=$OPENRAVE_DATA:$OPENHAND_PATH/env:$OPENHAND_PATH/env/armGeometry/skin:$OPENHAND_PATH/env/armGeometry/bones:$OPENHAND_PATH/env/hands:$OPENHAND_PATH/env/robots:$OPENHAND_PATH/env/scenes:$OPENHAND_PATH/env/postures:
+export OPENRAVE_PLUGINS=$OPENRAVE_PLUGINS:$OPENHAND_PATH/build
+export PYTHONPATH=$PYTHONPATH:\`openrave-config --python-dir\``}
+
+        p y en #[code ~/.bashrc]:
+
         pre
-          code
-            | export PATH=$PATH:/usr/local/cuda-5.5/bin
-            | export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig:$PKG_CONFIG_PATH
-            | export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:/usr/local/lib64:/usr/lib:/usr/local/cuda-5.5/lib64 #$LD_LIBRARY_PATH
-            | export OPENNI_PATH='/usr/local/openni'
-            | export OPENNI2_INCLUDE='/usr/local/include/openni2'
-            | export OPENNI2_REDIST='/usr/local/openni2'
-            | export NITE2_INCLUDE='/usr/local/include/nite'
-            | export NITE2_REDIST64='/usr/local/nite'
-            | export OPENHAND_PATH=/home/oscar/workspace/umano_journal
-            | export OPENRAVE_DATA=$OPENRAVE_DATA:$OPENHAND_PATH/env:$OPENHAND_PATH/env/armGeometry/skin:$OPENHAND_PATH/env/armGeometry/bones:$OPENHAND_PATH/env/hands:$OPENHAND_PATH/env/robots:$OPENHAND_PATH/env/scenes:$OPENHAND_PATH/env/postures:
-            | export OPENRAVE_PLUGINS=$OPENRAVE_PLUGINS:$OPENHAND_PATH/build
-            | export PYTHONPATH=$PYTHONPATH:&grave;openrave-config --python-dir&grave;
-        p
-          | y en
-          code ~/.bashrc
-          | :
-        pre
-          code
-            | export MLABRAW_CMD_STR="/home/oscar/MatLab/bin/matlab"
-            | export PATH=$PATH:~/MatLab/bin
-            | export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/MatLab/bin/glnxa64/
-      li
-        p
-          | Ya funciona el simulador Umano, tras reinstalar OpenRAVE y volver a compilar el proyecto.
-      li
-        p
-          | Comenzado a implementar el módulo para suministrar valores del fichero al OpenRAVE Server.
+          code {`export MLABRAW_CMD_STR="/home/oscar/MatLab/bin/matlab"
+export PATH=$PATH:~/MatLab/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/MatLab/bin/glnxa64/`}
+
+      li.
+        Ya funciona el simulador Umano, tras reinstalar OpenRAVE y volver a 
+        compilar el proyecto.
+
+      li.
+        Comenzado a implementar el módulo para suministrar valores del fichero 
+        al OpenRAVE Server.
+
   section
-    h2 04/02/2014
+    h3.date 04/02/2014
+
+    ul
+      li.
+        Sigo implementando el módulo para Umano. He conseguido alimentar el 
+        simulador con los datos recopilados del handtracker pero no hay manera 
+        humana de averiguar qué valor corresponde a qué articulación.
+
+      li.
+        Voy a grabar una secuencia con la demo del HandTracker, moviendo cada 
+        dedo individualmente. De esta forma se podrá identificar con más facilidad 
+        cada dedo y articulación.
+
+  section
+    h3.date 05&#x2013;06/02/2014
+
+    ul
+      li.
+        Windows ha dejado de dar soporte a drivers por haber caducado la licencia. 
+        No hay manera de reinstalar los drivers de la Kinect y por lo tanto no 
+        es posible usar el HandTracker.
+      li.
+        Procedo a reinstalar Windows con una versión oficial de la cuenta de 
+        Dreamspark.
+      li.
+        Una vez reinstalado, he perdido la partición de datos. Como viene siendo 
+        habitual al reinstalar Windows en un disco con particiones, el instalador 
+        no respeta nada. Ubuntu tampoco arranca, pues el instalador de Windows 
+        ha erradicado el GRUB del MBR.
+
+  section
+    h3.date 11/02/2014
+
+    ul
+      li.
+        He recuperado el GRUB arrancando una versión live de Ubuntu, reinstalando 
+        el GRUB en la partición de Ubuntu y haciendo activa dicha partición 
+        (#[code /dev/sda3]). Para ello, he tenido que aplicar la opción #[code --force]
+        ya que por defecto no le parece bien instalarse en una partición.
+      li.
+        También he bajado los drivers de la placa para Windows desde la versión 
+        Live de Ubuntu 12.04 64-bit, ya que Windows recién instalado no detectaba 
+        las tarjeta de red, ni la de la placa ni la otra.
+      li.
+        Al final del día ya tengo operativos ambos sistemas.
+
+  section
+    h3.date 12/02/2014
     ul
       li
-        p
-          | Sigo implementando el módulo para Umano. He conseguido alimentar el simulador con los datos recopilados del handtracker pero no hay manera humana de averiguar qué valor corresponde a qué articulación.
+        p.
+          He recibido un email del K3DHT y me comentan que los drivers de nVidia 
+          que han usado para las pruebas en Ubuntu son la versión 304, así que 
+          procedo a probarlos.
+
+        blockquote.email
+          p Dear Oscar Gomez,
+
+          p.
+            OpenGL renderer issue was identified and is caused when an NVIDIA 
+            driver older than 304 is used. The issue lies with our shaders 
+            implementation and we will provide an updated version through openni.org 
+            as soon as we have a solution. Until then the workaround is to install 
+            the 304 NVIDIA drivers on your system.
+
+          p we are sorry for the delayed response.
+
+          p.
+            kind regards,#[br]
+            --#[br]
+            The K3DHT team
+
       li
-        p
-          | Voy a grabar una secuencia con la demo del HandTracker, moviendo cada dedo individualmente. De esta forma se podrá identificar con más facilidad cada dedo y articulación.
+        p.
+          Los he probado en mi portátil, cuya tarjeta es la GT220M, y he conseguido 
+          cargarme la interfaz gráfica.
+        p.
+          La he recuperado tras varias desinstalaciones y reinstalaciones, pero 
+          definitivamente con mi tarjeta esos drivers no funcionan. A ver qué pasa 
+          en el PC del lab (IA22).
+      li
+        p.
+          En otro orden de cosas, he respondido al K3DHT Team, y he aprovechado 
+          para preguntarles por la estructura del vector de resultados del HandTracker. 
+          El email a continuación:
+      
+        blockquote.email
+          p Hello,
+
+          p.
+            thanks for your support, as of the time of writing, the drivers 
+            installed on my Ubuntu system are the 319.37, my X Server version 
+            being 11.0, and my graphics card is a GeForce GTX 560.
+
+          p.
+            I will try and downgrade the drivers to version 304 and get back 
+            to you with the results.
+
+          p.
+            Another thing I tried was writing a test program using your library 
+            on Windows, but after compiling without errors, my test app couldn't 
+            run at all (lots of boost library exceptions and errors, and segmentation 
+            faults), so I decided that at least I would try and capture some 
+            sequences from the pre-compiled demo, and use the result vectors 
+            to feed a human hand simulator, back on Ubuntu.
+
+          p.
+            I accomplished that, but now my problem is, I don't know the correspondence 
+            between values in the vector and their meaning (joints, ranges, etc.). 
+            Can you please give me a description of this vector?
+
+          p As always, thanks in advance,
+
+          p all the best,
+
+          p Óscar
+      li
+        p.
+          La demo del HandTracker #[strong funciona] con la versión 304 del driver 
+          de nVidia. Estoy ajustando valores en los archivos de configuración 
+          para poder obtener resultados, pues el tracking es bastante impreciso.
+        p.
+          En el archivo #[code skin_detection.ini] he ajustado los valores low 
+          y high a 0 y 100 respectivamente, y parece mejorar. También hay un 
+          pequeño problema con la luz en la piel, que quema la imagen y parece 
+          haber problemas con el blanco a la hora de detectar.
+
   section
-    h2 05–06/02/2014
+    h3.date 14/02/2014
+
     ul
-      li
-        p
-          | Windows ha dejado de dar soporte a drivers por haber caducado la licencia. No hay manera de reinstalar los drivers de la Kinect y por lo tanto no es posible usar el HandTracker.
-      li
-        p Procedo a reinstalar Windows con una versión oficial de la cuenta de Dreamspark
-      li
-        p
-          | Una vez reinstalado, he perdido la partición de datos. Como viene siendo habitual al reinstalar Windows en un disco con particiones, el instalador no respeta nada. Ubuntu tampoco arranca, pues el instalador de Windows ha erradicado el GRUB del MBR.
+      li.
+        He capturado un vector de prueba en la demo de Windows y con la Kinect, 
+        con flexiones individuales de los dedos, para pasar como parámetro al 
+        simulador de la mano.
+      li.
+        Estoy documentándome con los papers de FORTH para encontrar información 
+        acerca del tracking y los valores generados por éste.
+
   section
-    h2 11/02/2014
+    h3.date 18/02/2014
     ul
-      li
-        p
-          | He recuperado el GRUB arrancando una versión live de Ubuntu, reinstalando el GRUB en la partición de Ubuntu y haciendo activa dicha partición (
-          code /dev/sda3
-          | ). Para ello, he tenido que aplicar la opción
-          code --force
-          |  ya que por defecto no le parece bien instalarse en una partición.
-      li
-        p
-          | También he bajado los drivers de la placa para Windows desde la versión Live de Ubuntu 12.04 64-bit, ya que Windows recién instalado no detectaba las tarjeta de red, ni la de la placa ni la otra.
-      li
-        p Al final del día ya tengo operativos ambos sistemas
-  section
-    h2 12/02/2014
-    ul
-      li
-        p
-          | He recibido un email del K3DHT y me comentan que los drivers de nVidia que han usado para las pruebas en Ubuntu son la versión 304, así que procedo a probarlos.
-        p
-          blockquote.email
-            | Dear Oscar Gomez,
-            |
-            | OpenGL renderer issue was identified and is caused when an NVIDIA driver older than 304 is used. The issue lies with our shaders implementation and we will provide an updated version through openni.org as soon as we have a solution. Until then the workaround is to install the 304 NVIDIA drivers on your system.
-            |
-            | we are sorry for the delayed response.
-            |
-            | kind regards,
-            | --
-            | The K3DHT team
-      li
-        p
-          | Los he probado en mi portátil, cuya tarjeta es la GT220M, y he conseguido cargarme la interfaz gráfica.
-        p
-          | La he recuperado tras varias desinstalaciones y reinstalaciones, pero definitivamente con mi tarjeta esos drivers no funcionan. A ver qué pasa en el PC del lab (IA22).
-      li
-        p
-          | En otro orden de cosas, he respondido al K3DHT Team, y he aprovechado para preguntarles por la estructura del vector de resultados del HandTracker. El email a continuación:
-        p
-          blockquote.email
-            | Hello,
-            |
-            | thanks for your support, as of the time of writing, the drivers installed on my Ubuntu system are the 319.37, my X Server version being 11.0, and my graphics card is a GeForce GTX 560.
-            |
-            | I will try and downgrade the drivers to version 304 and get back to you with the results.
-            |
-            | Another thing I tried was writing a test program using your library on Windows, but after compiling without errors, my test app couldn't run at all (lots of boost library exceptions and errors, and segmentation faults), so I decided that at least I would try and capture some sequences from the pre-compiled demo, and use the result vectors to feed a human hand simulator, back on Ubuntu.
-            |
-            | I accomplished that, but now my problem is, I don't know the correspondence between values in the vector and their meaning (joints, ranges, etc.). Can you please give me a description of this vector?
-            |
-            | As always, thanks in advance,
-            |
-            | all the best,
-            |
-            | Óscar
-      li
-        p
-          | La demo del HandTracker
-          strong funciona
-          |  con la versión 304 del driver de nVidia. Estoy ajustando valores en los archivos de configuración para poder obtener resultados, pues el tracking es bastante impreciso.
-        p
-          | En el archivo
-          code skin_detection.ini
-          |  he ajustado los valores low y high a 0 y 100 respectivamente, y parece mejorar. También hay un pequeño problema con la luz en la piel, que quema la imagen y parece haber problemas con el blanco a la hora de detectar.
-  section
-    h2 14/02/2014
-    ul
-      li
-        p
-          | He capturado un vector de prueba en la demo de Windows y con la Kinect, con flexiones individuales de los dedos, para pasar como parámetro al simulador de la mano.
-      li
-        p
-          | Estoy documentándome con los papers de FORTH para encontrar información acerca del tracking y los valores generados por éste.
-  section
-    h2 18/02/2014
-    ul
-      li
-        p
-          | He empezado a decodificar los valores del HandTracker y a intentar comunicar los procesos del tracker y el GUI de Umano. Aquí están los listados de ambos sistemas:
+      li.
+        He empezado a decodificar los valores del HandTracker y a intentar comunicar 
+        los procesos del tracker y el GUI de Umano. Aquí están los listados de 
+        ambos sistemas:
       li
         h3 FORTH HandTracker
         p
           blockquote
             pre
-              code
-                | 'palm_pos.trans_X' : &#123;'id' : 0,  'min' : 0,     'max' : 250,  'def' : 250 &#125;,
-                | 'palm_pos.trans_Y' : &#123;'id' : 1,  'min' : 0,     'max' : 0,    'def' : 0 &#125;,
-                | 'palm_pos.trans_Z' : &#123;'id' : 2,  'min' : -1200, 'max' : 0,    'def' : -1200 &#125;,
-                | 'palm_pos.qX'      : &#123;'id' : 3,  'min' : 0,     'max' : 0,    'def' : 0 &#125;,
-                | 'palm_pos.qY'      : &#123;'id' : 4,  'min' : 0,     'max' : 0,    'def' : 0 &#125;,
-                | 'palm_pos.qZ'      : &#123;'id' : 5,  'min' : 0,     'max' : 0,    'def' : 0 &#125;,
-                | 'palm_pos.qW'      : &#123;'id' : 6,  'min' : 0,     'max' : 1,    'def' : 1 &#125;,
-                | 'pinky_pos.Pitch'  : &#123;'id' : 7,  'min' : -1.57, 'max' : 0,    'def' : 0 &#125;,
-                | 'pinky_pos.Yaw'    : &#123;'id' : 8,  'min' : 1.57,  'max' : 1.57, 'def' : 1.57 &#125;,
-                | 'pinky2_pos.Pitch' : &#123;'id' : 9,  'min' : -1.57, 'max' : 0,    'def' : 0 &#125;,
-                | 'pinky3Pos.Pitch'  : &#123;'id' : 10, 'min' : -1.57, 'max' : 0,    'def' : 0 &#125;,
-                | 'thumb_pos.Pitch'  : &#123;'id' : 11, 'min' : -1,    'max' : 0,    'def' : 0 &#125;,
-                | 'thumb_pos.Yaw'    : &#123;'id' : 12, 'min' : 2.5,   'max' : 3.14, 'def' : 3.14 &#125;,
-                | 'thumb2_pos.Pitch' : &#123;'id' : 13, 'min' : -1.57, 'max' : 0,    'def' : 0 &#125;,
-                | 'thumb3_pos.Pitch' : &#123;'id' : 14, 'min' : -1.57, 'max' : 0,    'def' : 0 &#125;,
-                | 'ring_pos.Pitch'   : &#123;'id' : 15, 'min' : -1.57, 'max' : 0,    'def' : 0 &#125;,
-                | 'ring_pos.Yaw'     : &#123;'id' : 16, 'min' : 1.57,  'max' : 1.57, 'def' : 1.57 &#125;,
-                | 'ring2_pos.Pitch'  : &#123;'id' : 17, 'min' : -1.57, 'max' : 0,    'def' : 0 &#125;,
-                | 'ring3_pos.Pitch'  : &#123;'id' : 18, 'min' : -1.57, 'max' : 0,    'def' : 0 &#125;,
-                | 'index_pos.Pitch'  : &#123;'id' : 19, 'min' : -1.57, 'max' : 0,    'def' : 0 &#125;,
-                | 'index_pos.Yaw'    : &#123;'id' : 20, 'min' : 1.57,  'max' : 1.57, 'def' : 1.57 &#125;,
-                | 'index2_pos.Pitch' : &#123;'id' : 21, 'min' : -1.57, 'max' : 0,    'def' : 0 &#125;,
-                | 'index3_pos.Pitch' : &#123;'id' : 22, 'min' : -1.57, 'max' : 0,    'def' : 0 &#125;,
-                | 'middle_pos.Pitch' : &#123;'id' : 23, 'min' : -1.57, 'max' : 0,    'def' : 0 &#125;,
-                | 'middle_pos.Yaw'   : &#123;'id' : 24, 'min' : 1.57,  'max' : 1.57, 'def' : 1.57 &#125;,
-                | 'mid2_pos.Pitch'   : &#123;'id' : 25, 'min' : -1.57, 'max' : 0,    'def' : 0 &#125;,
-                | 'mid3_pos.Pitch'   : &#123;'id' : 26, 'min' : -1.57, 'max' : 0,    'def' : 0 &#125;,
+              code.
+                {`'palm_pos.trans_X' : { 'id' : 0,  'min' : 0,     'max' : 250,  'def' : 250 },
+                'palm_pos.trans_Y' : { 'id' : 1,  'min' : 0,     'max' : 0,    'def' : 0 },
+                'palm_pos.trans_Z' : { 'id' : 2,  'min' : -1200, 'max' : 0,    'def' : -1200 },
+                'palm_pos.qX'      : { 'id' : 3,  'min' : 0,     'max' : 0,    'def' : 0 },
+                'palm_pos.qY'      : { 'id' : 4,  'min' : 0,     'max' : 0,    'def' : 0 },
+                'palm_pos.qZ'      : { 'id' : 5,  'min' : 0,     'max' : 0,    'def' : 0 },
+                'palm_pos.qW'      : { 'id' : 6,  'min' : 0,     'max' : 1,    'def' : 1 },
+                'pinky_pos.Pitch'  : { 'id' : 7,  'min' : -1.57, 'max' : 0,    'def' : 0 },
+                'pinky_pos.Yaw'    : { 'id' : 8,  'min' : 1.57,  'max' : 1.57, 'def' : 1.57 },
+                'pinky2_pos.Pitch' : { 'id' : 9,  'min' : -1.57, 'max' : 0,    'def' : 0 },
+                'pinky3Pos.Pitch'  : { 'id' : 10, 'min' : -1.57, 'max' : 0,    'def' : 0 },
+                'thumb_pos.Pitch'  : { 'id' : 11, 'min' : -1,    'max' : 0,    'def' : 0 },
+                'thumb_pos.Yaw'    : { 'id' : 12, 'min' : 2.5,   'max' : 3.14, 'def' : 3.14 },
+                'thumb2_pos.Pitch' : { 'id' : 13, 'min' : -1.57, 'max' : 0,    'def' : 0 },
+                'thumb3_pos.Pitch' : { 'id' : 14, 'min' : -1.57, 'max' : 0,    'def' : 0 },
+                'ring_pos.Pitch'   : { 'id' : 15, 'min' : -1.57, 'max' : 0,    'def' : 0 },
+                'ring_pos.Yaw'     : { 'id' : 16, 'min' : 1.57,  'max' : 1.57, 'def' : 1.57 },
+                'ring2_pos.Pitch'  : { 'id' : 17, 'min' : -1.57, 'max' : 0,    'def' : 0 },
+                'ring3_pos.Pitch'  : { 'id' : 18, 'min' : -1.57, 'max' : 0,    'def' : 0 },
+                'index_pos.Pitch'  : { 'id' : 19, 'min' : -1.57, 'max' : 0,    'def' : 0 },
+                'index_pos.Yaw'    : { 'id' : 20, 'min' : 1.57,  'max' : 1.57, 'def' : 1.57 },
+                'index2_pos.Pitch' : { 'id' : 21, 'min' : -1.57, 'max' : 0,    'def' : 0 },
+                'index3_pos.Pitch' : { 'id' : 22, 'min' : -1.57, 'max' : 0,    'def' : 0 },
+                'middle_pos.Pitch' : { 'id' : 23, 'min' : -1.57, 'max' : 0,    'def' : 0 },
+                'middle_pos.Yaw'   : { 'id' : 24, 'min' : 1.57,  'max' : 1.57, 'def' : 1.57 },
+                'mid2_pos.Pitch'   : { 'id' : 25, 'min' : -1.57, 'max' : 0,    'def' : 0 },
+                'mid3_pos.Pitch'   : { 'id' : 26, 'min' : -1.57, 'max' : 0,    'def' : 0 },`}
+
       li
         h3 Umano
         p
           blockquote
             pre
-              code
-                | # Wrist
-                | 'fe_w'          : &#123; 'id' : 5, 'min'  : -1.0472, 'max' : 0.7854, 'def' : 0 &#125;,
-                | 'abd_w'         : &#123; 'id' : 6, 'min'  : -1.4835, 'max' : 1.4835, 'def' : 0 &#125;,
-                |
-                | # Thumb
-                | 'flexIPthumb'   : &#123; 'id' : 7, 'min'  : -0.2618, 'max' : 1.3962, 'def' : 0 &#125;,
-                | 'flexMCPthumb'  : &#123; 'id' : 8, 'min'  : -0.1745, 'max' : 1.3962, 'def' : 0 &#125;,
-                | 'abdMCPthumb'   : &#123; 'id' : 9, 'min'  : -0.5236, 'max' : 1.0472, 'def' : 0 &#125;,
-                | 'flexCMCthumb'  : &#123; 'id' : 10, 'min' : -0.4363, 'max' : 0.6109, 'def' : 0 &#125;,
-                | 'abdCMCthumb'   : &#123; 'id' : 11, 'min' : -0.5236, 'max' : 1.0472, 'def' : 0 &#125;,
-                |
-                | # Index
-                | 'flexDIPindex'  : &#123; 'id' : 12, 'min' : -0.1745, 'max' : 1.5708, 'def' : 0 &#125;,
-                | 'flexPIPindex'  : &#123; 'id' : 13, 'min' :       0, 'max' : 1.7453, 'def' : 0 &#125;,
-                | 'flexMCPindex'  : &#123; 'id' : 14, 'min' :       0, 'max' : 1.5708, 'def' : 0 &#125;,
-                | 'abdMCPindex'   : &#123; 'id' : 15, 'min' : -0.2618, 'max' : 0.7330, 'def' : 0 &#125;,
-                |
-                | # Middle
-                | 'flexDIPmiddle' : &#123; 'id' : 17, 'min' : -0.1745, 'max' :  1.5708, 'def' : 0 &#125;,
-                | 'flexPIPmiddle' : &#123; 'id' : 18, 'min' :       0, 'max' :  1.7453, 'def' : 0 &#125;,
-                | 'flexMCPmiddle' : &#123; 'id' : 19, 'min' :       0, 'max' :  1.5708, 'def' : 0 &#125;,
-                | 'abdMCPmiddle'  : &#123; 'id' : 20, 'min' : -0.1396, 'max' :  0.6109, 'def' : 0 &#125;,
-                |
-                | # Ring
-                | 'flexDIPring'   : &#123; 'id' : 22, 'min' : -0.3491, 'max' :  1.5708, 'def' : 0 &#125;,
-                | 'flexPIPring'   : &#123; 'id' : 23, 'min' :       0, 'max' :  1.7453, 'def' : 0 &#125;,
-                | 'flexMCPring'   : &#123; 'id' : 24, 'min' :       0, 'max' :  1.5708, 'def' : 0 &#125;,
-                | 'abdMCPring'    : &#123; 'id' : 25, 'min' : -0.2443, 'max' :  0.3491, 'def' : 0 &#125;,
-                | 'flexCMCring'   : &#123; 'id' : 26, 'min' :       0, 'max' :  0.2618, 'def' : 0 &#125;,
-                |
-                | # Small
-                | 'flexDIPsmall'  : &#123; 'id' : 27, 'min' : -0.5236, 'max' :  1.5708, 'def' : 0 &#125;,
-                | 'flexPIPsmall'  : &#123; 'id' : 28, 'min' :       0, 'max' :  1.7453, 'def' : 0 &#125;,
-                | 'flexMCPsmall'  : &#123; 'id' : 29, 'min' :       0, 'max' :  1.5708, 'def' : 0 &#125;,
-                | 'abdMCPsmall'   : &#123; 'id' : 30, 'min' : -0.6981, 'max' :  0.3316, 'def' : 0 &#125;,
-                | 'flexCMCsmall'  : &#123; 'id' : 31, 'min' :       0, 'max' :  0.5236, 'def' : 0 &#125;,
+              code.
+                {`# Wrist
+                'fe_w'          : { 'id' : 5, 'min'  : -1.0472, 'max' : 0.7854, 'def' : 0 },
+                'abd_w'         : { 'id' : 6, 'min'  : -1.4835, 'max' : 1.4835, 'def' : 0 },
+
+                # Thumb
+                'flexIPthumb'   : { 'id' : 7, 'min'  : -0.2618, 'max' : 1.3962, 'def' : 0 },
+                'flexMCPthumb'  : { 'id' : 8, 'min'  : -0.1745, 'max' : 1.3962, 'def' : 0 },
+                'abdMCPthumb'   : { 'id' : 9, 'min'  : -0.5236, 'max' : 1.0472, 'def' : 0 },
+                'flexCMCthumb'  : { 'id' : 10, 'min' : -0.4363, 'max' : 0.6109, 'def' : 0 },
+                'abdCMCthumb'   : { 'id' : 11, 'min' : -0.5236, 'max' : 1.0472, 'def' : 0 },
+
+                # Index
+                'flexDIPindex'  : { 'id' : 12, 'min' : -0.1745, 'max' : 1.5708, 'def' : 0 },
+                'flexPIPindex'  : { 'id' : 13, 'min' :       0, 'max' : 1.7453, 'def' : 0 },
+                'flexMCPindex'  : { 'id' : 14, 'min' :       0, 'max' : 1.5708, 'def' : 0 },
+                'abdMCPindex'   : { 'id' : 15, 'min' : -0.2618, 'max' : 0.7330, 'def' : 0 },
+
+                # Middle
+                'flexDIPmiddle' : { 'id' : 17, 'min' : -0.1745, 'max' :  1.5708, 'def' : 0 },
+                'flexPIPmiddle' : { 'id' : 18, 'min' :       0, 'max' :  1.7453, 'def' : 0 },
+                'flexMCPmiddle' : { 'id' : 19, 'min' :       0, 'max' :  1.5708, 'def' : 0 },
+                'abdMCPmiddle'  : { 'id' : 20, 'min' : -0.1396, 'max' :  0.6109, 'def' : 0 },
+
+                # Ring
+                'flexDIPring'   : { 'id' : 22, 'min' : -0.3491, 'max' :  1.5708, 'def' : 0 },
+                'flexPIPring'   : { 'id' : 23, 'min' :       0, 'max' :  1.7453, 'def' : 0 },
+                'flexMCPring'   : { 'id' : 24, 'min' :       0, 'max' :  1.5708, 'def' : 0 },
+                'abdMCPring'    : { 'id' : 25, 'min' : -0.2443, 'max' :  0.3491, 'def' : 0 },
+                'flexCMCring'   : { 'id' : 26, 'min' :       0, 'max' :  0.2618, 'def' : 0 },
+
+                # Small
+                'flexDIPsmall'  : { 'id' : 27, 'min' : -0.5236, 'max' :  1.5708, 'def' : 0 },
+                'flexPIPsmall'  : { 'id' : 28, 'min' :       0, 'max' :  1.7453, 'def' : 0 },
+                'flexMCPsmall'  : { 'id' : 29, 'min' :       0, 'max' :  1.5708, 'def' : 0 },
+                'abdMCPsmall'   : { 'id' : 30, 'min' : -0.6981, 'max' :  0.3316, 'def' : 0 },
+                'flexCMCsmall'  : { 'id' : 31, 'min' :       0, 'max' :  0.5236, 'def' : 0 },`}
+
   section
-    h2 19/02/2014
+    h3.date 19/02/2014
     ul
-      li
-        p
-          | He conseguido hacer funcionar el simulador Umano de manera bastante fiel a la secuencia pregrabada, aunque faltan ciertos ajustes.
-      li
-        p
-          | Estoy escribiendo un banco de pruebas para poder calibrar la transformación de valores.
+      li.
+        He conseguido hacer funcionar el simulador Umano de manera bastante fiel 
+        a la secuencia pregrabada, aunque faltan ciertos ajustes.
+      li.
+        Estoy escribiendo un banco de pruebas para poder calibrar la transformación 
+        de valores.
+
   section
-    h2 20/02/2014
+    h3.date 20/02/2014
     ul
-      li
-        p
-          | He conseguido calibrar la conversión de valores entre el HandTracker de FORTH y Umano.
+      li.
+        He conseguido calibrar la conversión de valores entre el HandTracker 
+        de FORTH y Umano.
+
   section
-    h2 25/02/2014
+    h3.date 25/02/2014
     ul
-      li
-        p
-          | Comenzada la comunicación del HandTracker en tiempo real con Umano mediante ZeroMQ [
-          a(href="http://zeromq.org/") http://zeromq.org/
-          | ]
+      li.
+        Comenzada la comunicación del HandTracker en tiempo real con Umano 
+        mediante ZeroMQ [#[a(href="http://zeromq.org/") http://zeromq.org/]]
+
   section
-    h2 27/02/2014
+    h3.date 27/02/2014
     ul
-      li
-        p
-          | Implementada la versión del plugin de Umano par usar el HandTracker con comunicación mediante ZMQ.
-      li
-        p Comienzo a implementar la parte de comunicación en el propio HandTracker.
-      li
-        p
-          | Tengo problemas con la conversión de datos en la comunicación, pero todo marcha bastante bien.
+      li.
+        Implementada la versión del plugin de Umano par usar el HandTracker 
+        con comunicación mediante ZMQ.
+      li.
+        Comienzo a implementar la parte de comunicación en el propio HandTracker.
+      li.
+        Tengo problemas con la conversión de datos en la comunicación, pero todo 
+        marcha bastante bien.
+
   section
-    h2 03/03/2014
+    h3.date 03/03/2014
     ul
-      li
-        p
-          | Sigo con la implementación de la comunicación en el HandTracker mediante ZMQ. El HandTracker hace de servidor de valores del vector, y el simulador Umano/OpenRave hace de cliente.
-      li
-        p
-          | Implementación casi acabada. Ya hay comunicación entre simulador y tracker, ahora falta calibrar:
+      li.
+        Sigo con la implementación de la comunicación en el HandTracker mediante 
+        ZMQ. El HandTracker hace de servidor de valores del vector, y el simulador 
+        Umano/OpenRave hace de cliente.
+      li 
+        | Implementación casi acabada. Ya hay comunicación entre simulador 
+        | y tracker, ahora falta calibrar:
+
         ol
           li
             h3 El HandTracker
-            p
-              | Los ficheros
-              code skin_detection.ini
-              |  y
-              code PS1080.ini
-              |  tienen la configuración del tono de la piel y los parámetros de la captura desde la Xtion, respectivamente.
+
+            p.
+              Los ficheros #[code skin_detection.ini] y #[code PS1080.ini] tienen 
+              la configuración del tono de la piel y los parámetros de la captura 
+              desde la Xtion, respectivamente.
           li
             h3 OpenNI2
-            p
-              | De vez en cuando aparecen frames corruptos que desmontan totalmente el tracker. Estoy investigando en la documentación de OpenNI2 ya que la detección de un frame corrupto se hace a nivel del driver de PrimeSense para OpenNNI
+
+            p.
+              De vez en cuando aparecen frames corruptos que desmontan totalmente 
+              el tracker. Estoy investigando en la documentación de OpenNI2 ya 
+              que la detección de un frame corrupto se hace a nivel del driver 
+              de PrimeSense para OpenNNI.
           li
             h3 Umano
-            p
-              | Los valores de las articulaciones no coinciden al 100% así que una vez solucionados los anteriores problemas, realizaré un ajuste más fino de las restricciones y rangos.
+
+            p.
+              Los valores de las articulaciones no coinciden al 100% así que una 
+              vez solucionados los anteriores problemas, realizaré un ajuste 
+              más fino de las restricciones y rangos.
+
   section
-    h2 05/03/2014
+    h3.date 05/03/2014
     ul
       li
-        p
-          | Sigo intentando solucionar lo de prevenir el dibujado de frames corruptos, o por lo menos pasarlos al HandTracker, para que la mano 3D no pierda comba.
-        p
-          | La documentación de OpenNI2 no ayuda, sigo investigando a ver si puedo prevenir o por lo menos capturar estos frames. El mensaje de depuración dice:
-        p
-          blockquote
-            pre
-              code Image buffer corrupt
-        p
-          strong Update:
-          |  Lo he solucionado por el momento conectando la Xtion al USB trasero.
-      li
-        p
-          | Por otra parte, los valores en el archivo
-          code skin_detection.ini
-          |  que mejores resultados dan, son
-  section
-    h2 11/03/2014
-    ul
-      li
-        p
-          | Añadido el servidor del HandTracker al workspace del Umano en la rama hand_tracker. Falta optimizar y calibrar.
-  section
-    h2 12/03/2014
-    ul
-      li
-        p
-          | Parece ser que los drivers de Kinect para Linux ya están completados, o por lo menos más avanzados. Voy a ver si puedo compilarlos y probarlos. De funcionar, podría usar la Kinect en lugar de la Xtion y esto supondría poder saltarme la calibración, que se me está atragantando.
-      li
-        p
-          | No han funcionado. Parece que va un poco mejor con algunos ejemplos que vienen en el paquete de OpenNI2, pero sigue dando el mismo error que daba la versión anterior (
-          code oniDriverStreamAddRefToFrame
-          |  missing).
-      li
-        p
-          | Sigo con la calibración. Voy a intentar grabar una secuencia de la captura para mandársela al K3DHT team y darles feedback de mis avances, y de paso les preguntaré cómo puedo calibrar la captura de imágenes para el HandTracker.
-  section
-    h2 14/03/2014
-    ul
-      li
-        p
-          | Continúo programando el módulo de calibración. Voy a intentar generar unos cuantos archivos a partir del que viene con la librería.
-      li
-        p
-          | Al final aún no he podido grabar el vídeo de funcionamiento para enviarlo al K3DHT team ya que los frames corruptos de la Xtion hacen muy difícil el correcto funcionamiento, y aún no he conseguido solucionarlos.
-  section
-    h2 17/03/2014
-    ul
-      li
-        p
-          | He recibido feedback de @piedar en el repositorio OpenNI/OpenNI2, respecto a la función que no se encontraba en el driver
-          code freenect
-          | . Resulta que hace 10 meses que esa función fue quitada del código, por lo que la solución sería reprogramar la librería. Es decir, no podré usar la Kinect.
-      li
-        p
-          | Mientras tanto voy a seguir solucionando el problema de los frames corruptos, aunque parece que con el API de OpenNI2 poco puedo hacer.
-  section
-    h2 20/03/2014
-    ul
-      li
-        p
-          | He vuelto a añadir la función eliminada del código al driver Freenect y recompilado el driver, pero la librería sigue quejándose, así que la Kinect sigue sin ser viable.
-      li
-        p
-          | Voy a intentar arreglar lo de los fotogramas corruptos pero estoy bastante atascado, no consigo entender el funcionamiento.
-  section
-    h2 21/03/2014
-    ul
-      li
-        p
-          | Intentando hackear el driver de Freenect y OpenNI2 para funcionar con el HandTracker, sin éxito. Estoy intentando usar una versión antigua de OpenNI2 para tener las funciones que pide disponibles.
-  section
-    h2 27/03/2014
-    ul
-      li
-        p
-          | Necesito arreglar como sea la prevención de fotogramas corruptos, por lo que he preguntado directamente en el proyecto OpenNI2 en github.com:
-        p
+        p.
+          Sigo intentando solucionar lo de prevenir el dibujado de frames 
+          corruptos, o por lo menos pasarlos al HandTracker, para que la mano 3D 
+          no pierda comba.
+        p.
+          La documentación de OpenNI2 no ayuda, sigo investigando a ver si puedo 
+          prevenir o por lo menos capturar estos frames. El mensaje de depuración 
+          dice:
+
+        blockquote
           pre
-            code
-              | Hi,
-              |
-              | I'm using the PS1080 driver through OpenNI to capture data from an Xtion PRO Live, which works pefectly on most of the sample software I've tried. In my case, I'm working with FORTH's 3D HandTracker which is somewhat GPU intensive, and I am getting some warning messages from the driver:
-              |
-              | 1395917999895396 WARNING    Image frame is corrupt!
-              | 1395917999962098 WARNING    Read: Image buffer is corrupt. Size is 921588 (!= 921600)
-              |
-              | I'm having troubles using the 3D hand tracking library, because it depends on depth and color information, and whenever I get a corrupt frame, it goes unnoticed from the application's point of view (despite the warning log), thus it gets propagated to the tracker and consequently the tracking goes to waste (due to wrong color information and glitches on the image).
-              |
-              | Is it possible to repeat last frame in case of buffer corruption, or at least capture this corruption from an OpenNI application in order to prevent the corrupt frame to be propagated or even created?
-              |
-              | Thanks in advance!
-      li
-        p
-          | Por mi cuenta estoy investigando ya que parece que el problema de la pérdida de datos desde la cámara tiene su origen en la incapacidad del driver de setear la prioridad de los threads de lectura del USB aĺ nivel crítico. Voy a ver si puedo recompilarlo de alguna forma en la que esto se solucione.
+            code Image buffer corrupt
+
+        p.
+          #[strong Update:] Lo he solucionado por el momento conectando la Xtion 
+          al USB trasero.
+      li.
+        Por otra parte, los valores en el archivo #[code skin_detection.ini] que 
+        mejores resultados dan, son.
+
+        # TODO: encontrar estos valores
+
   section
-    h2 01/04/2014
+    h3.date 11/03/2014
+    ul
+      li.
+        Añadido el servidor del HandTracker al workspace del Umano en la rama 
+        #[code hand_tracker]. Falta optimizar y calibrar.
+
+  section
+    h3.date 12/03/2014
+    ul
+      li.
+        Parece ser que los drivers de Kinect para Linux ya están completados, 
+        o por lo menos más avanzados. Voy a ver si puedo compilarlos y probarlos. 
+        De funcionar, podría usar la Kinect en lugar de la Xtion y esto supondría 
+        poder saltarme la calibración, que se me está atragantando.
+      li.
+        No han funcionado. Parece que va un poco mejor con algunos ejemplos que 
+        vienen en el paquete de OpenNI2, pero sigue dando el mismo error que daba 
+        la versión anterior (#[code oniDriverStreamAddRefToFrame] missing).
+      li.
+        Sigo con la calibración. Voy a intentar grabar una secuencia de la captura 
+        para mandársela al K3DHT team y darles feedback de mis avances, y de paso 
+        les preguntaré cómo puedo calibrar la captura de imágenes para el HandTracker.
+
+  section
+    h3.date 14/03/2014
+    ul
+      li.
+        Continúo programando el módulo de calibración. Voy a intentar generar 
+        unos cuantos archivos a partir del que viene con la librería.
+      li.
+        Al final aún no he podido grabar el vídeo de funcionamiento para enviarlo 
+        al K3DHT team ya que los frames corruptos de la Xtion hacen muy difícil 
+        el correcto funcionamiento, y aún no he conseguido solucionarlos.
+
+  section
+    h3.date 17/03/2014
+    ul
+      li.
+        He recibido feedback de @piedar en el repositorio OpenNI/OpenNI2, respecto 
+        a la función que no se encontraba en el driver #[code freenect]. Resulta 
+        que hace 10 meses que esa función fue quitada del código, por lo que 
+        la solución sería reprogramar la librería. Es decir, no podré usar la Kinect.
+      li.
+        Mientras tanto voy a seguir solucionando el problema de los frames corruptos, 
+        aunque parece que con el API de OpenNI2 poco puedo hacer.
+
+  section
+    h3.date 20/03/2014
+
+    ul
+      li.
+        He vuelto a añadir la función eliminada del código al driver Freenect 
+        y recompilado el driver, pero la librería sigue quejándose, así que 
+        la Kinect sigue sin ser viable.
+      li.
+        Voy a intentar arreglar lo de los fotogramas corruptos pero estoy bastante 
+        atascado, no consigo entender el funcionamiento.
+
+  section
+    h3.date 21/03/2014
+
+    ul
+      li.
+        Intentando hackear el driver de Freenect y OpenNI2 para funcionar con 
+        el HandTracker, sin éxito. Estoy intentando usar una versión antigua 
+        de OpenNI2 para tener las funciones que pide disponibles.
+
+  section
+    h3.date 27/03/2014
+
     ul
       li
-        p
-          | He mejorado la detección de fotogramas corruptos en el HandTrackerServer. Ahora deja de evaluar la pose de la mano en cuanto encuentra un fotograma corrupto.
+        p.
+          Necesito arreglar como sea la prevención de fotogramas corruptos, por lo 
+          que he preguntado directamente en el proyecto OpenNI2 en github.com:
+
+        blockquote.email
+          p.
+            I'm using the PS1080 driver through OpenNI to capture data from 
+            an Xtion PRO Live, which works pefectly on most of the sample software 
+            I've tried. In my case, I'm working with FORTH's 3D HandTracker which 
+            is somewhat GPU intensive, and I am getting some warning messages 
+            from the driver:
+
+          pre
+            code {`Hi,              
+1395917999895396 WARNING    Image frame is corrupt!
+1395917999962098 WARNING    Read: Image buffer is corrupt. Size is 921588 (!= 921600)`}
+
+          p.
+            I'm having troubles using the 3D hand tracking library, because 
+            it depends on depth and color information, and whenever I get a corrupt 
+            frame, it goes unnoticed from the application's point of view (despite 
+            the warning log), thus it gets propagated to the tracker and consequently 
+            the tracking goes to waste (due to wrong color information and glitches 
+            on the image).
+
+          p.
+            Is it possible to repeat last frame in case of buffer corruption, 
+            or at least capture this corruption from an OpenNI application in order 
+            to prevent the corrupt frame to be propagated or even created?
+
+          p Thanks in advance!
       li
-        p
-          | Tras parametrizar y calibrar la detección de fotogramas corruptos, el rendimiento cae bastante y no aporta demasiadas mejoras, aunque hace falta probar diferentes valores para el tracker.
+        p.
+          Por mi cuenta estoy investigando ya que parece que el problema de 
+          la pérdida de datos desde la cámara tiene su origen en la incapacidad 
+          del driver de setear la prioridad de los threads de lectura del USB al 
+          nivel crítico. Voy a ver si puedo recompilarlo de alguna forma en la 
+          que esto se solucione.
+
   section
-    h2 03/04/2014
+    h3.date 01/04/2014
+
     ul
-      li
-        p
-          | Sigo mejorando el algoritmo de detección de fotogramas corruptos. Tengo problemas de memory leaks.
-      li
-        p
-          | He solucionado las fugas de memoria y he establecido los parámetros óptimos para detectar los fotogramas corruptos. El rendimiento es similar al original pero el tracking sigue siendo defectuoso. Necesito calibrar el tono de la piel pero no sé cómo hacerlo.
+      li.
+        He mejorado la detección de fotogramas corruptos en el HandTrackerServer. 
+        Ahora deja de evaluar la pose de la mano en cuanto encuentra un fotograma 
+        corrupto.
+      li.
+        Tras parametrizar y calibrar la detección de fotogramas corruptos, el 
+        rendimiento cae bastante y no aporta demasiadas mejoras, aunque hace falta 
+        probar diferentes valores para el tracker.
+
   section
-    h2 07/04/2014
+    h3.date 03/04/2014
+
     ul
-      li
-        p
-          | He depurado el código del cliente y el servidor de tracking y voy a seguir intentando calibrarlo para mejorar la precisión.
-      li
-        p
-          | He creado un launcher para poder lanzar pruebas sin tener que tener varias consolas abiertas.
+      li.
+        Sigo mejorando el algoritmo de detección de fotogramas corruptos. Tengo 
+        problemas de memory leaks.
+      li.
+        He solucionado las fugas de memoria y he establecido los parámetros óptimos 
+        para detectar los fotogramas corruptos. El rendimiento es similar al original 
+        pero el tracking sigue siendo defectuoso. Necesito calibrar el tono de 
+        la piel pero no sé cómo hacerlo.
+
   section
-    h2 11/04/2014
+    h3.date 07/04/2014
+
     ul
-      li
-        p
-          | He conseguido mejorar el funcionamiento del HandTracker bajando el nivel de luz de la cámara, aunque no consigo desactivar el auto white balancing, ya que no está documentado en ningún sitio. Puede que envíe un email a ASUS.
-      li
-        p
-          | He grabado un vídeo del tracker en funcionamiento y voy a mandarlo a FORTH para que vean el progreso de mi trabajo y ver si pueden darme algunas pistas de cómo calibrar su tracker.
+      li.
+        He depurado el código del cliente y el servidor de tracking y voy a seguir 
+        intentando calibrarlo para mejorar la precisión.
+      li.
+        He creado un launcher para poder lanzar pruebas sin tener que tener varias 
+        consolas abiertas.
+
+  section
+    h3.date 11/04/2014
+
+    ul
+      li.
+        He conseguido mejorar el funcionamiento del HandTracker bajando el nivel 
+        de luz de la cámara, aunque no consigo desactivar el auto white balancing, 
+        ya que no está documentado en ningún sitio. Puede que envíe un email a ASUS.
+      li.
+        He grabado un vídeo del tracker en funcionamiento y voy a mandarlo a FORTH 
+        para que vean el progreso de mi trabajo y ver si pueden darme algunas 
+        pistas de cómo calibrar su tracker.
       li
         p El email:
-        p
-          blockquote.email
-            | Hello K3DHT team,
-            |
-            | I have been working with your 3D  HandTracking library like I explained on previous emails, and I have finally made it work along the Umano simulator, a project that simulates several robotic hand models, including a human hand model, which I used for the project.
-            |
-            | I have had lots of problems due to incompatibilities with the Kinect and Ubuntu — I switched to an ASUS Xtion PRO Live —, rendering problems with OpenGL — which you helped me address by switching to driver 304 from nVidia (it worked!) — and the latest problem was a matter of intercepting a massive amount of corrupt frames from the Xtion, which prevented the tracker from functioning properly, but it's (mostly) fixed now.
-            |
-            | Now I'm close to have it working at a functional/usable level, and I've captured a video of the simulator working with your library, which you can download and check out here:
-            |
-            | http://ubuntuone.com/2NMW1leMTzfO7Aufe5Fw8t
-            |
-            | Hope you like it! ;)
-            |
-            | My next inmediate step will be calibrating the tracker according to the light levels and skin tone. Can I find any documentation on how to do this? I've found some parameters such as those found at skin_calibration.ini:
-            |
-            | acquisition.skin_info = media/hands_faceP.dat
-            | acquisition.skin_low=40
-            | acquisition.skin_high=60
-            |
-            | but I don't know what these values represent and results vary insignificantly upon changing them, so any help about calibration would be very appreciated.
-            |
-            | As always, thank in advance and let me know what you think of the demo.
-            |
-            | All the best,
-      li
-        p
-          | Mientras espero respuesta por parte del K3DHT team, voy a probar a usar un nuevo dispositivo, el LEAP Motion, que me acaban de dejar. Parece que tiene un API usable para trackear en 3D y es compatible con Linux. Estoy documentándome.
+
+        blockquote.email
+          p.
+            Hello K3DHT team,
+
+          p.
+            I have been working with your 3D  HandTracking library like I explained 
+            on previous emails, and I have finally made it work along the Umano 
+            simulator, a project that simulates several robotic hand models, 
+            including a human hand model, which I used for the project.
+
+          p.
+            I have had lots of problems due to incompatibilities with the Kinect 
+            and Ubuntu — I switched to an ASUS Xtion PRO Live —, rendering problems 
+            with OpenGL — which you helped me address by switching to driver 304 
+            from nVidia (it worked!) — and the latest problem was a matter of 
+            intercepting a massive amount of corrupt frames from the Xtion, which 
+            prevented the tracker from functioning properly, but it's (mostly) 
+            fixed now.
+
+          p.
+            Now I'm close to have it working at a functional/usable level, and 
+            I've captured a video of the simulator working with your library, 
+            which you can download and check out here:
+
+          p #[a(href="http://ubuntuone.com/2NMW1leMTzfO7Aufe5Fw8t") http://ubuntuone.com/2NMW1leMTzfO7Aufe5Fw8t]
+          
+          p Hope you like it! ;)
+
+          p.
+            My next inmediate step will be calibrating the tracker according 
+            to the light levels and skin tone. Can I find any documentation 
+            on how to do this? I've found some parameters such as those found 
+            at #[code skin_calibration.ini]:
+
+          pre
+            code {`acquisition.skin_info = media/hands_faceP.dat
+acquisition.skin_low=40
+acquisition.skin_high=60
+`}
+
+          p.
+            but I don't know what these values represent and results vary 
+            insignificantly upon changing them, so any help about calibration 
+            would be very appreciated.
+
+          p.
+            As always, thank in advance and let me know what you think of the 
+            demo.
+
+          p.
+            All the best,
+      li.
+        Mientras espero respuesta por parte del K3DHT team, voy a probar a usar 
+        un nuevo dispositivo, el LEAP Motion, que me acaban de dejar. Parece que 
+        tiene un API usable para trackear en 3D y es compatible con Linux. 
+        Estoy documentándome.
+
   section
-    h2 15/04/2014
+    h3.date 15/04/2014
+
     ul
+      li.
+        He empezado a documentarme con LEAP Motion, para ver si podemos sacarle 
+        partido. Si el API resulta completo y hay tracking 3D de las manos, podría 
+        ser la solución perfecta.
       li
-        p
-          | He empezado a documentarme con LEAP Motion, para ver si podemos sacarle partido. Si el API resulta completo y hay tracking 3D de las manos, podría ser la solución perfecta.
-      li
-        p
-          | Después de unas cuantas pruebas, no estoy seguro de que sea de gran utilidad, puesto que el dispositivo tiene ciertas limitaciones:
-        p
-          ul
-            li No puede detectar oclusiones.
-            li El rango de operación del sensor es bastante limitado.
-            li
-              | El API no proporciona información sobre todos los DOF de los dedos, sino sólo la posición y rotación de la punta de los mismos.
-        p
-          | Aún así, voy a probar a vincularlo al tracker ya que no parece demasiado complicado, la API es sencilla y tiene wrappers para Python.
+        p.
+          Después de unas cuantas pruebas, no estoy seguro de que sea de gran 
+          utilidad, puesto que el dispositivo tiene ciertas limitaciones:
+
+        ul
+          li No puede detectar oclusiones.
+          li El rango de operación del sensor es bastante limitado.
+          li.
+            El API no proporciona información sobre todos los DOF de los dedos, 
+            sino sólo la posición y rotación de la punta de los mismos.
+        p.
+          Aún así, voy a probar a vincularlo al tracker ya que no parece demasiado 
+          complicado, la API es sencilla y tiene wrappers para Python.
+
   section
-    h2 16/04/2014
+    h3.date 16/04/2014
     ul
-      li
-        p Sigo implementando la integración de LEAP con Umano.
+      li.
+        Sigo implementando la integración de LEAP con Umano.
       li
         p He recibido respuesta del 3DKHT:
-        p
-          blockquote.email
-            | Dear Oscar,
-            |
-            | The video is very nice, congratulations!
-            |
-            | Regarding the skin detector the two values are low and high thresholds for the hysteresis thresholding of the RGB image using the training data from the hands_faceP.dat. You can try changing the thresholds, but the method should perform good enough for indoor conditions with artificial light.
-            |
-            | If you wish to use your own skin-color detection you can just generate a skin-colored mask and pass it to the tracker instead of the color image.
-            |
-            | kind regards
-            | --
-            | The K3DHT team
-        p
-          | Me dan pistas sobre como puedo calibrar el tracker, aunque ya he probado a variar esos valores y no mejora la cosa, supongo que las condiciones de luz no son idóneas y la cámara tiene sus limitaciones, como por ejemplo no poder deshabilitar el auto balance de blancos.
+
+        blockquote.email
+          p.
+            Dear Oscar,
+          p.
+            The video is very nice, congratulations!
+          p.
+            Regarding the skin detector the two values are low and high thresholds 
+            for the hysteresis thresholding of the RGB image using the training 
+            data from the hands_faceP.dat. You can try changing the thresholds, 
+            but the method should perform good enough for indoor conditions with 
+            artificial light.
+          p.
+            If you wish to use your own skin-color detection you can just generate 
+            a skin-colored mask and pass it to the tracker instead of the color 
+            image.
+          p.
+            kind regards#[br]
+            --#[br]
+            The K3DHT team
+        p.
+          Me dan pistas sobre como puedo calibrar el tracker, aunque ya he probado 
+          a variar esos valores y no mejora la cosa, supongo que las condiciones 
+          de luz no son idóneas y la cámara tiene sus limitaciones, como por ejemplo 
+          no poder deshabilitar el auto balance de blancos.
+
   section
-    h2 17/04/2014
+    h3.date 17/04/2014
+    ul
+      li Sigo integrando LEAP con el simulador Umano.
+
+  section
+    h3.date 22/04/2014
     ul
       li
-        p Sigo integrando LEAP con el simulador Umano.
-  section
-    h2 22/04/2014
-    ul
+        p.
+          Tengo el server y el cliente de LEAP Motion funcionando, sólo tengo que 
+          calibrar los ángulos y articulaciones para adecuarlos al simulador Umano. 
+          Necesitaré hacer algunas pruebas, ya que la documentación del API de LEAP, 
+          pese a ser bastante correcta, no especifica restricciones en las 
+          articulaciones puesto que la filosofía es bastante diferente.
+        p.
+          En lugar de un modelo con sus restricciones, el controlador de LEAP 
+          identifica manos, dedos y herramientas (pointables) y sólo cuenta 
+          la posición y orientación de la punta de estos 'pointables'.
       li
-        p
-          | Tengo el server y el cliente de LEAP Motion funcionando, sólo tengo que calibrar los ángulos y articulaciones para adecuarlos al simulador Umano. Necesitaré hacer algunas pruebas, ya que la documentación del API de LEAP, pese a ser bastante correcta, no especifica restricciones en las articulaciones puesto que la filosofía es bastante diferente.
-        p
-          | En lugar de un modelo con sus restricciones, el controlador de LEAP identifica manos, dedos y herramientas (pointables) y sólo cuenta la posición y orientación de la punta de estos 'pointables'.
-      li
-        p
-          | Como el proyecto está un poco a la deriva ya que la evaluación de los agarres en una mano robótica no parece factible con esta tecnología, he mandado un mail a Antonio a ver qué posibilidades tenemos, después de haber investigado un poco por la red.
+        p.
+          Como el proyecto está un poco a la deriva ya que la evaluación de 
+          los agarres en una mano robótica no parece factible con esta tecnología, 
+          he mandado un mail a Antonio a ver qué posibilidades tenemos, después 
+          de haber investigado un poco por la red.
+
         p El email:
-        p
-          blockquote.email
-            | Hola Antonio,
-            |
-            | he estado indagando sobre el LEAP Motion y la verdad es que no parece que podamos usarlo para agarres, puesto que el dispositivo no tiene suficiente resolución para detectar los dedos cuando el puño está cerrado, además de que las oclusiones no se pueden resolver trivialmente. Este es un vídeo de lo que aparentemente es el point cloud del cacharro (aunque puede que haya alguna información extra, como por ejemplo la representación interna de lo que sería una mano, ya que aparecen puntos que están fuera del campo de visión):
-            |
-            | https://www.youtube.com/watch?v=353p4IozW-4
-            |
-            | En todo caso, la API estándar no permite acceder de todas formas al point cloud, sino que es una API a muy alto nivel donde el frame contiene manos, dedos, gestos, etc...
-            |
-            | Sin embargo, he encontrado algunos vídeos interesantes. Por ejemplo, en este combinan una Kinect con el LEAP para controlar oclusiones:
-            |
-            | https://www.youtube.com/watch?v=rZ_T2uTg5N4
-            |
-            | Aquí hay otro vídeo donde combinan ambos dispositivos y se complementan el uno al otro:
-            |
-            | https://www.youtube.com/watch?v=ofQjTA2W8PE
-            |
-            | A nivel de manipulación y agarre tiene poco o nada que ver, pero ¿crees que podríamos sacarle partido de alguna forma? De momento he comenzado a implementar un tracker para Umano con el LEAP como fuente de datos para ver si por lo menos se pueden usar gestos con los dedos con buena precisión.
-            |
-            | Saludos,
+
+        blockquote.email
+          p.
+            Hola Antonio,
+          p.
+            he estado indagando sobre el LEAP Motion y la verdad es que no parece 
+            que podamos usarlo para agarres, puesto que el dispositivo no tiene 
+            suficiente resolución para detectar los dedos cuando el puño está 
+            cerrado, además de que las oclusiones no se pueden resolver trivialmente. 
+            Este es un vídeo de lo que aparentemente es el point cloud del cacharro 
+            (aunque puede que haya alguna información extra, como por ejemplo 
+            la representación interna de lo que sería una mano, ya que aparecen 
+            puntos que están fuera del campo de visión):
+          p.
+            #[a(href="https://www.youtube.com/watch?v=353p4IozW-4") https://www.youtube.com/watch?v=353p4IozW-4]
+          p.
+            En todo caso, la API estándar no permite acceder de todas formas al 
+            point cloud, sino que es una API a muy alto nivel donde el frame 
+            contiene manos, dedos, gestos, etc...
+          p.
+            Sin embargo, he encontrado algunos vídeos interesantes. Por ejemplo, 
+            en este combinan una Kinect con el LEAP para controlar oclusiones:
+          p.
+            #[a(href="https://www.youtube.com/watch?v=rZ_T2uTg5N4") https://www.youtube.com/watch?v=rZ_T2uTg5N4]
+          p.
+            Aquí hay otro vídeo donde combinan ambos dispositivos y se complementan 
+            el uno al otro:
+          p.
+            #[a(href="https://www.youtube.com/watch?v=ofQjTA2W8PE") https://www.youtube.com/watch?v=ofQjTA2W8PE]
+          p.
+            A nivel de manipulación y agarre tiene poco o nada que ver, pero 
+            ¿crees que podríamos sacarle partido de alguna forma? De momento 
+            he comenzado a implementar un tracker para Umano con el LEAP como 
+            fuente de datos para ver si por lo menos se pueden usar gestos con 
+            los dedos con buena precisión.
+          p.
+            Saludos,
+
   section
-    h2 24/04/2014
+    h3.date 24/04/2014
     ul
-      li
-        p
-          | He corregido la comunicación entre cliente y servidor del controller del LEAP motion. Ahora pueden mandarse señales de cerrar la comunicación el uno al otro.
-      li
-        p
-          | He comenzado a implementar el diccionario para las articulaciones de la mano en el LEAP. Como el LEAP solo proporciona la punta de los dedos, he de desarrollar un algoritmo para asignar los dedos correctamente y distribuir el ángulo medido en las articulaciones de cada dedo.
-  // section&gt;h2+ul&gt;li&gt;p
+      li.
+        He corregido la comunicación entre cliente y servidor del controller 
+        del LEAP motion. Ahora pueden mandarse señales de cerrar la comunicación 
+        el uno al otro.
+      li.
+        He comenzado a implementar el diccionario para las articulaciones de 
+        la mano en el LEAP. Como el LEAP solo proporciona la punta de los dedos, 
+        he de desarrollar un algoritmo para asignar los dedos correctamente 
+        y distribuir el ángulo medido en las articulaciones de cada dedo.
+
+  // section>h3.date+ul>li>p

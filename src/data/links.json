@@ -1,7 +1,7 @@
 [
   {
     "icon": ["fa", "file"],
-    "href": "cv",
+    "href": "/cv",
     "title": "My CV"
   },
   {
