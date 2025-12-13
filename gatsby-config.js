@@ -27,7 +27,7 @@ module.exports = {
         extensions: ["js", "pug", "scss"],
       },
     },
-    `gatsby-plugin-netlify-cms`,
+    `gatsby-plugin-decap-cms`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-graphql-loader`,

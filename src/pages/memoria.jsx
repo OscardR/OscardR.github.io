@@ -7,7 +7,8 @@ import { createGlobalStyle } from "styled-components";
 import "@css/memoria.scss";
 
 // Parts of the Memoria page
-import body from "@templates/memoria/body.pug";
+import "bootstrap/dist/css/bootstrap.min.css";
+import body from "@templates/memoria/index.pug";
 
 export const query = graphql`
   query SiteAgain {

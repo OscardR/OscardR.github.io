@@ -1,13 +1,10 @@
-doctype html
+
 html(lang="en")
     head
         meta(charset="UTF-8")
         title Memoria del Trabajo Realizado
-        link(rel="stylesheet" href="../css/bootstrap.css")
-        style.
-            .email {
-                white-space: pre-wrap;
-            }
+        title Memoria del Trabajo Realizado
+
     body
         .container
             header
@@ -108,7 +105,7 @@ html(lang="en")
                                     | Waf: Leaving directory &grave;/datos/OpenNI2-FreenectDriver-master/build&apos;
                                     | Build failed
                                     | -&gt; task in &apos;FreenectDriver&apos; failed (exit status 1):
-                                    | {task 21479504: vnum libFreenectDriver.so -&gt; libFreenectDriver.so.1,libFreenectDriver.so.1.2.1}
+                                    | &#123;task 21479504: vnum libFreenectDriver.so -&gt; libFreenectDriver.so.1,libFreenectDriver.so.1.2.1&#125;
                                     | &apos;&apos;
                     li
                         p
@@ -529,7 +526,7 @@ html(lang="en")
                                     |   Device supports Unified Addressing (UVA):      Yes
                                     |   Device PCI Bus ID / PCI location ID:           1 / 0
                                     |   Compute Mode:
-                                    |      < Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) >
+                                    |      &lt; Default (multiple host threads can use ::cudaSetDevice() with device simultaneously) &gt;
                                     | 
                                     | deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 5.5, CUDA Runtime Version = 5.5, NumDevs = 1, Device0 = GeForce GTX 560
                                     | Result = PASS
@@ -802,7 +799,7 @@ html(lang="en")
                             code rendering.ini
                             | :
                         blockquote
-                            pre(style="-moz-column-count:2; -webkit-column-count:2; column-count:2;")
+                            pre(style={MozColumnCount: 2, WebkitColumnCount: 2, columnCount: 2})
                                 strong Linux
                                 | plugins.renderer_libraries = librenderer_plugin_opengl.so
                                 | 
@@ -1070,33 +1067,33 @@ html(lang="en")
                             blockquote
                                 pre
                                     code
-                                        | &apos;palm_pos.trans_X&apos; : {&apos;id&apos; : 0,  &apos;min&apos; : 0,     &apos;max&apos; : 250,  &apos;def&apos; : 250 },
-                                        | &apos;palm_pos.trans_Y&apos; : {&apos;id&apos; : 1,  &apos;min&apos; : 0,     &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;palm_pos.trans_Z&apos; : {&apos;id&apos; : 2,  &apos;min&apos; : -1200, &apos;max&apos; : 0,    &apos;def&apos; : -1200 },
-                                        | &apos;palm_pos.qX&apos;      : {&apos;id&apos; : 3,  &apos;min&apos; : 0,     &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;palm_pos.qY&apos;      : {&apos;id&apos; : 4,  &apos;min&apos; : 0,     &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;palm_pos.qZ&apos;      : {&apos;id&apos; : 5,  &apos;min&apos; : 0,     &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;palm_pos.qW&apos;      : {&apos;id&apos; : 6,  &apos;min&apos; : 0,     &apos;max&apos; : 1,    &apos;def&apos; : 1 },
-                                        | &apos;pinky_pos.Pitch&apos;  : {&apos;id&apos; : 7,  &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;pinky_pos.Yaw&apos;    : {&apos;id&apos; : 8,  &apos;min&apos; : 1.57,  &apos;max&apos; : 1.57, &apos;def&apos; : 1.57 },
-                                        | &apos;pinky2_pos.Pitch&apos; : {&apos;id&apos; : 9,  &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;pinky3Pos.Pitch&apos;  : {&apos;id&apos; : 10, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;thumb_pos.Pitch&apos;  : {&apos;id&apos; : 11, &apos;min&apos; : -1,    &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;thumb_pos.Yaw&apos;    : {&apos;id&apos; : 12, &apos;min&apos; : 2.5,   &apos;max&apos; : 3.14, &apos;def&apos; : 3.14 },
-                                        | &apos;thumb2_pos.Pitch&apos; : {&apos;id&apos; : 13, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;thumb3_pos.Pitch&apos; : {&apos;id&apos; : 14, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;ring_pos.Pitch&apos;   : {&apos;id&apos; : 15, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;ring_pos.Yaw&apos;     : {&apos;id&apos; : 16, &apos;min&apos; : 1.57,  &apos;max&apos; : 1.57, &apos;def&apos; : 1.57 },
-                                        | &apos;ring2_pos.Pitch&apos;  : {&apos;id&apos; : 17, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;ring3_pos.Pitch&apos;  : {&apos;id&apos; : 18, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;index_pos.Pitch&apos;  : {&apos;id&apos; : 19, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;index_pos.Yaw&apos;    : {&apos;id&apos; : 20, &apos;min&apos; : 1.57,  &apos;max&apos; : 1.57, &apos;def&apos; : 1.57 },
-                                        | &apos;index2_pos.Pitch&apos; : {&apos;id&apos; : 21, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;index3_pos.Pitch&apos; : {&apos;id&apos; : 22, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;middle_pos.Pitch&apos; : {&apos;id&apos; : 23, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;middle_pos.Yaw&apos;   : {&apos;id&apos; : 24, &apos;min&apos; : 1.57,  &apos;max&apos; : 1.57, &apos;def&apos; : 1.57 },
-                                        | &apos;mid2_pos.Pitch&apos;   : {&apos;id&apos; : 25, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 },
-                                        | &apos;mid3_pos.Pitch&apos;   : {&apos;id&apos; : 26, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 },
+                                        | &apos;palm_pos.trans_X&apos; : &#123;&apos;id&apos; : 0,  &apos;min&apos; : 0,     &apos;max&apos; : 250,  &apos;def&apos; : 250 &#125;,
+                                        | &apos;palm_pos.trans_Y&apos; : &#123;&apos;id&apos; : 1,  &apos;min&apos; : 0,     &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;palm_pos.trans_Z&apos; : &#123;&apos;id&apos; : 2,  &apos;min&apos; : -1200, &apos;max&apos; : 0,    &apos;def&apos; : -1200 &#125;,
+                                        | &apos;palm_pos.qX&apos;      : &#123;&apos;id&apos; : 3,  &apos;min&apos; : 0,     &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;palm_pos.qY&apos;      : &#123;&apos;id&apos; : 4,  &apos;min&apos; : 0,     &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;palm_pos.qZ&apos;      : &#123;&apos;id&apos; : 5,  &apos;min&apos; : 0,     &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;palm_pos.qW&apos;      : &#123;&apos;id&apos; : 6,  &apos;min&apos; : 0,     &apos;max&apos; : 1,    &apos;def&apos; : 1 &#125;,
+                                        | &apos;pinky_pos.Pitch&apos;  : &#123;&apos;id&apos; : 7,  &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;pinky_pos.Yaw&apos;    : &#123;&apos;id&apos; : 8,  &apos;min&apos; : 1.57,  &apos;max&apos; : 1.57, &apos;def&apos; : 1.57 &#125;,
+                                        | &apos;pinky2_pos.Pitch&apos; : &#123;&apos;id&apos; : 9,  &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;pinky3Pos.Pitch&apos;  : &#123;&apos;id&apos; : 10, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;thumb_pos.Pitch&apos;  : &#123;&apos;id&apos; : 11, &apos;min&apos; : -1,    &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;thumb_pos.Yaw&apos;    : &#123;&apos;id&apos; : 12, &apos;min&apos; : 2.5,   &apos;max&apos; : 3.14, &apos;def&apos; : 3.14 &#125;,
+                                        | &apos;thumb2_pos.Pitch&apos; : &#123;&apos;id&apos; : 13, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;thumb3_pos.Pitch&apos; : &#123;&apos;id&apos; : 14, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;ring_pos.Pitch&apos;   : &#123;&apos;id&apos; : 15, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;ring_pos.Yaw&apos;     : &#123;&apos;id&apos; : 16, &apos;min&apos; : 1.57,  &apos;max&apos; : 1.57, &apos;def&apos; : 1.57 &#125;,
+                                        | &apos;ring2_pos.Pitch&apos;  : &#123;&apos;id&apos; : 17, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;ring3_pos.Pitch&apos;  : &#123;&apos;id&apos; : 18, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;index_pos.Pitch&apos;  : &#123;&apos;id&apos; : 19, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;index_pos.Yaw&apos;    : &#123;&apos;id&apos; : 20, &apos;min&apos; : 1.57,  &apos;max&apos; : 1.57, &apos;def&apos; : 1.57 &#125;,
+                                        | &apos;index2_pos.Pitch&apos; : &#123;&apos;id&apos; : 21, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;index3_pos.Pitch&apos; : &#123;&apos;id&apos; : 22, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;middle_pos.Pitch&apos; : &#123;&apos;id&apos; : 23, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;middle_pos.Yaw&apos;   : &#123;&apos;id&apos; : 24, &apos;min&apos; : 1.57,  &apos;max&apos; : 1.57, &apos;def&apos; : 1.57 &#125;,
+                                        | &apos;mid2_pos.Pitch&apos;   : &#123;&apos;id&apos; : 25, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
+                                        | &apos;mid3_pos.Pitch&apos;   : &#123;&apos;id&apos; : 26, &apos;min&apos; : -1.57, &apos;max&apos; : 0,    &apos;def&apos; : 0 &#125;,
                     li
                         h3 Umano
                         p
@@ -1104,41 +1101,41 @@ html(lang="en")
                                 pre
                                     code
                                         | # Wrist
-                                        | &apos;fe_w&apos;          : { &apos;id&apos; : 5, &apos;min&apos;  : -1.0472, &apos;max&apos; : 0.7854, &apos;def&apos; : 0 },
-                                        | &apos;abd_w&apos;         : { &apos;id&apos; : 6, &apos;min&apos;  : -1.4835, &apos;max&apos; : 1.4835, &apos;def&apos; : 0 },
+                                        | &apos;fe_w&apos;          : &#123; &apos;id&apos; : 5, &apos;min&apos;  : -1.0472, &apos;max&apos; : 0.7854, &apos;def&apos; : 0 &#125;,
+                                        | &apos;abd_w&apos;         : &#123; &apos;id&apos; : 6, &apos;min&apos;  : -1.4835, &apos;max&apos; : 1.4835, &apos;def&apos; : 0 &#125;,
                                         | 
                                         | # Thumb
-                                        | &apos;flexIPthumb&apos;   : { &apos;id&apos; : 7, &apos;min&apos;  : -0.2618, &apos;max&apos; : 1.3962, &apos;def&apos; : 0 },
-                                        | &apos;flexMCPthumb&apos;  : { &apos;id&apos; : 8, &apos;min&apos;  : -0.1745, &apos;max&apos; : 1.3962, &apos;def&apos; : 0 },
-                                        | &apos;abdMCPthumb&apos;   : { &apos;id&apos; : 9, &apos;min&apos;  : -0.5236, &apos;max&apos; : 1.0472, &apos;def&apos; : 0 },
-                                        | &apos;flexCMCthumb&apos;  : { &apos;id&apos; : 10, &apos;min&apos; : -0.4363, &apos;max&apos; : 0.6109, &apos;def&apos; : 0 },
-                                        | &apos;abdCMCthumb&apos;   : { &apos;id&apos; : 11, &apos;min&apos; : -0.5236, &apos;max&apos; : 1.0472, &apos;def&apos; : 0 },
+                                        | &apos;flexIPthumb&apos;   : &#123; &apos;id&apos; : 7, &apos;min&apos;  : -0.2618, &apos;max&apos; : 1.3962, &apos;def&apos; : 0 &#125;,
+                                        | &apos;flexMCPthumb&apos;  : &#123; &apos;id&apos; : 8, &apos;min&apos;  : -0.1745, &apos;max&apos; : 1.3962, &apos;def&apos; : 0 &#125;,
+                                        | &apos;abdMCPthumb&apos;   : &#123; &apos;id&apos; : 9, &apos;min&apos;  : -0.5236, &apos;max&apos; : 1.0472, &apos;def&apos; : 0 &#125;,
+                                        | &apos;flexCMCthumb&apos;  : &#123; &apos;id&apos; : 10, &apos;min&apos; : -0.4363, &apos;max&apos; : 0.6109, &apos;def&apos; : 0 &#125;,
+                                        | &apos;abdCMCthumb&apos;   : &#123; &apos;id&apos; : 11, &apos;min&apos; : -0.5236, &apos;max&apos; : 1.0472, &apos;def&apos; : 0 &#125;,
                                         | 
                                         | # Index
-                                        | &apos;flexDIPindex&apos;  : { &apos;id&apos; : 12, &apos;min&apos; : -0.1745, &apos;max&apos; : 1.5708, &apos;def&apos; : 0 },
-                                        | &apos;flexPIPindex&apos;  : { &apos;id&apos; : 13, &apos;min&apos; :       0, &apos;max&apos; : 1.7453, &apos;def&apos; : 0 },
-                                        | &apos;flexMCPindex&apos;  : { &apos;id&apos; : 14, &apos;min&apos; :       0, &apos;max&apos; : 1.5708, &apos;def&apos; : 0 },
-                                        | &apos;abdMCPindex&apos;   : { &apos;id&apos; : 15, &apos;min&apos; : -0.2618, &apos;max&apos; : 0.7330, &apos;def&apos; : 0 },
+                                        | &apos;flexDIPindex&apos;  : &#123; &apos;id&apos; : 12, &apos;min&apos; : -0.1745, &apos;max&apos; : 1.5708, &apos;def&apos; : 0 &#125;,
+                                        | &apos;flexPIPindex&apos;  : &#123; &apos;id&apos; : 13, &apos;min&apos; :       0, &apos;max&apos; : 1.7453, &apos;def&apos; : 0 &#125;,
+                                        | &apos;flexMCPindex&apos;  : &#123; &apos;id&apos; : 14, &apos;min&apos; :       0, &apos;max&apos; : 1.5708, &apos;def&apos; : 0 &#125;,
+                                        | &apos;abdMCPindex&apos;   : &#123; &apos;id&apos; : 15, &apos;min&apos; : -0.2618, &apos;max&apos; : 0.7330, &apos;def&apos; : 0 &#125;,
                                         | 
                                         | # Middle
-                                        | &apos;flexDIPmiddle&apos; : { &apos;id&apos; : 17, &apos;min&apos; : -0.1745, &apos;max&apos; :  1.5708, &apos;def&apos; : 0 },
-                                        | &apos;flexPIPmiddle&apos; : { &apos;id&apos; : 18, &apos;min&apos; :       0, &apos;max&apos; :  1.7453, &apos;def&apos; : 0 },
-                                        | &apos;flexMCPmiddle&apos; : { &apos;id&apos; : 19, &apos;min&apos; :       0, &apos;max&apos; :  1.5708, &apos;def&apos; : 0 },
-                                        | &apos;abdMCPmiddle&apos;  : { &apos;id&apos; : 20, &apos;min&apos; : -0.1396, &apos;max&apos; :  0.6109, &apos;def&apos; : 0 },
+                                        | &apos;flexDIPmiddle&apos; : &#123; &apos;id&apos; : 17, &apos;min&apos; : -0.1745, &apos;max&apos; :  1.5708, &apos;def&apos; : 0 &#125;,
+                                        | &apos;flexPIPmiddle&apos; : &#123; &apos;id&apos; : 18, &apos;min&apos; :       0, &apos;max&apos; :  1.7453, &apos;def&apos; : 0 &#125;,
+                                        | &apos;flexMCPmiddle&apos; : &#123; &apos;id&apos; : 19, &apos;min&apos; :       0, &apos;max&apos; :  1.5708, &apos;def&apos; : 0 &#125;,
+                                        | &apos;abdMCPmiddle&apos;  : &#123; &apos;id&apos; : 20, &apos;min&apos; : -0.1396, &apos;max&apos; :  0.6109, &apos;def&apos; : 0 &#125;,
                                         | 
                                         | # Ring
-                                        | &apos;flexDIPring&apos;   : { &apos;id&apos; : 22, &apos;min&apos; : -0.3491, &apos;max&apos; :  1.5708, &apos;def&apos; : 0 },
-                                        | &apos;flexPIPring&apos;   : { &apos;id&apos; : 23, &apos;min&apos; :       0, &apos;max&apos; :  1.7453, &apos;def&apos; : 0 },
-                                        | &apos;flexMCPring&apos;   : { &apos;id&apos; : 24, &apos;min&apos; :       0, &apos;max&apos; :  1.5708, &apos;def&apos; : 0 },
-                                        | &apos;abdMCPring&apos;    : { &apos;id&apos; : 25, &apos;min&apos; : -0.2443, &apos;max&apos; :  0.3491, &apos;def&apos; : 0 },
-                                        | &apos;flexCMCring&apos;   : { &apos;id&apos; : 26, &apos;min&apos; :       0, &apos;max&apos; :  0.2618, &apos;def&apos; : 0 },
+                                        | &apos;flexDIPring&apos;   : &#123; &apos;id&apos; : 22, &apos;min&apos; : -0.3491, &apos;max&apos; :  1.5708, &apos;def&apos; : 0 &#125;,
+                                        | &apos;flexPIPring&apos;   : &#123; &apos;id&apos; : 23, &apos;min&apos; :       0, &apos;max&apos; :  1.7453, &apos;def&apos; : 0 &#125;,
+                                        | &apos;flexMCPring&apos;   : &#123; &apos;id&apos; : 24, &apos;min&apos; :       0, &apos;max&apos; :  1.5708, &apos;def&apos; : 0 &#125;,
+                                        | &apos;abdMCPring&apos;    : &#123; &apos;id&apos; : 25, &apos;min&apos; : -0.2443, &apos;max&apos; :  0.3491, &apos;def&apos; : 0 &#125;,
+                                        | &apos;flexCMCring&apos;   : &#123; &apos;id&apos; : 26, &apos;min&apos; :       0, &apos;max&apos; :  0.2618, &apos;def&apos; : 0 &#125;,
                                         | 
                                         | # Small
-                                        | &apos;flexDIPsmall&apos;  : { &apos;id&apos; : 27, &apos;min&apos; : -0.5236, &apos;max&apos; :  1.5708, &apos;def&apos; : 0 },
-                                        | &apos;flexPIPsmall&apos;  : { &apos;id&apos; : 28, &apos;min&apos; :       0, &apos;max&apos; :  1.7453, &apos;def&apos; : 0 },
-                                        | &apos;flexMCPsmall&apos;  : { &apos;id&apos; : 29, &apos;min&apos; :       0, &apos;max&apos; :  1.5708, &apos;def&apos; : 0 },
-                                        | &apos;abdMCPsmall&apos;   : { &apos;id&apos; : 30, &apos;min&apos; : -0.6981, &apos;max&apos; :  0.3316, &apos;def&apos; : 0 },
-                                        | &apos;flexCMCsmall&apos;  : { &apos;id&apos; : 31, &apos;min&apos; :       0, &apos;max&apos; :  0.5236, &apos;def&apos; : 0 },
+                                        | &apos;flexDIPsmall&apos;  : &#123; &apos;id&apos; : 27, &apos;min&apos; : -0.5236, &apos;max&apos; :  1.5708, &apos;def&apos; : 0 &#125;,
+                                        | &apos;flexPIPsmall&apos;  : &#123; &apos;id&apos; : 28, &apos;min&apos; :       0, &apos;max&apos; :  1.7453, &apos;def&apos; : 0 &#125;,
+                                        | &apos;flexMCPsmall&apos;  : &#123; &apos;id&apos; : 29, &apos;min&apos; :       0, &apos;max&apos; :  1.5708, &apos;def&apos; : 0 &#125;,
+                                        | &apos;abdMCPsmall&apos;   : &#123; &apos;id&apos; : 30, &apos;min&apos; : -0.6981, &apos;max&apos; :  0.3316, &apos;def&apos; : 0 &#125;,
+                                        | &apos;flexCMCsmall&apos;  : &#123; &apos;id&apos; : 31, &apos;min&apos; :       0, &apos;max&apos; :  0.5236, &apos;def&apos; : 0 &#125;,
             section
                 h2 19/02/2014
                 ul
