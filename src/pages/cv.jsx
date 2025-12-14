@@ -3,17 +3,12 @@ import { Helmet } from "react-helmet";
 import { graphql } from "gatsby";
 
 // Components
-import { InformationBlock } from "@components/information-block";
-import { JobsList } from "@components/jobs-list";
-import { EducationList } from "@components/education-list";
-import { LinksList } from "@components/links-list";
-import { Skillset } from "@components/skillset";
+import { SkillCard } from "../components/cv/SkillCard";
+import { ExperienceItem } from "../components/cv/ExperienceItem";
+import { ProjectCard } from "../components/cv/ProjectCard";
 
 // Styles
 import "@css/cv.scss";
-
-// Parts of the CV page
-import body from "@templates/cv/body.pug";
 
 // Resources
 import me from "@images/cv/me.jpg";
@@ -22,9 +17,6 @@ import cdRaw2 from "@images/cv/cd_raw_2.jpg";
 import cdRaw3 from "@images/cv/cd_raw_3.jpg";
 import sampleCdBack from "@images/cv/sample_cd_back.jpg";
 import sampleCdFront from "@images/cv/sample_cd_front.jpg";
-
-// Scripts
-import { setEventHandlers } from "../js/cv";
 
 export const query = graphql`
   query SiteAndData {
@@ -52,20 +44,15 @@ export const query = graphql`
 `;
 
 class CV extends React.PureComponent {
-  componentDidMount() {
-    // todo: get rid of jQuery
-    setEventHandlers();
-  }
-
   render() {
+    console.log(this.props.data);
     const {
         site,
         jobs,
         education,
-        links,
-        informationFields,
-        information,
-        skillsets
+        // links,
+        // information,
+        skillsets,
       } = this.props.data,
       { siteMetadata: meta } = site;
 
@@ -78,57 +65,124 @@ class CV extends React.PureComponent {
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
           <title>Óscar Gómez Alcañiz — Curriculum Vitae ({meta.title})</title>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          />
         </Helmet>
 
-        {body({
-          informationFields: informationFields.fields.map(
-            (field) => field.name
-          ),
-          information: information.nodes.map((node) => {
-            let info = Object.keys(node)
-              // Exclude title
-              .filter((key) => key !== "title")
-              // Convert back object
-              .reduce((o, key) => {
-                // Excluding keys that contain null values
-                if (node[key] !== null) {
-                  // Give keys proper names
-                  o[key.replace(/_/g, " ")] = node[key];
-                }
-                return o;
-              }, {});
+        <div className="cv-container">
+          <header>
+            <img src={me} alt="Óscar Gómez Alcañiz" className="profile-image" />
+            <h1>Óscar Gómez Alcañiz</h1>
+            <h2>Senior Cloud Engineer & Platform Architect</h2>
+            <p>
+              Building scalable AWS platforms and automating infrastructure with
+              DevOps & GitOps practices.
+            </p>
+          </header>
 
-            // Package in an information block
-            return {
-              title: node.title.html,
-              info
-            };
-          }),
-          jobs: jobs.nodes,
-          education: education.nodes,
-          skillsets: skillsets.nodes,
-          menuLinks: links.nodes
-            .filter((collection) => collection.path === "cv")
-            .reduce((allLinks, node) => allLinks.concat(node.links), []),
-          links: links.nodes
-            .filter((collection) => collection.path === "")
-            .reduce((allLinks, node) => allLinks.concat(node.links), [])
-            .filter((link) => link.title !== "My CV"),
-          images: {
-            me,
-            cdRaw1,
-            cdRaw2,
-            cdRaw3,
-            sampleCdBack,
-            sampleCdFront
-          },
-          // Components
-          InformationBlock,
-          JobsList,
-          EducationList,
-          LinksList,
-          Skillset
-        })}
+          <section id="skills">
+            <h3>Cloud & DevOps Skills</h3>
+            <div className="skills-grid">
+              <SkillCard
+                icon="fab fa-aws"
+                title="AWS"
+                description="(EKS, EC2, S3)"
+              />
+              <SkillCard
+                icon="fas fa-code-branch"
+                title="Terraform"
+                description="(IaC)"
+              />
+              <SkillCard
+                icon="fab fa-docker"
+                title="Kubernetes & Docker"
+                description=""
+              />
+              <SkillCard
+                icon="fas fa-rocket"
+                title="CI/CD"
+                description="(GitLab CI, Jenkins)"
+              />
+              <SkillCard
+                icon="fas fa-sync"
+                title="GitOps"
+                description="(ArgoCD)"
+              />
+              <SkillCard
+                icon="fab fa-linux"
+                title="Linux & Bash"
+                description=""
+              />
+              <SkillCard
+                icon="fab fa-python"
+                title="Python & Go"
+                description=""
+              />
+            </div>
+          </section>
+
+          <section id="experience">
+            <h3>Professional Experience</h3>
+            <div className="experience-timeline">
+              {jobs.nodes.map((job, index) => (
+                <ExperienceItem
+                  key={index}
+                  position={job.position}
+                  title={job.title}
+                  description={job.description}
+                  date={`${job.from} - ${job.to || "Present"}`}
+                >
+                  <div dangerouslySetInnerHTML={{ __html: job.body }} />
+                </ExperienceItem>
+              ))}
+            </div>
+          </section>
+
+          <section id="education">
+            <h3>Education</h3>
+            <div className="experience-timeline">
+              {education.nodes.map((edu, index) => (
+                <ExperienceItem
+                  key={index}
+                  title={edu.title}
+                  company={edu.school}
+                  location={edu.location}
+                  date={`${edu.from} - ${edu.to || "Present"}`}
+                >
+                  <div dangerouslySetInnerHTML={{ __html: edu.body }} />
+                </ExperienceItem>
+              ))}
+            </div>
+          </section>
+
+          <section id="projects">
+            <h3>Projects & Open Source</h3>
+            <div className="projects-grid">
+              <ProjectCard
+                image={sampleCdFront}
+                title="Day Of Rising CD"
+                description="Artwork design for Day Of Rising album."
+                link="https://www.dayofrising.rocks"
+              />
+              <ProjectCard
+                title="CERN Base Theme"
+                description="Official CERN Drupal Base Theme."
+                link="https://drupal.docs.cern.ch/themes/cern-theme/"
+              />
+              <ProjectCard
+                title="Observable Notebooks"
+                description="Data visualizations and experiments."
+                link="https://observablehq.com/@oscardr"
+              />
+            </div>
+          </section>
+        </div>
       </>
     );
   }

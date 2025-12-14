@@ -1,7 +1,7 @@
 ---
 title: CERN
 from: 2014-09-01
-to: ""
+to: 2023-05-31
 description: International Research Institution based in Switzerland and France.
 position: Full-stack Developer
 ---

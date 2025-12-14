@@ -3,7 +3,7 @@ const crypto = require("crypto");
 /**
  * Enable Pug syntax transform to JSX so we can use Pug for React templates
  */
-exports.onCreateWebpackConfig = ({ actions }) => {
+exports.onCreateWebpackConfig = ({ actions, stage, getConfig }) => {
   actions.setWebpackConfig({
     module: {
       rules: [
