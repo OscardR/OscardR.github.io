@@ -37,10 +37,10 @@ export const query = graphql`
     links: allFile(filter: { name: { eq: "links" } }) {
       ...Links
     }
-    skillsets: allSkillset {
+    technicalSkills: allTechnicalSkill {
       nodes {
         title
-        body
+        layout
         skills {
           name
           items {
@@ -50,6 +50,12 @@ export const query = graphql`
             details
           }
         }
+      }
+    }
+    personalSkills: allPersonalSkill {
+      nodes {
+        title
+        body
       }
     }
   }
@@ -64,7 +70,8 @@ class CV extends React.PureComponent {
         education,
         // links,
         // information,
-        skillsets,
+        technicalSkills,
+        personalSkills,
       } = this.props.data,
       { siteMetadata: meta } = site;
 
@@ -98,40 +105,63 @@ class CV extends React.PureComponent {
             </p>
           </header>
 
-          {skillsets.nodes
-            .filter((skillset) => skillset.title !== "IT Knowledge")
-            .map((skillset, index) => {
+          {technicalSkills.nodes.map((skillset, index) => {
+            if (skillset.layout === "list") {
               return (
-                <section id={`skills-${index}`} key={index}>
+                <section
+                  id={`tech-skills-${index}`}
+                  key={`tech-${index}`}
+                  className="it-skills-section"
+                >
                   <h3>{skillset.title}</h3>
-                  <div className="skills-grid">
-                    {skillset.skills && skillset.skills.length > 0 ? (
-                      skillset.skills.map((category) => (
-                        <React.Fragment key={category.name}>
+                  <div className="it-skills-container">
+                    {skillset.skills.map((category) => (
+                      <div key={category.name} className="it-skill-category">
+                        <h4>{category.name}</h4>
+                        <ul>
                           {category.items.map((item) => (
-                            <SkillCard
-                              key={item.name}
-                              icon={item.icon || "fas fa-check"} // Fallback icon
-                              title={item.name}
-                              description={
-                                item.description ||
-                                (item.details && item.details.join(", ")) ||
-                                ""
-                              }
-                            />
+                            <li key={item.name}>
+                              <strong>{item.name}</strong>
+                              {item.details && item.details.length > 0 && (
+                                <span className="skill-details">
+                                  : {item.details.join(", ")}
+                                </span>
+                              )}
+                            </li>
                           ))}
-                        </React.Fragment>
-                      ))
-                    ) : (
-                      /* Render body for Markdown-based skillsets (e.g. Languages) */
-                      <div
-                        dangerouslySetInnerHTML={{ __html: skillset.body }}
-                      />
-                    )}
+                        </ul>
+                      </div>
+                    ))}
                   </div>
                 </section>
               );
-            })}
+            }
+
+            // Default to cards layout
+            return (
+              <section id={`tech-skills-${index}`} key={`tech-${index}`}>
+                <h3>{skillset.title}</h3>
+                <div className="skills-grid">
+                  {skillset.skills.map((category) => (
+                    <React.Fragment key={category.name}>
+                      {category.items.map((item) => (
+                        <SkillCard
+                          key={item.name}
+                          icon={item.icon || "fas fa-check"}
+                          title={item.name}
+                          description={
+                            item.description ||
+                            (item.details && item.details.join(", ")) ||
+                            ""
+                          }
+                        />
+                      ))}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
 
           <section id="experience">
             <h3>Professional Experience</h3>
@@ -166,38 +196,12 @@ class CV extends React.PureComponent {
             </div>
           </section>
 
-          {skillsets.nodes
-            .filter((skillset) => skillset.title === "IT Knowledge")
-            .map((skillset, index) => {
-              return (
-                <section
-                  id={`skills-${index}`}
-                  key={index}
-                  className="it-skills-section"
-                >
-                  <h3>{skillset.title}</h3>
-                  <div className="it-skills-container">
-                    {skillset.skills.map((category) => (
-                      <div key={category.name} className="it-skill-category">
-                        <h4>{category.name}</h4>
-                        <ul>
-                          {category.items.map((item) => (
-                            <li key={item.name}>
-                              <strong>{item.name}</strong>
-                              {item.details && item.details.length > 0 && (
-                                <span className="skill-details">
-                                  : {item.details.join(", ")}
-                                </span>
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              );
-            })}
+          {personalSkills.nodes.map((skillset, index) => (
+            <section id={`personal-skills-${index}`} key={`personal-${index}`}>
+              <h3>{skillset.title}</h3>
+              <div dangerouslySetInnerHTML={{ __html: skillset.body }} />
+            </section>
+          ))}
 
           <section id="projects">
             <h3>Projects & Open Source</h3>

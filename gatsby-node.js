@@ -21,7 +21,8 @@ exports.onCreateNode = ({ node, actions, getNode, createNodeId }) => {
     "cv.jobs": `Job`,
     "cv.education": `Education`,
     "cv.information": `Information`,
-    "cv.skillset": `Skillset`,
+    "cv.technical": `TechnicalSkill`,
+    "cv.personal": `PersonalSkill`,
     structure: `Structure`,
   };
 
@@ -72,9 +73,12 @@ exports.onCreateNode = ({ node, actions, getNode, createNodeId }) => {
     const contentType = getContentType(node);
 
     let fields = {};
-    if (contentType === `Skillset`) {
-      const { title, skills } = node;
-      fields = { title, skills };
+    if (contentType === `TechnicalSkill`) {
+      const { title, skills, layout } = node;
+      fields = { title, skills, layout };
+    } else if (contentType === `PersonalSkill`) {
+      const { title } = node;
+      fields = { title };
     }
 
     actions.createNode({
@@ -183,12 +187,20 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
 
   createTypes(`
     """
-    Skillset Definition
+    Technical Skill Definition (Structured)
     """
-    type Skillset implements Node @dontInfer {
+    type TechnicalSkill implements Node @dontInfer {
+      title: String!
+      layout: String
+      skills: [Skill!]
+    }
+
+    """
+    Personal Skill Definition (Markdown/Body)
+    """
+    type PersonalSkill implements Node @dontInfer {
       title: String!
       body: String @bodyField
-      skills: [Skill!]
     }
 
     type Skill implements Node @dontInfer {
