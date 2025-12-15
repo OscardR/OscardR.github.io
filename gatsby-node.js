@@ -198,6 +198,8 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
     
     type SkillItem implements Node @dontInfer {
       name: String!
+      icon: String
+      description: String
       details: [String!]
     }
     `);

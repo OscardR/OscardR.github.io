@@ -202,6 +202,7 @@ section {
       font-size: 1.25rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
+      color: var(--text-primary);
     }
 
     p {
@@ -219,5 +220,64 @@ section {
 
   .cv-container {
     padding: 1rem;
+  }
+}
+
+// IT Skills Section styles
+.it-skills-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.it-skill-category {
+  h4 {
+    color: var(--accent-color);
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 0.6rem;
+      padding-left: 1.2rem;
+      position: relative;
+      line-height: 1.5;
+
+      &::before {
+        content: "▹";
+        position: absolute;
+        left: 0;
+        color: var(--accent-color);
+        font-size: 0.9em;
+        top: 0.1em;
+      }
+
+      strong {
+        color: var(--text-primary);
+        font-weight: 600;
+      }
+
+      .skill-details {
+        color: var(--text-secondary);
+        font-size: 0.9em;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .it-skills-container {
+    grid-template-columns: repeat(3, 1fr);
   }
 }

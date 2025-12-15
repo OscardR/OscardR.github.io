@@ -1,31 +1,5 @@
 title: IT Knowledge
 skills:
-  - name: Operating Systems
-    items:
-      - name: Linux
-        details:
-          - Ubuntu
-          - Archlinux
-          - CentOS
-          - AmazonLinux
-      - name: Windows
-        details:
-          - XP
-          - Vista
-          - 7
-          - 8
-          - 10
-      - name: Mac OS X
-        details:
-          - 10.x
-  - name: Design tools
-    items:
-      - name: Adobe Creative Suite
-        details:
-          - Photoshop
-          - InDesign
-          - Illustrator
-          - Flash
   - name: Programming languages & Frameworks
     items:
       - name: Modern Web
@@ -71,6 +45,24 @@ skills:
       - name: Actionscript 3.0
         details:
           - Flash
+  - name: Operating Systems
+    items:
+      - name: Linux
+        details:
+          - Ubuntu
+          - Archlinux
+          - CentOS
+          - AmazonLinux
+      - name: Windows
+        details:
+          - XP
+          - Vista
+          - 7
+          - 8
+          - 10
+      - name: Mac OS X
+        details:
+          - 10.x
   - name: Other computing skills
     items:
       - name: CLI Tools
@@ -81,15 +73,6 @@ skills:
         details:
           - Vagrant
           - Docker
-  - name: Office tools
-    items:
-      - name: Microsoft Office
-        details:
-          - SharePoint
-          - InfoPath
-          - VBA
-          - Access
-          - Excel
   - name: Audio/video editing tools
     items:
       - name: Steinberg Nuendo
@@ -104,3 +87,20 @@ skills:
         details:
           - Video editing
           - Special FX
+  - name: Design tools
+    items:
+      - name: Adobe Creative Suite
+        details:
+          - Photoshop
+          - InDesign
+          - Illustrator
+          - Flash
+  - name: Office tools
+    items:
+      - name: Microsoft Office
+        details:
+          - SharePoint
+          - InfoPath
+          - VBA
+          - Access
+          - Excel

@@ -1,0 +1,25 @@
+title: Cloud & DevOps Skills
+skills:
+  - name: Core Stack
+    items:
+      - name: AWS
+        icon: fab fa-aws
+        description: (EKS, EC2, S3)
+      - name: Terraform
+        icon: fas fa-code-branch
+        description: (IaC)
+      - name: Kubernetes & Docker
+        icon: fab fa-docker
+        description: ""
+      - name: CI/CD
+        icon: fas fa-rocket
+        description: (GitLab CI, Jenkins)
+      - name: GitOps
+        icon: fas fa-sync
+        description: (ArgoCD)
+      - name: Linux & Bash
+        icon: fab fa-linux
+        description: ""
+      - name: Python & Go
+        icon: fab fa-python
+        description: ""
