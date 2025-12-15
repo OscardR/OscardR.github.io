@@ -1,9 +1,9 @@
-import {graphql} from 'gatsby';
+import { graphql } from "gatsby";
 
 export const Links = graphql`
   fragment Links on FileConnection {
     nodes {
-      links: childrenLinksJson {
+      links: childrenYaml {
         href
         icon
         title

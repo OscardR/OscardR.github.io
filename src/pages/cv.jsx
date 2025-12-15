@@ -5,7 +5,10 @@ import { graphql } from "gatsby";
 // Components
 import { SkillCard } from "../components/cv/SkillCard";
 import { ExperienceItem } from "../components/cv/ExperienceItem";
-import { ProjectCard } from "../components/cv/ProjectCard";
+import { ProjectCard } from "@components/cv/ProjectCard";
+import { CVMenu } from "@components/cv/CVMenu";
+import { CVFooter } from "@components/cv/CVFooter";
+import { Background } from "@components/cv/Background";
 
 // Styles
 import "@css/cv.scss";
@@ -68,12 +71,32 @@ class CV extends React.PureComponent {
         site,
         jobs,
         education,
-        // links,
+        links,
         // information,
         technicalSkills,
         personalSkills,
       } = this.props.data,
       { siteMetadata: meta } = site;
+
+    // Construct menu data dynamically
+    const menuSections = [];
+
+    technicalSkills.nodes.forEach((skillset, index) => {
+      const id = `tech-skills-${index}`;
+      menuSections.push({ title: skillset.title, id });
+    });
+
+    menuSections.push({ title: "Experience", id: "experience" });
+    menuSections.push({ title: "Education", id: "education" });
+
+    personalSkills.nodes.forEach((skillset, index) => {
+      menuSections.push({
+        title: skillset.title,
+        id: `personal-skills-${index}`,
+      });
+    });
+
+    menuSections.push({ title: "Projects", id: "projects" });
 
     return (
       <>
@@ -83,7 +106,6 @@ class CV extends React.PureComponent {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
-          <title>Óscar Gómez Alcañiz — Curriculum Vitae ({meta.title})</title>
           <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
             rel="stylesheet"
@@ -94,14 +116,19 @@ class CV extends React.PureComponent {
           />
         </Helmet>
 
-        <div className="cv-container">
+        <Background />
+        <CVMenu sections={menuSections} />
+
+        <div className="cv-container" style={{ paddingTop: "80px" }}>
           <header>
             <img src={me} alt="Óscar Gómez Alcañiz" className="profile-image" />
             <h1>Óscar Gómez Alcañiz</h1>
-            <h2>Senior Cloud Engineer & Platform Architect</h2>
+            <h2>Senior Cloud Architect & DevOps Engineer</h2>
             <p>
-              Building scalable AWS platforms and automating infrastructure with
-              DevOps & GitOps practices.
+              Passionate about technology, automation, and building scalable
+              solutions. With over 10 years of experience in the IT industry, I
+              specialize in designing and implementing cloud-native
+              architectures.
             </p>
           </header>
 
@@ -207,12 +234,6 @@ class CV extends React.PureComponent {
             <h3>Projects & Open Source</h3>
             <div className="projects-grid">
               <ProjectCard
-                image={sampleCdFront}
-                title="Day Of Rising CD"
-                description="Artwork design for Day Of Rising album."
-                link="https://www.dayofrising.rocks"
-              />
-              <ProjectCard
                 title="CERN Base Theme"
                 description="Official CERN Drupal Base Theme."
                 link="https://drupal.docs.cern.ch/themes/cern-theme/"
@@ -223,8 +244,24 @@ class CV extends React.PureComponent {
                 link="https://observablehq.com/@oscardr"
               />
             </div>
+
+            <div className="project-gallery">
+              <h4>Day Of Rising CD Artwork</h4>
+              <p>
+                Graphic design project transforming raw photos into a complete
+                CD artwork package using Photoshop.
+              </p>
+              <div className="gallery-grid">
+                <img src={cdRaw1} alt="Raw Element 1" />
+                <img src={cdRaw2} alt="Raw Element 2" />
+                <img src={cdRaw3} alt="Raw Element 3" />
+                <img src={sampleCdFront} alt="CD Front Cover" />
+                <img src={sampleCdBack} alt="CD Back Cover" />
+              </div>
+            </div>
           </section>
         </div>
+        <CVFooter links={links.nodes.map((n) => n.links).flat()} />
       </>
     );
   }

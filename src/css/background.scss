@@ -1,0 +1,12 @@
+.animated-background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    /* Deep Slate/Purple background with green tint */
+    background: radial-gradient(circle at bottom left, #001f25, transparent 50%), radial-gradient(circle at 30% 50%, #1e1b4b 40%, #020617);
+    pointer-events: none;
+    /* Let clicks pass through */
+}
