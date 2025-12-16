@@ -1,11 +1,19 @@
 ---
-title: Photomart Ltd.
-from: 2006-10-01
-to: 2007-12-01
-description: Photographic Supplies Wholesaler in London, United Kingdom.
-position: Graphic Designer / Website Manager
+position: Website Manager
+title: Photomart
+from: 2006-09
+to: 2007-12
+description: London Area, United Kingdom · On-site · Full-time
+skills:
+  - Advertising
+  - Web Development
+  - Photoshop
+  - Graphic Design
+  - Web Design
+  - JavaScript
+  - PHP
+  - HTML
+  - jQuery
 ---
-My tasks involved the management of the corporate website,
-the creation of advertising on several media (mainly online and press), development of
-mini-sites, designing and laying out a monthly magazine and editing an electronic
-weekly magazine.
+
+Development and maintenance of sales portal; creation and management of advertising campaigns; poster and communications design for events; design and image for corporate internal use.

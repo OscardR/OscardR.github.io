@@ -167,6 +167,7 @@ exports.createSchemaCustomization = ({ actions, schema }) => {
         ...datesType,
         position: { type: `String` },
         description: { type: `String` },
+        skills: { type: `[String]` },
       },
       interfaces: [`Node`],
     })

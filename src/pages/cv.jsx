@@ -200,6 +200,7 @@ class CV extends React.PureComponent {
                   title={job.title}
                   description={job.description}
                   date={`${job.from} - ${job.to || "Present"}`}
+                  skills={job.skills}
                 >
                   <div dangerouslySetInnerHTML={{ __html: job.body }} />
                 </ExperienceItem>
@@ -214,8 +215,10 @@ class CV extends React.PureComponent {
                 <ExperienceItem
                   key={index}
                   title={edu.title}
-                  position={edu.location}
+                  position={edu.degree}
+                  description={edu.description}
                   date={`${edu.from} - ${edu.to || "Present"}`}
+                  skills={edu.skills}
                 >
                   <div dangerouslySetInnerHTML={{ __html: edu.body }} />
                 </ExperienceItem>

@@ -1,8 +1,11 @@
 ---
-title: Espai d'Art Fotogràfic
-from: 2008-09-01
-to: 2010-06-01
-description: Arts School in Valencia, Spain
-position: Digital Photography Teacher
+position: Digital Image Processing Teacher
+title: ESPAI D'ART FOTOGRAFIC SL
+from: 2009-01
+to: 2010-09
+description: Valencian Community, Spain · On-site · Freelance
+skills:
+  - Photoshop
 ---
-Adobe Photoshop teacher at beginner, intermediate and advanced levels, for digital photography students. It also involved weekend courses of 15 practical-theoretical hours.
+
+I taught intensive courses on digital photography and image edition using Photoshop, at basic, intermediate and advance levels, as well as Digital Photography I and II as part of the school's integral course curriculum.

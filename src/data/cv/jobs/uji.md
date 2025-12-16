@@ -1,8 +1,16 @@
 ---
-title: Universitat Jaume I
-from: 2013-12-01
-to: 2014-04-01
-description: University in Castellón, Spain.
-position: Collaboration Scholarship.
+position: Research Collaborator
+title: Robotic Intelligence Lab @ UJI
+from: 2013-11
+to: 2014-08
+description: Greater Castellón de la Plana Area · On-site · Internship
+skills:
+  - Linux
+  - Web Development
+  - Bash
+  - Python
 ---
-I did a collaboration project at the Computer Science Dpt., for the Robotics Group, that involved using Microsoft's Kinect to track a hand in 3D, and translate these movements to a robot hand.
+
+I carried out a scholarship at the Robotic Intelligence Lab at Universitat Jaume I.
+
+More info: [http://robinlab.uji.es/](http://robinlab.uji.es/)
