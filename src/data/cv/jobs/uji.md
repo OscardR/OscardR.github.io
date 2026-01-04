@@ -1,9 +1,9 @@
 ---
-position: Research Collaborator
 title: Robotic Intelligence Lab @ UJI
+position: Research Collaborator
+description: Greater Castellón de la Plana Area · On-site · Internship
 from: 2013-11
 to: 2014-08
-description: Greater Castellón de la Plana Area · On-site · Internship
 skills:
   - Linux
   - Web Development

@@ -3,10 +3,11 @@ import { Helmet } from "react-helmet";
 import { graphql } from "gatsby";
 
 // Components
-import { SkillCard } from "../components/cv/SkillCard";
-import { ExperienceItem } from "../components/cv/ExperienceItem";
+import { SkillCard } from "@components/cv/SkillCard";
+import { ExperienceItem } from "@components/cv/ExperienceItem";
 import { ProjectCard } from "@components/cv/ProjectCard";
 import { CVMenu } from "@components/cv/CVMenu";
+import { SkillsetList } from "@components/cv/SkillsetList";
 import { CVFooter } from "@components/cv/CVFooter";
 import { Background } from "@components/cv/Background";
 
@@ -72,28 +73,39 @@ class CV extends React.PureComponent {
         jobs,
         education,
         links,
-        // information,
         technicalSkills,
         personalSkills,
       } = this.props.data,
       { siteMetadata: meta } = site;
 
+    const itSkills = technicalSkills.nodes.filter(
+      (skillset) => skillset.layout === "list"
+    );
+    const devOpsSkills = technicalSkills.nodes.filter(
+      (skillset) => skillset.layout === "cards"
+    );
+
     // Construct menu data dynamically
     const menuSections = [];
 
-    technicalSkills.nodes.forEach((skillset, index) => {
-      const id = `tech-skills-${index}`;
-      menuSections.push({ title: skillset.title, id });
+    devOpsSkills.forEach((skillset, index) => {
+      menuSections.push({
+        title: skillset.title,
+        id: `devops-skills-${index}`,
+      });
     });
 
     menuSections.push({ title: "Experience", id: "experience" });
     menuSections.push({ title: "Education", id: "education" });
 
+    itSkills.forEach((skillset, index) => {
+      const id = `skills-${index}`;
+      menuSections.push({ title: skillset.title, id });
+    });
+
     personalSkills.nodes.forEach((skillset, index) => {
-      menuSections.push({
-        title: skillset.title,
-        id: `personal-skills-${index}`,
-      });
+      const id = `personal-skills-${index}`;
+      menuSections.push({ title: skillset.title, id });
     });
 
     menuSections.push({ title: "Projects", id: "projects" });
@@ -120,7 +132,7 @@ class CV extends React.PureComponent {
         <CVMenu sections={menuSections} />
 
         <div className="cv-container" style={{ paddingTop: "80px" }}>
-          <header>
+          <header style={{ marginBottom: "4rem" }}>
             <img src={me} alt="Óscar Gómez Alcañiz" className="profile-image" />
             <h1>Óscar Gómez Alcañiz</h1>
             <h2>Senior Cloud Architect & DevOps Engineer</h2>
@@ -132,41 +144,10 @@ class CV extends React.PureComponent {
             </p>
           </header>
 
-          {technicalSkills.nodes.map((skillset, index) => {
-            if (skillset.layout === "list") {
-              return (
-                <section
-                  id={`tech-skills-${index}`}
-                  key={`tech-${index}`}
-                  className="it-skills-section"
-                >
-                  <h3>{skillset.title}</h3>
-                  <div className="it-skills-container">
-                    {skillset.skills.map((category) => (
-                      <div key={category.name} className="it-skill-category">
-                        <h4>{category.name}</h4>
-                        <ul>
-                          {category.items.map((item) => (
-                            <li key={item.name}>
-                              <strong>{item.name}</strong>
-                              {item.details && item.details.length > 0 && (
-                                <span className="skill-details">
-                                  : {item.details.join(", ")}
-                                </span>
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              );
-            }
-
+          {devOpsSkills.map((skillset, index) => {
             // Default to cards layout
             return (
-              <section id={`tech-skills-${index}`} key={`tech-${index}`}>
+              <section id={`devops-skills-${index}`} key={`devops-${index}`}>
                 <h3>{skillset.title}</h3>
                 <div className="skills-grid">
                   {skillset.skills.map((category) => (
@@ -199,7 +180,7 @@ class CV extends React.PureComponent {
                   position={job.position}
                   title={job.title}
                   description={job.description}
-                  date={`${job.from} - ${job.to || "Present"}`}
+                  date={`${job.from} – ${job.to || "Present"}`}
                   skills={job.skills}
                 >
                   <div dangerouslySetInnerHTML={{ __html: job.body }} />
@@ -217,7 +198,7 @@ class CV extends React.PureComponent {
                   title={edu.title}
                   position={edu.degree}
                   description={edu.description}
-                  date={`${edu.from} - ${edu.to || "Present"}`}
+                  date={`${edu.from} – ${edu.to || "Present"}`}
                   skills={edu.skills}
                 >
                   <div dangerouslySetInnerHTML={{ __html: edu.body }} />
@@ -226,8 +207,20 @@ class CV extends React.PureComponent {
             </div>
           </section>
 
+          {itSkills.map((skillset, index) => (
+            <SkillsetList
+              key={`tech-${index}`}
+              skillset={skillset}
+              index={index}
+            />
+          ))}
+
           {personalSkills.nodes.map((skillset, index) => (
-            <section id={`personal-skills-${index}`} key={`personal-${index}`}>
+            <section
+              id={`personal-skills-${index}`}
+              className="personal-skills"
+              key={`personal-${index}`}
+            >
               <h3>{skillset.title}</h3>
               <div dangerouslySetInnerHTML={{ __html: skillset.body }} />
             </section>

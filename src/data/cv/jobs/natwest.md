@@ -1,9 +1,9 @@
 ---
-position: Cloud Engineer
 title: NatWest Group
+position: Cloud Engineer
+description: Zurich, Switzerland · Remote
 from: 2023-09
 to: null
-description: Zurich, Switzerland · Remote
 skills:
   - Linux
   - DevOps

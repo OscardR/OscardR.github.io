@@ -1,9 +1,9 @@
 ---
-position: Tutorials
 title: Self Employed
+position: Tutorials
+description: Castellón, Valencian Community, Spain · Hybrid
 from: 2010-10
 to: 2014-09
-description: Castellón, Valencian Community, Spain · Hybrid
 skills:
   - Data Visualization
   - Photoshop

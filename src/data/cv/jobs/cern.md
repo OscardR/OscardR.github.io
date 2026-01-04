@@ -1,9 +1,9 @@
 ---
-position: DevOps Engineer / Full-stack Developer
 title: CERN
+position: DevOps Engineer / Full-stack Developer
+description: Geneva, Switzerland
 from: 2014-09
 to: 2023-05
-description: Geneva, Switzerland
 skills:
   - React.js
   - Linux

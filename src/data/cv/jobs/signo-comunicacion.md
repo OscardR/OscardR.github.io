@@ -1,9 +1,9 @@
 ---
+title: Signo Comunicación
 position: Web Developer / Layout Designer
-title: SIGNO Comunicación
+description: Greater Castellón de la Plana Area · On-site · Part-time
 from: 2008-01
 to: 2011-03
-description: Greater Castellón de la Plana Area · On-site · Part-time
 skills:
   - Advertising
   - Web Development

@@ -1,9 +1,9 @@
 ---
-position: Website Manager
 title: Photomart
+position: Website Manager
+description: London Area, United Kingdom · On-site · Full-time
 from: 2006-09
 to: 2007-12
-description: London Area, United Kingdom · On-site · Full-time
 skills:
   - Advertising
   - Web Development

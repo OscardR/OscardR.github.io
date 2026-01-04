@@ -1,9 +1,9 @@
 ---
-position: Ceramic Tiles Design / Web Development / Photo Processing
 title: Digital Ceramic
+position: Ceramic Tiles Design / Web Development / Photo Processing
+description: Greater Castellón de la Plana Area · On-site
 from: 2013-04
 to: 2013-11
-description: Greater Castellón de la Plana Area · On-site
 skills:
   - Linux
   - Web Development

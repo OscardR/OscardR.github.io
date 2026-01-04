@@ -23,11 +23,11 @@
   icon:
     - fab
     - fa-stack-overflow
-- title: Twitter
-  href: http://www.twitter.com/oscar_dr
+- title: X
+  href: https://x.com/oscar_dr
   icon:
     - fab
-    - fa-twitter
+    - fa-x-twitter
 - title: Observable
   href: https://observablehq.com/@oscardr
   icon:

@@ -1,6 +1,6 @@
 ---
 position: Digital Image Processing Teacher
-title: ESPAI D'ART FOTOGRAFIC SL
+title: Espai d'Art Fotogràfic SL
 from: 2009-01
 to: 2010-09
 description: Valencian Community, Spain · On-site · Freelance

@@ -1,8 +1,11 @@
 ---
 title: Personal Skills
 ---
-I am an extrovert and kind person, who loves enjoying a job as much as possible.
-I am detail oriented in everything I do. I am always willing to learn in order to solve
-problems. I consider myself sincere, responsible and committed to my job. I enjoy music,
-cinema and natural life, I can play several musical instruments and consider myself
-a creative person.
+
+Creative, responsible, and detail-oriented professional with a passion for continuous improvement. I specialize in:
+
+- **Challenging the status quo:** Refining processes to maximize quality and efficiency.
+- **Team Cohesion:** Fostering positive group dynamics and mediating conflict with diplomacy.
+- **Creative Problem Solving:** Applying a versatile, open-minded approach to obstacles.
+
+Personal interests include **music composition**, cinema, and nature.
