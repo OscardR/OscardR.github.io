@@ -1,0 +1,40 @@
+- title: My CV
+  href: /cv
+  icon:
+    - fa
+    - fa-file
+- title: GitHub
+  href: http://www.github.com/OscardR
+  icon:
+    - fab
+    - fa-github
+- title: Bitbucket
+  href: http://www.bitbucket.org/oscar_dr
+  icon:
+    - fab
+    - fa-bitbucket
+- title: Gitlab
+  href: https://gitlab.com/oscar.gomez.alcaniz
+  icon:
+    - fab
+    - fa-gitlab
+- title: StackOverflow
+  href: https://stackoverflow.com/users/1038490/%c3%93scar-g%c3%b3mez-alca%c3%b1iz
+  icon:
+    - fab
+    - fa-stack-overflow
+- title: X
+  href: https://x.com/oscar_dr
+  icon:
+    - fab
+    - fa-x-twitter
+- title: Observable
+  href: https://observablehq.com/@oscardr
+  icon:
+    - fas
+    - fa-dot-circle
+- title: Codepen
+  href: https://codepen.io/oscardr
+  icon:
+    - fab
+    - fa-codepen

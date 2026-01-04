@@ -1,8 +1,18 @@
 ---
-title: Private Teacher
-from: 2011-01-01
-to: 2013-05-01
-description: Castelló, Spain.
-position: English, Science & IT Teacher
+title: Self Employed
+position: Tutorials
+description: Castellón, Valencian Community, Spain · Hybrid
+from: 2010-10
+to: 2014-09
+skills:
+  - Data Visualization
+  - Photoshop
+  - Graphic Design
+  - AngularJS
+  - JavaScript
+  - HTML
+  - Java
+  - jQuery
 ---
-In order to cope with my studies, I started to teach maths, physics, programming, technical drawing and English to high school students.
+
+English classes (conversation and grammar), IT (programming and web technologies), Maths and physics (bachelor and high school level) and technical drawing (high school).

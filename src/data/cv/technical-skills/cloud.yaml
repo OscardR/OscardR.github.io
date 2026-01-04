@@ -1,0 +1,27 @@
+---
+title: Cloud & DevOps Skills
+layout: cards
+skills:
+  - name: Core Stack
+    items:
+      - name: AWS
+        icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg
+        description: (EKS, EC2, S3)
+      - name: Terraform
+        icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg
+        description: (IaC)
+      - name: Kubernetes & Docker
+        icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg
+        description: ""
+      - name: CI/CD
+        icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg
+        description: (GitLab CI, Jenkins)
+      - name: GitOps
+        icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/argocd/argocd-original.svg
+        description: (ArgoCD)
+      - name: Linux & Bash
+        icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg
+        description: ""
+      - name: Python & Go
+        icon: https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg
+        description: ""

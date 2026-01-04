@@ -27,7 +27,7 @@ module.exports = {
         extensions: ["js", "pug", "scss"],
       },
     },
-    `gatsby-plugin-decap-cms`,
+
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sass`,
     `gatsby-plugin-graphql-loader`,
@@ -42,8 +42,15 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/data/cv/skills`,
-        name: "cv.skillset",
+        path: `${__dirname}/src/data/cv/technical-skills`,
+        name: "cv.technical",
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/data/cv/personal-skills`,
+        name: "cv.personal",
       },
     },
     {

@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "sass:color";
 
 $console-alpha: 0.8;
 $console-color: white;
@@ -33,10 +34,9 @@ $console-padding: 1em;
       overflow-x: auto;
       padding: (0.6 * $console-padding) 1em;
       color: $console-color;
-      background-color: transparentize($console-background, 1 - $console-alpha);
+      background-color: color.adjust($console-background, $alpha: $console-alpha - 1);
       border-radius: math.div($console-padding, 4);
-      text-shadow: 1px 1px 1px
-        transparentize($console-background, 1 - $console-alpha);
+      text-shadow: 1px 1px 1px color.adjust($console-background, $alpha: $console-alpha - 1);
       margin: 0;
     }
   }

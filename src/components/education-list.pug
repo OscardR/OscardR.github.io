@@ -1,8 +1,0 @@
-.education(@repeat='education as school')
-  h5.dates {school.from} – {school.to !== 'Invalid date' ? school.to : 'Currently'}
-
-  h4
-    span.school {school.title}
-    small.location  | {school.location}
-
-  div(dangerouslySetInnerHTML={__html: school.body})

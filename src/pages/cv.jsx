@@ -3,17 +3,16 @@ import { Helmet } from "react-helmet";
 import { graphql } from "gatsby";
 
 // Components
-import { InformationBlock } from "@components/information-block";
-import { JobsList } from "@components/jobs-list";
-import { EducationList } from "@components/education-list";
-import { LinksList } from "@components/links-list";
-import { Skillset } from "@components/skillset";
+import { SkillCard } from "@components/cv/SkillCard";
+import { ExperienceItem } from "@components/cv/ExperienceItem";
+import { ProjectCard } from "@components/cv/ProjectCard";
+import { CVMenu } from "@components/cv/CVMenu";
+import { SkillsetList } from "@components/cv/SkillsetList";
+import { CVFooter } from "@components/cv/CVFooter";
+import { Background } from "@components/cv/Background";
 
 // Styles
 import "@css/cv.scss";
-
-// Parts of the CV page
-import body from "@templates/cv/body.pug";
 
 // Resources
 import me from "@images/cv/me.jpg";
@@ -22,9 +21,6 @@ import cdRaw2 from "@images/cv/cd_raw_2.jpg";
 import cdRaw3 from "@images/cv/cd_raw_3.jpg";
 import sampleCdBack from "@images/cv/sample_cd_back.jpg";
 import sampleCdFront from "@images/cv/sample_cd_front.jpg";
-
-// Scripts
-import { setEventHandlers } from "../js/cv";
 
 export const query = graphql`
   query SiteAndData {
@@ -45,29 +41,74 @@ export const query = graphql`
     links: allFile(filter: { name: { eq: "links" } }) {
       ...Links
     }
-    skillsets: allSkillset {
-      ...Skillset
+    technicalSkills: allTechnicalSkill {
+      nodes {
+        title
+        layout
+        skills {
+          name
+          items {
+            name
+            icon
+            description
+            details
+          }
+        }
+      }
+    }
+    personalSkills: allPersonalSkill {
+      nodes {
+        title
+        body
+      }
     }
   }
 `;
 
 class CV extends React.PureComponent {
-  componentDidMount() {
-    // todo: get rid of jQuery
-    setEventHandlers();
-  }
-
   render() {
+    console.log(this.props.data);
     const {
         site,
         jobs,
         education,
         links,
-        informationFields,
-        information,
-        skillsets
+        technicalSkills,
+        personalSkills,
       } = this.props.data,
       { siteMetadata: meta } = site;
+
+    const itSkills = technicalSkills.nodes.filter(
+      (skillset) => skillset.layout === "list"
+    );
+    const devOpsSkills = technicalSkills.nodes.filter(
+      (skillset) => skillset.layout === "cards"
+    );
+
+    // Construct menu data dynamically
+    const menuSections = [];
+
+    devOpsSkills.forEach((skillset, index) => {
+      menuSections.push({
+        title: skillset.title,
+        id: `devops-skills-${index}`,
+      });
+    });
+
+    menuSections.push({ title: "Experience", id: "experience" });
+    menuSections.push({ title: "Education", id: "education" });
+
+    itSkills.forEach((skillset, index) => {
+      const id = `skills-${index}`;
+      menuSections.push({ title: skillset.title, id });
+    });
+
+    personalSkills.nodes.forEach((skillset, index) => {
+      const id = `personal-skills-${index}`;
+      menuSections.push({ title: skillset.title, id });
+    });
+
+    menuSections.push({ title: "Projects", id: "projects" });
 
     return (
       <>
@@ -77,58 +118,146 @@ class CV extends React.PureComponent {
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
-          <title>Óscar Gómez Alcañiz — Curriculum Vitae ({meta.title})</title>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          />
         </Helmet>
 
-        {body({
-          informationFields: informationFields.fields.map(
-            (field) => field.name
-          ),
-          information: information.nodes.map((node) => {
-            let info = Object.keys(node)
-              // Exclude title
-              .filter((key) => key !== "title")
-              // Convert back object
-              .reduce((o, key) => {
-                // Excluding keys that contain null values
-                if (node[key] !== null) {
-                  // Give keys proper names
-                  o[key.replace(/_/g, " ")] = node[key];
-                }
-                return o;
-              }, {});
+        <Background />
+        <CVMenu sections={menuSections} />
 
-            // Package in an information block
-            return {
-              title: node.title.html,
-              info
-            };
-          }),
-          jobs: jobs.nodes,
-          education: education.nodes,
-          skillsets: skillsets.nodes,
-          menuLinks: links.nodes
-            .filter((collection) => collection.path === "cv")
-            .reduce((allLinks, node) => allLinks.concat(node.links), []),
-          links: links.nodes
-            .filter((collection) => collection.path === "")
-            .reduce((allLinks, node) => allLinks.concat(node.links), [])
-            .filter((link) => link.title !== "My CV"),
-          images: {
-            me,
-            cdRaw1,
-            cdRaw2,
-            cdRaw3,
-            sampleCdBack,
-            sampleCdFront
-          },
-          // Components
-          InformationBlock,
-          JobsList,
-          EducationList,
-          LinksList,
-          Skillset
-        })}
+        <div className="cv-container" style={{ paddingTop: "80px" }}>
+          <header style={{ marginBottom: "4rem" }}>
+            <img src={me} alt="Óscar Gómez Alcañiz" className="profile-image" />
+            <h1>Óscar Gómez Alcañiz</h1>
+            <h2>Senior Cloud Architect & DevOps Engineer</h2>
+            <p>
+              Passionate about technology, automation, and building scalable
+              solutions. With over 10 years of experience in the IT industry, I
+              specialize in designing and implementing cloud-native
+              architectures.
+            </p>
+          </header>
+
+          {devOpsSkills.map((skillset, index) => {
+            // Default to cards layout
+            return (
+              <section id={`devops-skills-${index}`} key={`devops-${index}`}>
+                <h3>{skillset.title}</h3>
+                <div className="skills-grid">
+                  {skillset.skills.map((category) => (
+                    <React.Fragment key={category.name}>
+                      {category.items.map((item) => (
+                        <SkillCard
+                          key={item.name}
+                          icon={item.icon || "fas fa-check"}
+                          title={item.name}
+                          description={
+                            item.description ||
+                            (item.details && item.details.join(", ")) ||
+                            ""
+                          }
+                        />
+                      ))}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+
+          <section id="experience">
+            <h3>Professional Experience</h3>
+            <div className="experience-timeline">
+              {jobs.nodes.map((job, index) => (
+                <ExperienceItem
+                  key={index}
+                  position={job.position}
+                  title={job.title}
+                  description={job.description}
+                  date={`${job.from} – ${job.to || "Present"}`}
+                  skills={job.skills}
+                >
+                  <div dangerouslySetInnerHTML={{ __html: job.body }} />
+                </ExperienceItem>
+              ))}
+            </div>
+          </section>
+
+          <section id="education">
+            <h3>Education</h3>
+            <div className="experience-timeline">
+              {education.nodes.map((edu, index) => (
+                <ExperienceItem
+                  key={index}
+                  title={edu.title}
+                  position={edu.degree}
+                  description={edu.description}
+                  date={`${edu.from} – ${edu.to || "Present"}`}
+                  skills={edu.skills}
+                >
+                  <div dangerouslySetInnerHTML={{ __html: edu.body }} />
+                </ExperienceItem>
+              ))}
+            </div>
+          </section>
+
+          {itSkills.map((skillset, index) => (
+            <SkillsetList
+              key={`tech-${index}`}
+              skillset={skillset}
+              index={index}
+            />
+          ))}
+
+          {personalSkills.nodes.map((skillset, index) => (
+            <section
+              id={`personal-skills-${index}`}
+              className="personal-skills"
+              key={`personal-${index}`}
+            >
+              <h3>{skillset.title}</h3>
+              <div dangerouslySetInnerHTML={{ __html: skillset.body }} />
+            </section>
+          ))}
+
+          <section id="projects">
+            <h3>Projects & Open Source</h3>
+            <div className="projects-grid">
+              <ProjectCard
+                title="CERN Base Theme"
+                description="Official CERN Drupal Base Theme."
+                link="https://drupal.docs.cern.ch/themes/cern-theme/"
+              />
+              <ProjectCard
+                title="Observable Notebooks"
+                description="Data visualizations and experiments."
+                link="https://observablehq.com/@oscardr"
+              />
+            </div>
+
+            <div className="project-gallery">
+              <h4>Day Of Rising CD Artwork</h4>
+              <p>
+                Graphic design project transforming raw photos into a complete
+                CD artwork package using Photoshop.
+              </p>
+              <div className="gallery-grid">
+                <img src={cdRaw1} alt="Raw Element 1" />
+                <img src={cdRaw2} alt="Raw Element 2" />
+                <img src={cdRaw3} alt="Raw Element 3" />
+                <img src={sampleCdFront} alt="CD Front Cover" />
+                <img src={sampleCdBack} alt="CD Back Cover" />
+              </div>
+            </div>
+          </section>
+        </div>
+        <CVFooter links={links.nodes.map((n) => n.links).flat()} />
       </>
     );
   }

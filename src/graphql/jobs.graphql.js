@@ -10,6 +10,7 @@ export const Jobs = graphql`
       position
       title
       to(formatString: "MMMM YYYY")
+      skills
     }
   }
 `;
