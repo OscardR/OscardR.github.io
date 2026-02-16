@@ -1,6 +1,5 @@
-nav
-  ul
-    li(@repeat='links as link')
+nav.links-grid
+  a.link-card(href='{link.href}', target='_blank', rel='noopener noreferrer', title='{link.title}', @repeat='links as link')
+    .icon
       i(className='{`${link.iconType} ${link.iconCode}`}')
-      | &ensp;
-      a(href='{link.href}') {link.title}
+    span {link.title}

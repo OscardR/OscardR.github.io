@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import { graphql } from "gatsby";
+import { Link, graphql } from "gatsby";
 import { createGlobalStyle } from "styled-components";
 
 // Styles
@@ -8,7 +8,7 @@ import "@css/memoria.scss";
 
 // Parts of the Memoria page
 import "bootstrap/dist/css/bootstrap.min.css";
-import body from "@templates/memoria/index.pug";
+import body from "@templates/memoria/body.pug";
 
 export const query = graphql`
   query SiteAgain {
@@ -35,6 +35,20 @@ code {
 }
 `;
 
+const Navigation = () => (
+  <nav className="memoria-nav">
+    <div className="nav-container">
+      <Link to="/" className="nav-brand">
+        <i className="fas fa-home"></i> Home
+      </Link>
+      <div className="nav-links">
+        <Link to="/cv">CV</Link>
+        <Link to="/memoria" className="active">Memoria</Link>
+      </div>
+    </div>
+  </nav>
+);
+
 class Memoria extends React.PureComponent {
   render() {
     const { site } = this.props.data,
@@ -49,9 +63,15 @@ class Memoria extends React.PureComponent {
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
           />
           <title>Memoria del Trabajo Realizado ({meta.title})</title>
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          />
         </Helmet>
 
         <GlobalStyle />
+
+        <Navigation />
 
         {body()}
       </>

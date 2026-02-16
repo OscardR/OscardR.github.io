@@ -1,26 +1,25 @@
 //----------
 // HEADER
 //----
-#header_wrap.outer
-  header.inner
-    a#forkme_banner(href='https://github.com/OscardR') View on GitHub
-
+.hero-header
+  .hero-content
     h1#project_title {meta.title} #[small v{meta.version}]
-
     h2#project_tagline {meta.tagLine}
 
 //--------
 // MAIN
 //--
-#main_content_wrap.outer
-  section#main_content.inner
-    LinksList(links='{links}')
+#main_content_wrap
+  section#main_content.cv-container
+    .skills-grid
+      SkillCard(icon='{link.icon.join(" ")}', title='{link.title}', url='{link.href}', description='{link.description}', @repeat='links as link')
 
 //----------
 // FOOTER
 //----
-#footer_wrap.outer
-  footer.inner
-    p
-      | Built with #[a(href="https://www.gatsbyjs.com/") #[i.fab.fa-react] GatsbyJS ] 
-      | and deployed and hosted via #[a(href='https://www.netlify.com/') #[i.fab.fa-git-alt] Netlify]
+#footer_wrap
+  footer.cv-footer
+    .footer-content
+      p
+        | Built with #[a(href="https://www.gatsbyjs.com/") #[i.fab.fa-react] GatsbyJS ] 
+        | and deployed and hosted via #[a(href='https://www.vercel.com/') #[i.fas.fa-cloud] Vercel]

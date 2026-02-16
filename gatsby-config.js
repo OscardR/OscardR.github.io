@@ -6,11 +6,11 @@
 
 module.exports = {
   siteMetadata: {
-    title: `gomez.host`,
+    title: `oscar.gomez.host`,
     tagLine: `Óscar Gómez Alcañiz's personal website`,
     siteUrl: `https://oscar.gomez.host`,
     description: `Personal site, built with Gatsby`,
-    version: `2.0.0`,
+    version: `3.0.0`,
   },
   plugins: [
     {

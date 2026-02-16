@@ -3,7 +3,11 @@ import { Helmet } from "react-helmet";
 import { graphql } from "gatsby";
 
 // Components
-import { LinksList } from "@components/links-list";
+import { SkillCard } from "@components/cv/SkillCard";
+import { Background } from "@components/cv/Background";
+
+// Styles
+import "@css/cv.scss";
 
 // Templates
 import body from "@templates/index.pug";
@@ -41,10 +45,12 @@ const Index = ({ data }) => {
         </title>
       </Helmet>
 
+      <Background />
+
       {body({
         meta,
         links,
-        LinksList
+        SkillCard
       })}
     </>
   );

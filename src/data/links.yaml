@@ -33,6 +33,11 @@
   icon:
     - fas
     - fa-dot-circle
+- title: LinkedIn
+  href: https://www.linkedin.com/in/oscar-gomez-alcaniz
+  icon:
+    - fab
+    - fa-linkedin
 - title: Codepen
   href: https://codepen.io/oscardr
   icon:
